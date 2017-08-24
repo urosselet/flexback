@@ -1,24 +1,34 @@
 {
-  "name": "bk",
+  "name": "flexcrowd-backend",
+  "description": "FlexCrowd Backend Application",
+  "author": "jdlegrand",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
-  "keywords": [],
-  "dependencies": {
-    "include-all": "^1.0.0",
-    "rc": "1.0.1",
-    "sails": "~0.12.13",
-    "sails-disk": "~0.10.9"
-  },
+  "version": "0.1.0",
+  "keywords": [
+    "flexcrowd",
+    "backend",
+    "crowdsourcing",
+    "predictionio",
+    "elasticsearch"
+  ],
+  "main": "app.js",
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "nodemon app.js --debug"
   },
-  "main": "app.js",
+  "dependencies": {
+    "ejs": "2.5.7",
+    "elasticsearch": "^13.3.1",
+    "include-all": "^4.0.3",
+    "rc": "1.2.1",
+    "sails": "~0.12.13",
+    "sails-elastic": "^0.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
   "repository": {
     "type": "git",
-    "url": "git://github.com/jdl/bk.git"
-  },
-  "author": "jdl",
-  "license": ""
+    "url": "git@git.ig.he-arc.ch:ulysse.rosselet/flexback.git"
+  }
 }
