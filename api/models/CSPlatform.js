@@ -5,24 +5,4 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
-module.exports = {
-
-    elasticSearch: {
-        mappings: {
-            platform: {
-                properties: {
-                    name: {
-                        type: 'text',
-                    },
-                    description: {
-                        type: 'text'
-                    },
-                    url: {
-                        type: 'text'
-                    },
-                }
-            }
-        }
-    }
-
-};
+module.exports = {};

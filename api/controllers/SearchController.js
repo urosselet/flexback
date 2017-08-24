@@ -18,10 +18,13 @@ module.exports = {
 
     find: function(req, res) {
 
+        console.log
+
         client.search({
-            q: 'flexcrowd'
+            index: 'operations',
+            q: req.param('query')
         }, function(err, results) {
-        	return res.json(results);
+        	return res.json(results.hits);
         });
 
     }
