@@ -1,0 +1,50 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">FlexCrowd Data Management</a>
+    </div>
+</nav>
+<header class="masthead">
+    <div class="overlay">
+        <div class="container"></div>
+    </div>
+</header>
+<section>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-12 order-1">
+                <div class="p-5">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Url</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="platform in platforms">
+                                <td>
+                                    <span editable-text="platform._source.name">{{ platform._source.name }}</span>
+                                </td>
+                                <td>
+                                    <span editable-text="platform._source.description">{{ platform._source.description }}</span>
+                                </td>
+                                 <td>
+                                    <span editable-text="platform._source.description">{{ platform._source.url }}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; FlexCrowd 2017</p>
+    </div>
+    <!-- /.container -->
+</footer>

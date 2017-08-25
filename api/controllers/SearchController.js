@@ -8,7 +8,7 @@
 let elasticsearch = require('elasticsearch');
 let client = new elasticsearch.Client({
     host: 'http://localhost:9200',
-    log: 'trace',
+    // log: 'trace',
     apiVersion: '5.5',
     sniffOnStart: true,
     sniffInterval: 60000

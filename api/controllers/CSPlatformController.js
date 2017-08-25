@@ -5,5 +5,27 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-module.exports = {};
+let elasticsearch = require('elasticsearch');
+let client = new elasticsearch.Client({
+    host: 'http://localhost:9200',
+    apiVersion: '5.5',
+    sniffOnStart: true,
+    sniffInterval: 60000
+});
+
+module.exports = {
+
+	find: function(req, res) {
+
+        client.search({
+            index: 'flexcrowd',
+            type: 'platform',
+            stored_fields: ['_source']
+        }, function(err, results) {
+        	return res.json(results.hits.hits);
+        });
+
+	}
+
+};
 

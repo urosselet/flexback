@@ -79,9 +79,5 @@ module.exports = {
      * 'development' environment.                                              *
      ***************************************************************************/
     // environment: process.env.NODE_ENV || 'development'
-    
-    cors: {
-        origin: 'http://localhost:3001'
-    }
 
 };
