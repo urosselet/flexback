@@ -14,12 +14,13 @@
         <div class="row align-items-center">
             <div class="col-md-12 order-1">
                 <div class="p-5">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Url</th>
+                                <th>Score</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,11 +28,14 @@
                                 <td>
                                     <span editable-text="platform._source.name">{{ platform._source.name }}</span>
                                 </td>
-                                <td>
-                                    <span editable-text="platform._source.description">{{ platform._source.description }}</span>
+                                <td style="width="400px">
+                                    <span editable-textarea="platform._source.description">{{ platform._source.description }}</span>
                                 </td>
-                                 <td>
+                                <td>
                                     <span editable-text="platform._source.description">{{ platform._source.url }}</span>
+                                </td>
+                                <td>
+                                    <span>{{ platform._score }}</span>
                                 </td>
                             </tr>
                         </tbody>

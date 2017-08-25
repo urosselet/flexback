@@ -21,10 +21,11 @@ module.exports = {
         console.log
 
         client.search({
-            index: 'operations',
+            index: 'flexcrowd',
+            type: 'platform',
             q: req.param('query')
         }, function(err, results) {
-        	return res.json(results.hits);
+        	return res.json(results.hits.hits);
         });
 
     }

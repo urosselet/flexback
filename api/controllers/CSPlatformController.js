@@ -20,7 +20,13 @@ module.exports = {
         client.search({
             index: 'flexcrowd',
             type: 'platform',
-            stored_fields: ['_source']
+            from : 0, 
+            size : 200,
+            body: {  
+                query: {
+                    'match_all' : {}
+                }
+            }
         }, function(err, results) {
         	return res.json(results.hits.hits);
         });
