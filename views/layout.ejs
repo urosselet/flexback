@@ -1,107 +1,106 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
+    <head>
 
-    <!-- Viewport mobile tag for sensible mobile support -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
-    <title>FlexCrowd | Data Management</title>
+        <!-- Viewport mobile tag for sensible mobile support -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+        <title>FlexCrowd | Data Management</title>
+        
+        <!--
+            Stylesheets and Preprocessors
+            ==============================
+
+            You can always bring in CSS files manually with `<link>` tags, or asynchronously
+            using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
+            of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+            By default, stylesheets from your `assets/styles` folder are included
+            here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+            are supported. In production, your styles will be minified and concatenated into
+            a single file.
+
+            To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+            For example, here are a few things you could do:
+
+                + Change the order of your CSS files
+                + Import stylesheets from other directories
+                + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+        -->
+
+        <!--STYLES-->
+        <link rel="stylesheet" href="../bower_components/angular-xeditable/dist/css/xeditable.css">
+        <link rel="stylesheet" href="/styles/plugins/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="/styles/plugins/bootstrap-theme.min.css">-->
+        <link rel="stylesheet" href="/styles/plugins/one-page-wonder.css">
+        <link rel="stylesheet" href="/styles/main.css">
+        <!--STYLES END-->
     
-    <!--
-        Stylesheets and Preprocessors
-        ==============================
+    </head>
 
-        You can always bring in CSS files manually with `<link>` tags, or asynchronously
-        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
-        of Sails' conventional asset pipeline (boilerplate Gruntfile).
+    <body ng-app="flexcrowd">
 
-        By default, stylesheets from your `assets/styles` folder are included
-        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
-        are supported. In production, your styles will be minified and concatenated into
-        a single file.
+        <ui-view></ui-view>
+       
+        <!--
+            Client-side Templates
+            ========================
 
-        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-        For example, here are a few things you could do:
+            HTML templates are important prerequisites of modern, rich client applications.
+            To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
+            that you load these templates client-side.
 
-            + Change the order of your CSS files
-            + Import stylesheets from other directories
-            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
-    -->
+            By default, your Gruntfile is configured to automatically load and precompile
+            client-side JST templates in your `assets/templates` folder, then
+            include them here automatically (between TEMPLATES and TEMPLATES END).
 
-    <!--STYLES-->
-    <link rel="stylesheet" href="../bower_components/angular-xeditable/dist/css/xeditable.css">
-    <link rel="stylesheet" href="/styles/plugins/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="/styles/plugins/bootstrap-theme.min.css">-->
-    <link rel="stylesheet" href="/styles/plugins/one-page-wonder.css">
-    <link rel="stylesheet" href="/styles/main.css">
-    <!--STYLES END-->
-    
-  </head>
+            To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+            For example, here are a few things you could do:
 
-  <body ng-app="flexcrowd">
+                + Import templates from other directories
+                + Use a different template engine (handlebars, jade, dust, etc.)
+                + Internationalize your client-side templates using a server-side
+                  stringfile before they're served.
+        -->
 
-    <ui-view></ui-view>
-   
-    <!--
-        Client-side Templates
-        ========================
+        <!--
+          Client-side Javascript
+          ========================
 
-        HTML templates are important prerequisites of modern, rich client applications.
-        To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
-        that you load these templates client-side.
+          You can always bring in JS files manually with `script` tags, or asynchronously
+          on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+          take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
 
-        By default, your Gruntfile is configured to automatically load and precompile
-        client-side JST templates in your `assets/templates` folder, then
-        include them here automatically (between TEMPLATES and TEMPLATES END).
+          By default, files in your `assets/js` folder are included here
+          automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+          CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+          and concatenated into a single file.
 
-        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
-        For example, here are a few things you could do:
+          To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+          For example, here are a few things you could do:
 
-            + Import templates from other directories
-            + Use a different template engine (handlebars, jade, dust, etc.)
-            + Internationalize your client-side templates using a server-side
-              stringfile before they're served.
-    -->
+              + Change the order of your scripts
+              + Import scripts from other directories
+              + Use a different preprocessor, like TypeScript
+        -->
 
-    <!--
-      Client-side Javascript
-      ========================
+        <!--SCRIPTS-->
+        <script src="/js/dependencies/sails.io.js"></script>
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="/bower_components/lodash/dist/lodash.min.js"></script>
+        <script src="/bower_components/restangular/dist/restangular.js"></script>
+        <script src="/bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+        <script src="/js/controllers/IndexCtrl.js"></script>
+        <script src="/js/directives/CommonDirective.js"></script>
+        <script src="/js/filters/CommonFilter.js"></script>
+        <script src="/js/services/ESService.js"></script>
+        <script src="/js/app.js"></script>
+        <!--SCRIPTS END-->
 
-      You can always bring in JS files manually with `script` tags, or asynchronously
-      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
-      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
-
-      By default, files in your `assets/js` folder are included here
-      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
-      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
-      and concatenated into a single file.
-
-      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-      For example, here are a few things you could do:
-
-          + Change the order of your scripts
-          + Import scripts from other directories
-          + Use a different preprocessor, like TypeScript
-    -->
-
-    <!--SCRIPTS-->
-    <script src="/js/dependencies/sails.io.js"></script>
-    <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="/bower_components/lodash/dist/lodash.min.js"></script>
-    <script src="/bower_components/restangular/dist/restangular.js"></script>
-    <script src="/bower_components/angular-xeditable/dist/js/xeditable.js"></script>
-    
-
-    <script src="/js/controllers/IndexCtrl.js"></script>
-    <script src="/js/directives/CommonDirective.js"></script>
-    <script src="/js/services/ESService.js"></script>
-    <script src="/js/app.js"></script>
-    <!--SCRIPTS END-->
-
-  </body>
+    </body>
 </html>

@@ -19,7 +19,7 @@ module.exports = {
 
         client.search({
             index: 'flexcrowd',
-            type: 'platform',
+            type: req.param('type'),
             from : 0, 
             size : 200,
             body: {  

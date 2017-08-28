@@ -10,10 +10,10 @@ angular.module('flexcrowd.services', [])
                 /**
                  * Find all platforms
                  */
-                findAll: function () {
+                findAll: function (type) {
                     var defer = $q.defer();
 
-                    Restangular.all('/csplatform').getList()
+                    Restangular.all('/csplatform?type=' + type).getList()
                         .then(function (res) {
                             defer.resolve(res);
                         })

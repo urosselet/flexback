@@ -6,6 +6,7 @@ angular.module('flexcrowd',
         'xeditable',
         'ui.router',
         'flexcrowd.directives',
+        'flexcrowd.filters',
         'flexcrowd.controllers',
         'flexcrowd.services'
     ])
@@ -33,6 +34,12 @@ angular.module('flexcrowd',
         $stateProvider
             .state('index', {
                 url: '/',
+                templateUrl: '/templates/index.html',
+                controller: 'IndexCtrl',
+            })
+
+            .state('menu', {
+                url: '/:menu',
                 templateUrl: '/templates/index.html',
                 controller: 'IndexCtrl',
             })

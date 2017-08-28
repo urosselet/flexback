@@ -4,28 +4,41 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-one-page-wonder/blob/master/LICENSE)
  */
 
-body {
-    padding-top: 54px;
+.nav-tabs {
+    margin-bottom: 5rem;
 }
 
-@media (min-width: 992px) {
-    body {
-        padding-top: 56px;
-    }
+.navbar {
+    margin-bottom: 0;
+
+    border-radius: 0;
+    background-color: #2c3e50;
+}
+
+.navbar a {
+    width: 100%;
+
+    text-align: center;
+
+    color: #fff;
 }
 
 header.masthead {
+    margin-bottom: 5rem;
+
     background: url('../../images/bg.png') no-repeat center center scroll;
     -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;
 }
 
 header.masthead > .overlay {
     padding: 5rem 0;
+
     text-align: center;
-    background: rgba(0, 0, 0, 0.15);
+
+    background: rgba(0, 0, 0, .15);
 }
 
 @media (min-width: 992px) {
