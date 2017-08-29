@@ -18,14 +18,22 @@ module.exports = {
 
     find: function(req, res) {
 
-        console.log
-
         client.search({
             index: 'flexcrowd',
             type: 'platform',
             q: req.param('query')
         }, function(err, results) {
-        	return res.json(results.hits.hits);
+
+            let response = [];
+
+            if (!results.hits.hits) {
+                response = results.hits.hits;
+            }
+            
+        	return res.json({
+                'answer': 'Comment faire',
+                'results': response
+            });
         });
 
     }
