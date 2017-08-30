@@ -18,7 +18,7 @@ module.exports = {
 	find: function(req, res) {
 
         client.search({
-            index: 'flexcrowd',
+            index: 'operation',
             type: req.param('type'),
             from : 0, 
             size : 200,

@@ -10,7 +10,7 @@ angular.module('flexcrowd.controllers', [])
 
     	if (angular.isDefined($state.params.menu)) {
 
-    		ESService.findAll('categories').then(function (res) {
+    		ESService.findAll('category').then(function (res) {
 	           $scope.categories = res;
 	        }, function (error) {
 	            console.log(error);
