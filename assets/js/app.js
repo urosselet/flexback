@@ -32,7 +32,7 @@ angular.module('flexcrowd',
                 RestangularProvider.setBaseUrl('http://localhost:1338');
                 break;
             case 'flexcrowd.org:8082':
-                RestangularProvider.setBaseUrl('http://flexcrowd:8082');
+                RestangularProvider.setBaseUrl('http://flexcrowd.org:8082');
                 break;
         }
 
