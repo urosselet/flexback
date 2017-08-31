@@ -19,22 +19,27 @@ module.exports = {
 
     find: function(req, res) {
 
-        client.create({
+        let questions = [
+            'How do want to innovate ?',
+            'Would you a new logo or review the existing one ?',
+            'How to compensate the contributors ?'
+        ];
+
+        client.index({
             index: 'operation',
             type: 'session',
             id: req.param('session'),
             body: {
-                info: 'session of'
+                info: 'session of ' + req.param('session')
             }
         }, function (error, response) {
 
             client.index({
                 index: 'operation',
                 type: 'conversation',
-                id: req.param('session'),
                 body: {
                     session: response._id,
-                    query: 'de'
+                    query: req.param('query')
                 }
             }, function (error, response) {
                 // console.log(error, response)
@@ -52,11 +57,9 @@ module.exports = {
             if (!results.hits.hits) {
                 response = results.hits.hits;
             }
-
-            // console.log(results.hits.hits)
-            
+                
         	return res.json({
-                'answer': 'Comment faire',
+                'answer': questions[Math.floor(Math.random() * 2) + 0],
                 'results': results.hits.hits
             });
 
