@@ -1,0 +1,222 @@
+[
+  {
+    "_id": 1,
+    "category": "accomplish_tasks_in_the_real_world_and_report_results",
+    "cat_name": "accomplish tasks in the real world and report results"
+  },
+  {
+    "_id": 2,
+    "category": "assessment__and_analysis_of_comments",
+    "cat_name": "assessment  and analysis of comments"
+  },
+  {
+    "_id": 3,
+    "category": "audio_original_content",
+    "cat_name": "audio original content"
+  },
+  {
+    "_id": 4,
+    "category": "catchy_graphic_design",
+    "cat_name": "catchy graphic design"
+  },
+  {
+    "_id": 5,
+    "category": "coding_or_programming",
+    "cat_name": "coding or programming"
+  },
+  {
+    "_id": 6,
+    "category": "design_derivative_products_for_your_brand",
+    "cat_name": "design derivative products for your brand"
+  },
+  {
+    "_id": 7,
+    "category": "Find_names_for_brands_products_businesses_etc",
+    "cat_name": "Find names for brands products businesses etc"
+  },
+  {
+    "_id": 8,
+    "category": "gather_predictions_about_specific_things",
+    "cat_name": "gather predictions about specific things"
+  },
+  {
+    "_id": 9,
+    "category": "general_writing",
+    "cat_name": "general writing"
+  },
+  {
+    "_id": 10,
+    "category": "get_ideas_and_solutions_to_specific_questions",
+    "cat_name": "get ideas and solutions to specific questions"
+  },
+  {
+    "_id": 11,
+    "category": "Get_ideas_for_new_products_or_services",
+    "cat_name": "Get ideas for new products or services"
+  },
+  {
+    "_id": 12,
+    "category": "graphic_design",
+    "cat_name": "graphic design"
+  },
+  {
+    "_id": 13,
+    "category": "graphic_design_based_on_corporate_specifications",
+    "cat_name": "graphic design based on corporate specifications"
+  },
+  {
+    "_id": 14,
+    "category": "graphic_original_content",
+    "cat_name": "graphic original content"
+  },
+  {
+    "_id": 15,
+    "category": "idea_collection_from_fans",
+    "cat_name": "idea collection from fans"
+  },
+  {
+    "_id": 16,
+    "category": "identify_sotftware_bugs",
+    "cat_name": "identify sotftware bugs"
+  },
+  {
+    "_id": 17,
+    "category": "involve_your_fans_for_events",
+    "cat_name": "involve your fans for events"
+  },
+  {
+    "_id": 18,
+    "category": "marketing_writing",
+    "cat_name": "marketing writing"
+  },
+  {
+    "_id": 19,
+    "category": "new_features_for_products_or_services",
+    "cat_name": "new features for products or services"
+  },
+  {
+    "_id": 20,
+    "category": "none_of_the_above",
+    "cat_name": "none of the above"
+  },
+  {
+    "_id": 21,
+    "category": "raising_funds",
+    "cat_name": "raising funds"
+  },
+  {
+    "_id": 22,
+    "category": "rate_importance_of_something",
+    "cat_name": "rate importance of something"
+  },
+  {
+    "_id": 23,
+    "category": "rate_relevance_of_recommendations",
+    "cat_name": "rate relevance of recommendations"
+  },
+  {
+    "_id": 24,
+    "category": "report_events",
+    "cat_name": "report events"
+  },
+  {
+    "_id": 25,
+    "category": "Reporting_of_problems_relevant_to_your_business",
+    "cat_name": "Reporting of problems relevant to your business"
+  },
+  {
+    "_id": 26,
+    "category": "sales_pitch_for_a_product_or_service",
+    "cat_name": "sales pitch for a product or service"
+  },
+  {
+    "_id": 27,
+    "category": "select_new_products_through_voting",
+    "cat_name": "select new products through voting"
+  },
+  {
+    "_id": 28,
+    "category": "software_architecture_design",
+    "cat_name": "software architecture design"
+  },
+  {
+    "_id": 29,
+    "category": "solutions_to_rd_problems",
+    "cat_name": "solutions to rd problems"
+  },
+  {
+    "_id": 30,
+    "category": "solve_intellectual_puzzles_or_challenges",
+    "cat_name": "solve intellectual puzzles or challenges"
+  },
+  {
+    "_id": 31,
+    "category": "sort_and_categorize_data",
+    "cat_name": "sort and categorize data"
+  },
+  {
+    "_id": 32,
+    "category": "subtitles_for_video",
+    "cat_name": "subtitles for video"
+  },
+  {
+    "_id": 33,
+    "category": "tag_content_such_as_images_videos_audio_etc",
+    "cat_name": "tag content such as images videos audio etc"
+  },
+  {
+    "_id": 34,
+    "category": "tattoo_design",
+    "cat_name": "tattoo design"
+  },
+  {
+    "_id": 35,
+    "category": "test_a_mobile_application",
+    "cat_name": "test a mobile application"
+  },
+  {
+    "_id": 36,
+    "category": "text_editing",
+    "cat_name": "text editing"
+  },
+  {
+    "_id": 37,
+    "category": "transcription_of_audio_or_video_content",
+    "cat_name": "transcription of audio or video content"
+  },
+  {
+    "_id": 38,
+    "category": "translate_texts",
+    "cat_name": "translate texts"
+  },
+  {
+    "_id": 39,
+    "category": "t-shirt_design",
+    "cat_name": "t-shirt design"
+  },
+  {
+    "_id": 40,
+    "category": "type_in_data_from_images",
+    "cat_name": "type in data from images"
+  },
+  {
+    "_id": 41,
+    "category": "usability_engineering_and_user_experience_design",
+    "cat_name": "usability engineering and user experience design"
+  },
+  {
+    "_id": 42,
+    "category": "verification_of_content_or_data",
+    "cat_name": "verification of content or data"
+  },
+  {
+    "_id": 43,
+    "category": "video_original_content",
+    "cat_name": "video original content"
+  },
+  {
+    "_id": -1,
+    "category": "none_of_the_above",
+    "cat_name": "none of the above"
+  }
+]

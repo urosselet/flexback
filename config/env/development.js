@@ -21,7 +21,7 @@ module.exports = {
     // }
 
     /***************************************************************************
-     * Set the development port       										   *
+     * Set the development port                                                *
      ***************************************************************************/
     port: 1338,
 
@@ -29,10 +29,21 @@ module.exports = {
      * The order of precedence for log levels from lowest to highest is:       *
      * silly, verbose, info, debug, warn, error                                *
      *                                                                         *
-     * You may also set the level to "silent" to suppress all logs.        	   *
+     * You may also set the level to "silent" to suppress all logs.            *
      ***************************************************************************/
     log: {
         level: 'info'
+    },
+
+    /***************************************************************************
+     *                                                                          *
+     * Which domains which are allowed CORS access? This can be a               *
+     * comma-delimited list of hosts (beginning with http:// or https://) or    *
+     * "*" to allow all domains CORS access.                                    *
+     *                                                                          *
+     ***************************************************************************/
+    cors: {
+        origin: 'http://flexcrowd.org:8081'
     }
 
 };
