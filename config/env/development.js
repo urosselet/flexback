@@ -12,13 +12,27 @@
 
 module.exports = {
 
-  /***************************************************************************
-   * Set the default database connection for models in the development       *
-   * environment (see config/connections.js and config/models.js )           *
-   ***************************************************************************/
+    /***************************************************************************
+     * Set the default database connection for models in the development       *
+     * environment (see config/connections.js and config/models.js )           *
+     ***************************************************************************/
+    // models: {
+    //   connection: 'someMongodbServer'
+    // }
 
-  // models: {
-  //   connection: 'someMongodbServer'
-  // }
+    /***************************************************************************
+     * Set the development port       										   *
+     ***************************************************************************/
+    port: 1338,
+
+    /***************************************************************************
+     * The order of precedence for log levels from lowest to highest is:       *
+     * silly, verbose, info, debug, warn, error                                *
+     *                                                                         *
+     * You may also set the level to "silent" to suppress all logs.        	   *
+     ***************************************************************************/
+    log: {
+        level: 'info'
+    }
 
 };
