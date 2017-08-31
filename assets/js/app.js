@@ -27,7 +27,14 @@ angular.module('flexcrowd',
 .config(['$stateProvider', '$urlRouterProvider', '$logProvider', 'RestangularProvider',
     function($stateProvider, $urlRouterProvider, $logProvider, RestangularProvider) {
 
-        RestangularProvider.setBaseUrl('http://localhost:1338');
+        switch(window.location.host) { 
+            case 'localhost:1338':
+                RestangularProvider.setBaseUrl('http://localhost:1338');
+                break;
+            case 'flexcrowd:8082':
+                RestangularProvider.setBaseUrl('http://flexcrowd:8082');
+                break;
+        }
 
         $logProvider.debugEnabled(false);
 
