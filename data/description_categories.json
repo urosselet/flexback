@@ -47,7 +47,8 @@
   {
     "_id": 10,
     "category": "get_ideas_and_solutions_to_specific_questions",
-    "cat_name": "get ideas and solutions to specific questions"
+    "cat_name": "get ideas and solutions to specific questions",
+    "tags": ["ideas", "solutions", "issues"]
   },
   {
     "_id": 11,

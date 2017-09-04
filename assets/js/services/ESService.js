@@ -8,16 +8,26 @@ angular.module('flexcrowd.services', [])
             return {
 
                 /**
-                 * Find all platforms
+                 * Find all by ES type
                  */
                 findAll: function (type) {
-                    var defer = $q.defer();
-
+                    let defer = $q.defer();
                     Restangular.all('/csplatform?type=' + type).getList()
                         .then(function (res) {
                             defer.resolve(res);
                         })
+                    return defer.promise;
+                },
 
+                /**
+                 * Find all by ES type
+                 */
+                import: function () {
+                    let defer = $q.defer();
+                    Restangular.all('/csplatform/import').getList()
+                        .then(function (res) {
+                            defer.resolve(res);
+                        })
                     return defer.promise;
                 }
 

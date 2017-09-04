@@ -5,11 +5,13 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+const { Flexcrowd } = require('flx-process');
+const flexClient = Flexcrowd.init({ file : 'flow.yml' });
+
 let elasticsearch = require('elasticsearch');
 
 let client = new elasticsearch.Client({
     host: 'http://localhost:9200',
-    // log: 'trace',
     apiVersion: '5.5',
     sniffOnStart: true,
     sniffInterval: 60000
@@ -20,9 +22,9 @@ module.exports = {
     find: function(req, res) {
 
         let questions = [
-            'How do want to innovate ?',
-            'Would you a new logo or review the existing one ?',
-            'How to compensate the contributors ?'
+            'How would you like to innovate?',
+            'Would you a new logo or review the existing one?',
+            'How to compensate the contributors?'
         ];
 
         client.index({
@@ -46,10 +48,44 @@ module.exports = {
             });
         });
 
+        flexClient.assert(req.param('query'), function(res) {
+            
+        });
+
         client.search({
-            index: 'operation',
-            type: 'platform',
-            q: req.param('query')
+            'index': 'operation',
+            'type': 'category',
+            'body': {
+                'query': {
+                    'match': {
+                        'description': {
+                            'query': req.param('query'),
+                            'operator': 'or',
+                            'minimum_should_match': '25%'
+                        }
+                    }
+                }
+            }
+        }, function(err, results) {
+
+            
+                        
+        });
+
+        client.search({
+            'index': 'operation',
+            'type': 'platform',
+            'body': {
+                'query': {
+                    'match': {
+                        'description': {
+                            'query': req.param('query'),
+                            'operator': 'and',
+                            'minimum_should_match': '25%'
+                        }
+                    }
+                }
+            }
         }, function(err, results) {
 
             let response = [];
@@ -57,8 +93,8 @@ module.exports = {
             if (!results.hits.hits) {
                 response = results.hits.hits;
             }
-                
-        	return res.json({
+
+            return res.json({
                 'answer': questions[Math.floor(Math.random() * 2) + 0],
                 'results': results.hits.hits
             });

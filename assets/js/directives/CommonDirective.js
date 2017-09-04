@@ -2,91 +2,67 @@
 
 angular.module('flexcrowd.directives', [])
 
-.directive('fileUpload', ['$timeout',
+.directive('treeDiagram', ['$timeout',
     function($timeout) {
         return {
             scope: true,
             link: function($scope, el, attrs) {
-                el.bind('change', function(event) {
-                    $scope.$emit('fileSelected', { file: event.target.files[0] });
-                    $scope.$apply();
-                });
-            }
-        }
-    }
 
-])
+                let simple_chart_config = {
 
-.directive('listSlideToggle', ['$timeout',
-    function($timeout) {
-        return {
-            scope: true,
-            link: function($scope, el, attrs) {
-                el.bind('click', function() {
+                    chart: {
+                        container: '#tree-diagram',
+                        rootOrientation: 'WEST',
+                    },
 
-                    jQuery(this)
-                        .parents()
-                        .find('li.current-view')
-                        .removeClass('current-view')
-                        .find('.screen-detail')
-                        .slideToggle();
-
-                    jQuery(this)
-                        .toggleClass('current-view')
-                        .find('.screen-detail')
-                        .slideToggle();
-                });
-            }
-        }
-    }
-
-])
-
-.directive('formWizard', ['$timeout',
-    function($timeout) {
-
-        return {
-            link: function($scope, el, attrs) {
-
-                //jQuery('.nav-tabs > li a[title]').tooltip();
-
-                function nextTab(elem) {
-                    jQuery(elem)
-                        .next()
-                        .find('a[data-toggle="tab"]')
-                        .click();
-                }
-
-                function prevTab(elem) {
-                    jQuery(elem)
-                        .prev()
-                        .find('a[data-toggle="tab"]')
-                        .click();
-                }
-
-                //Wizard
-                jQuery('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-                    var $target = jQuery(e.target);
-                    if ($target.parent().hasClass('disabled')) {
-                        return false;
+                    nodeStructure: {
+                        text: {
+                            name: 'get_ideas_and_solutions_to_specific_questions'
+                        },
+                        children: [
+                            {
+                                collapsable: true,
+                                text: {
+                                    name: 'New ideas'
+                                },
+                                children: [
+                                    {
+                                        text: {
+                                            name: 'New product or services'
+                                        },
+                                    },
+                                    {
+                                        text: {
+                                            name: 'Enhance product or services'
+                                        },
+                                    }
+                                ]
+                            }, 
+                            {   
+                                collapsable: true,
+                                text: {
+                                    name: 'Solution to specific problem'
+                                },
+                                children: [
+                                    {
+                                        text: {
+                                            name: 'New product or services'
+                                        },
+                                    },
+                                    {
+                                        text: {
+                                            name: 'Enhance product or services'
+                                        },
+                                    }
+                                ]
+                            }
+                        ]
                     }
-                });
+                };
 
-                jQuery('.next-step').click(function(e) {
-                    var $active = jQuery('.wizard .nav-tabs li.active');
-                    $active.next().removeClass('disabled');
-                    nextTab($active);
-
-                });
-
-                jQuery('.prev-step').click(function(e) {
-                    var $active = jQuery('.wizard .nav-tabs li.active');
-                    prevTab($active);
-                });
-
+                new Treant(simple_chart_config);
 
             }
-
         }
     }
 
