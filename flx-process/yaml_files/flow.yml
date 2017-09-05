@@ -1,6 +1,6 @@
 # Categories
 intent:
-    get_ideas_and_solutions_to_specific_questions:
+    - get_ideas_and_solutions_to_specific_questions:
         keywords: ['idea', 'solution', 'problem', 'issue']
         questions:
             - New idea
@@ -11,5 +11,5 @@ intent:
                 answers:
                     - Innovation or R&I
                     - Other issues
-    graphic_design:
+    - graphic_design:
         keywords: ['design', 'graphic']

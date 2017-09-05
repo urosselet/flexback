@@ -3,18 +3,19 @@
 /**
  * Modules loading
  */
-let YAML = require('yamljs');
-let path = require('path');
+var YAML = require('yamljs');
+var path = require('path');
+var StateMachine = require('javascript-state-machine');
 
 /**
- * Global variable
- * @type {Object}
+ * Process workflow
+ * @param  {Object} ) {    var        decisionTree [description]
+ * @return {[type]}   [description]
  */
-let config = {};
-
 const Flexcrowd = (function() {
 
-	var decisionTree = {};
+	let decisionTree = {};
+    let config = {};
 
 	const validate = function (opts) {
 		 if (!opts.file) {
@@ -40,8 +41,27 @@ const Flexcrowd = (function() {
         },
 
         assert: function(query, cb) {
-        	console.log(this.decisionTree)
-        	return cb(query)
+        	// console.log(this.decisionTree)
+            //console.log('Process function : ', query);
+            console.log(query)
+            console.log(this.decisionTree.intent[query])
+
+        	//return cb()
+        },
+
+        getState: function() {
+
+            let fsm = new StateMachine({
+                init: 'intent',
+                transitions: [
+                    { name: 'goal', from: 'intent', to: 'assess' },
+                    { name: 'task', from: 'assess', to: 'perfom' },
+                    { name: 'crowd', from: 'perfom', to: 'reward' },
+                ]
+            });
+
+            return fsm;
+
         }
 
     };

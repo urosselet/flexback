@@ -10,5 +10,8 @@
     "private": true,
     "dependencies": {
         "yamljs": "^0.3.0"
+    },
+    "devDependencies": {
+        "javascript-state-machine": "^3.0.1"
     }
 }

@@ -5,8 +5,12 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-const { Flexcrowd } = require('flx-process');
-const flexClient = Flexcrowd.init({ file : 'flow.yml' });
+const {
+    Flexcrowd
+} = require('flx-process');
+const flexClient = Flexcrowd.init({
+    file: 'flow.yml'
+});
 
 let elasticsearch = require('elasticsearch');
 
@@ -28,48 +32,47 @@ module.exports = {
         ];
 
         client.index({
-            index: 'operation',
-            type: 'session',
-            id: req.param('session'),
-            body: {
-                info: 'session of ' + req.param('session')
+            'index': 'operation',
+            'type': 'session',
+            'id': req.param('session'),
+            'body': {
+                'info': 'session of ' + req.param('session')
             }
-        }, function (error, response) {
+        }, function(error, response) {
 
             client.index({
-                index: 'operation',
-                type: 'conversation',
-                body: {
-                    session: response._id,
-                    query: req.param('query')
+                'index': 'operation',
+                'type': 'conversation',
+                'body': {
+                    'session': response._id,
+                    'query': req.param('query')
                 }
-            }, function (error, response) {
+            }, function(error, response) {
                 // console.log(error, response)
             });
-        });
 
-        flexClient.assert(req.param('query'), function(res) {
-            
         });
 
         client.search({
             'index': 'operation',
             'type': 'category',
+            'from': 0,
+            'size': 1,
             'body': {
                 'query': {
-                    'match': {
-                        'description': {
-                            'query': req.param('query'),
-                            'operator': 'or',
-                            'minimum_should_match': '25%'
-                        }
+                    'multi_match': {
+                        'query': req.param('query'),
+                        'fields': ['cat_name', 'tags^2'],
+                        'type': 'cross_fields'
                     }
                 }
             }
         }, function(err, results) {
 
-            
-                        
+            flexClient.assert(results.hits.hits[0]._source.category, function(res) {
+
+            });
+
         });
 
         client.search({
@@ -77,14 +80,35 @@ module.exports = {
             'type': 'platform',
             'body': {
                 'query': {
+                    'multi_match': {
+                        'query': req.param('query'),
+                        'fields': ['description', 'title']
+                    }
+                },
+                /*'query': {
                     'match': {
                         'description': {
                             'query': req.param('query'),
-                            'operator': 'and',
-                            'minimum_should_match': '25%'
+                            'operator': 'or'
                         }
                     }
-                }
+                },*/
+                /*'suggest': {
+                    'my-suggestion': {
+                        'text': req.param('query'),
+                        'term': {
+                            'field': 'description'
+                        }
+                    }
+                }*/
+                'suggest': {
+                    'didYouMean': {
+                        'text': req.param('query'),
+                        'phrase': {
+                            'field': 'did_you_mean'
+                        }
+                    }
+                },
             }
         }, function(err, results) {
 
@@ -103,19 +127,57 @@ module.exports = {
 
     },
 
+    /**
+     * Autocomplete search
+     * @param  {[type]} req [description]
+     * @param  {[type]} res [description]
+     * @return {[type]}     [description]
+     */
+    complete: function(req, res) {
+
+        client.search({
+            'index': 'operation',
+            'type': 'platform',
+            'body': {
+                'suggest': {
+                    'didYouMean': {
+                        'text': req.param('query'),
+                        'phrase': {
+                            'field': 'did_you_mean'
+                        }
+                    }
+                },
+                'query': {
+                    'multi_match': {
+                        'query': req.param('query'),
+                        'fields': ['description', 'title']
+                    }
+                }
+            }
+        }, function(err, results) {
+
+            let response = [];
+
+            return res.json(results.suggest.didYouMean);
+
+        });
+    },
+
     conversion: function(req, res) {
 
         client.search({
-          index: 'operation',
-          type: 'conversion',
-          body: {
-            'filtered': {
-              'filter': {
-                'term': { 'session': 8392371938321 }
-              }
+            index: 'operation',
+            type: 'conversion',
+            body: {
+                'filtered': {
+                    'filter': {
+                        'term': {
+                            'session': 8392371938321
+                        }
+                    }
+                }
             }
-          }
-        }, function (error, response) {
+        }, function(error, response) {
             return res.json(response)
         });
     }

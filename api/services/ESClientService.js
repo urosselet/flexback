@@ -40,7 +40,9 @@ module.exports = {
             if (typeof results.hits !== 'undefined') {
                 response = results.hits.hits;
             }
-            return cb(response)
+
+            return cb(response);
+            
         });
 
     },

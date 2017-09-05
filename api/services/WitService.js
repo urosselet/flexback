@@ -2,7 +2,7 @@ const { Wit, log } = require('node-wit');
 
 const client = new Wit({
   accessToken: '2FDYYZEAPD3DC54EYNR25WVQD54U25LL',
-  logger: new log.Logger(log.DEBUG) // optional
+  logger: new log.Logger(log.DEBUG)
 });
 
 module.exports = {

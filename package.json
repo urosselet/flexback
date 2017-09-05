@@ -42,7 +42,7 @@
     "devDependencies": {
         "elastic-import": "^1.2.0",
         "node-run-cmd": "^1.0.1",
-        "nodemon": "^1.11.0"
+        "nodemon": "^1.12.0"
     },
     "repository": {
         "type": "git",
