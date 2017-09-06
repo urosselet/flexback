@@ -8,7 +8,7 @@ var path = require('path');
 var StateMachine = require('javascript-state-machine');
 
 /**
- * Process workflow
+ * Process workflow Module
  * @param  {Object} ) {    var        decisionTree [description]
  * @return {[type]}   [description]
  */
@@ -16,6 +16,7 @@ const Flexcrowd = (function() {
 
 	let decisionTree = {};
     let config = {};
+    let fsm = {};
 
 	const validate = function (opts) {
 		 if (!opts.file) {
@@ -36,33 +37,33 @@ const Flexcrowd = (function() {
 
            this.decisionTree = YAML.load(path.join(__dirname, '..', 'yaml_files', opts.file));
 
+           this.fsm = new StateMachine({
+                init: 'level_1',
+                transitions: [
+                    { name: 'intent_1', from: 'level_1', to: 'level_2' },
+                    { name: 'intent_2', from: 'level_2', to: 'level_3' },
+                ]
+            });
+
            return this;
 
         },
 
         assert: function(query, cb) {
-        	// console.log(this.decisionTree)
-            //console.log('Process function : ', query);
-            console.log(query)
-            console.log(this.decisionTree.intent[query])
 
-        	//return cb()
+            sails.log.info('YAML Tree :: ', this.decisionTree.intent);
+
+            let intent = _.pluck(this.decisionTree.intent['level_1'], query)[0];
+
+            sails.log.info('Found intent :: ', intent);
+
+            // this.fsm.assess1();
+
+            // sails.log.info('State :: ', this.fsm.state);
+
+        	return cb(intent);
+
         },
-
-        getState: function() {
-
-            let fsm = new StateMachine({
-                init: 'intent',
-                transitions: [
-                    { name: 'goal', from: 'intent', to: 'assess' },
-                    { name: 'task', from: 'assess', to: 'perfom' },
-                    { name: 'crowd', from: 'perfom', to: 'reward' },
-                ]
-            });
-
-            return fsm;
-
-        }
 
     };
 

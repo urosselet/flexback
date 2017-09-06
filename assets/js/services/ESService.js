@@ -20,11 +20,23 @@ angular.module('flexcrowd.services', [])
                 },
 
                 /**
-                 * Find all by ES type
+                 * Import all by ES index/type
                  */
                 import: function () {
                     let defer = $q.defer();
                     Restangular.all('/csplatform/import').getList()
+                        .then(function (res) {
+                            defer.resolve(res);
+                        })
+                    return defer.promise;
+                },
+
+                /**
+                 * Dump all by ES index/type and save it to JSON file
+                 */
+                dump: function () {
+                    let defer = $q.defer();
+                    Restangular.all('/csplatform/dump').getList()
                         .then(function (res) {
                             defer.resolve(res);
                         })

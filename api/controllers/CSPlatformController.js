@@ -22,7 +22,18 @@ module.exports = {
      */
     import: function(req, res) {
         ESClientService.import({}, function(result) {
-            console.log(result)
+            return res.ok();
+        });
+    },
+
+    /**
+     * Data import to populate ES
+     * @param  {[type]} req [description]
+     * @param  {[type]} res [description]
+     * @return {[type]}     [description]
+     */
+    dump: function(req, res) {
+        ESClientService.export({}, function(err, results) {
             return res.ok();
         });
     }

@@ -1,15 +1,10 @@
 # Categories
 intent:
-    - get_ideas_and_solutions_to_specific_questions:
-        keywords: ['idea', 'solution', 'problem', 'issue']
-        questions:
-            - New idea
-                answers:
-                    - New product or services
-                    - Find new names
-            - Solution to specific problem
-                answers:
-                    - Innovation or R&I
-                    - Other issues
-    - graphic_design:
-        keywords: ['design', 'graphic']
+    level_1:
+        # 1. I would like some ideas to solve specific issues
+        - get_ideas_and_solutions_to_specific_questions:
+            questions: 
+                - Would you like some new ideas ?
+                - Would you like solutions to specific problem new ideas ?
+    
+        - graphic_design:

@@ -5,12 +5,8 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-const {
-    Flexcrowd
-} = require('flx-process');
-const flexClient = Flexcrowd.init({
-    file: 'flow.yml'
-});
+const { Flexcrowd } = require('flx-process');
+const flexClient = Flexcrowd.init({ file: 'flow.yml' });
 
 let elasticsearch = require('elasticsearch');
 
@@ -25,34 +21,6 @@ module.exports = {
 
     find: function(req, res) {
 
-        let questions = [
-            'How would you like to innovate?',
-            'Would you a new logo or review the existing one?',
-            'How to compensate the contributors?'
-        ];
-
-        client.index({
-            'index': 'operation',
-            'type': 'session',
-            'id': req.param('session'),
-            'body': {
-                'info': 'session of ' + req.param('session')
-            }
-        }, function(error, response) {
-
-            client.index({
-                'index': 'operation',
-                'type': 'conversation',
-                'body': {
-                    'session': response._id,
-                    'query': req.param('query')
-                }
-            }, function(error, response) {
-                // console.log(error, response)
-            });
-
-        });
-
         client.search({
             'index': 'operation',
             'type': 'category',
@@ -60,67 +28,19 @@ module.exports = {
             'size': 1,
             'body': {
                 'query': {
-                    'multi_match': {
-                        'query': req.param('query'),
-                        'fields': ['cat_name', 'tags^2'],
-                        'type': 'cross_fields'
+                    "multi_match": {
+                        'query':  req.param('query'),
+                        'type':   'most_fields', 
+                        'fields': [ 'cat_name^10', 'cat_name.std' ]
                     }
                 }
             }
         }, function(err, results) {
 
-            flexClient.assert(results.hits.hits[0]._source.category, function(res) {
+            sails.log.info('Found category :: ', results.hits.hits[0]._source.category);
 
-            });
-
-        });
-
-        client.search({
-            'index': 'operation',
-            'type': 'platform',
-            'body': {
-                'query': {
-                    'multi_match': {
-                        'query': req.param('query'),
-                        'fields': ['description', 'title']
-                    }
-                },
-                /*'query': {
-                    'match': {
-                        'description': {
-                            'query': req.param('query'),
-                            'operator': 'or'
-                        }
-                    }
-                },*/
-                /*'suggest': {
-                    'my-suggestion': {
-                        'text': req.param('query'),
-                        'term': {
-                            'field': 'description'
-                        }
-                    }
-                }*/
-                'suggest': {
-                    'didYouMean': {
-                        'text': req.param('query'),
-                        'phrase': {
-                            'field': 'did_you_mean'
-                        }
-                    }
-                },
-            }
-        }, function(err, results) {
-
-            let response = [];
-
-            if (!results.hits.hits) {
-                response = results.hits.hits;
-            }
-
-            return res.json({
-                'answer': questions[Math.floor(Math.random() * 2) + 0],
-                'results': results.hits.hits
+            flexClient.assert(results.hits.hits[0]._source.category, function(result) {
+                return res.json(result);
             });
 
         });
@@ -158,7 +78,7 @@ module.exports = {
 
             let response = [];
 
-            return res.json(results.suggest.didYouMean);
+            return res.json(results.suggest.didYouMean[0].options);
 
         });
     },

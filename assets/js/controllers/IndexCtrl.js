@@ -8,6 +8,7 @@ angular.module('flexcrowd.controllers', [])
         $scope.platforms = [];
         $scope.categories = [];
         $scope.alertVisible = false;
+        $scope.dumpAlertVisible = false;
         $scope.treeDiagram = false;
 
         switch ($state.params.menu) {
@@ -39,6 +40,16 @@ angular.module('flexcrowd.controllers', [])
                     $scope.alertVisible = true;
                     $timeout(function() {
                         $scope.alertVisible = false;
+                    }, 5000);
+                });
+        };
+
+        $scope.dump = function() {
+            ESService.dump()
+                .then(function(res) {
+                    $scope.dumpAlertVisible = true;
+                    $timeout(function() {
+                        $scope.dumpAlertVisible = false;
                     }, 5000);
                 });
         };
