@@ -3,13 +3,14 @@
 /**
  * Modules loading
  */
-var YAML = require('yamljs');
-var path = require('path');
-var StateMachine = require('javascript-state-machine');
+let YAML = require('yamljs');
+let path = require('path');
+let StateMachine = require('javascript-state-machine');
+let defer = require('promise-defer');
 
 /**
  * Process workflow Module
- * @param  {Object} ) {    var        decisionTree [description]
+ * @param  {Object} ) { var decisionTree [description]
  * @return {[type]}   [description]
  */
 const Flexcrowd = (function() {
@@ -37,33 +38,60 @@ const Flexcrowd = (function() {
 
            this.decisionTree = YAML.load(path.join(__dirname, '..', 'yaml_files', opts.file));
 
-           this.fsm = new StateMachine({
-                init: 'level_1',
-                transitions: [
-                    { name: 'intent_1', from: 'level_1', to: 'level_2' },
-                    { name: 'intent_2', from: 'level_2', to: 'level_3' },
-                ]
-            });
-
            return this;
 
         },
 
-        assert: function(query, cb) {
+        sessionStart: function() {
 
-            sails.log.info('YAML Tree :: ', this.decisionTree.intent);
+            this.fsm = new StateMachine({
+                init: 'level_1',
+                transitions: [
+                    { name: 'flow_1', from: 'level_1', to: 'level_2' },
+                    { name: 'flow_2', from: 'level_2', to: 'level_3' },
+                ],
+                methods: {
+                    onFlow1: function() { 
+                        // console.log('flow_1')   
+                    },
+                    onFlow2: function() { 
+                        // console.log('flow_2')     
+                    }
+                }
+            });
+        },
 
-            let intent = _.pluck(this.decisionTree.intent['level_1'], query)[0];
+        /**
+         * First query assertion to determine the category
+         * @param  {[type]}   cat [description]
+         * @param  {Function} cb  [description]
+         * @return {[type]}       [description]
+         */
+        assert: function(cat) {
+
+            let deferred = defer();
+
+            sails.log.info('Decision Tree :: ', this.decisionTree.intent['level_1']);
+
+            let intent = _.find(this.decisionTree.intent['level_1'], function(foundCat) {
+                return foundCat.category.id === cat;
+            })
 
             sails.log.info('Found intent :: ', intent);
 
-            // this.fsm.assess1();
+            // this.fsm.flow1();
 
             // sails.log.info('State :: ', this.fsm.state);
+            deferred.resolve(intent);
 
-        	return cb(intent);
+            return deferred.promise;
 
         },
+
+        flow: function(q, cb) {
+            this.fsm.flow2();
+            console.log(this.fsm.state)
+        }
 
     };
 

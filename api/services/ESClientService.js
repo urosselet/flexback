@@ -1,5 +1,6 @@
 let elasticsearch = require('elasticsearch');
 let nrc = require('node-run-cmd');
+let defer = require('promise-defer');
 
 let client = new elasticsearch.Client({
     host: 'http://localhost:9200',
@@ -13,6 +14,30 @@ let client = new elasticsearch.Client({
  * @type {Object}
  */
 module.exports = {
+
+    /**
+     * Process queries
+     * @param  {[type]}   option [description]
+     * @param  {Function} cb     [description]
+     * @return {[type]}          [description]
+     */
+    query: function(option) {
+
+        return client.search(RequestService.interpolate('SEARCH', option.query));
+
+    },
+
+    /**
+     * Query autocomplete
+     * @param  {[type]}   option [description]
+     * @param  {Function} cb     [description]
+     * @return {[type]}          [description]
+     */
+    autocomplete: function(option) {
+
+        return client.search(RequestService.interpolate('AUTOCOMPLETE', option.query));
+        
+    },
 
     /**
      * Query processing

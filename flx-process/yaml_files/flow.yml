@@ -2,9 +2,23 @@
 intent:
     level_1:
         # 1. I would like some ideas to solve specific issues
-        - get_ideas_and_solutions_to_specific_questions:
+        - category:
+            id: get_ideas_and_solutions_to_specific_questions
             questions: 
-                - Would you like some new ideas ?
-                - Would you like solutions to specific problem new ideas ?
-    
-        - graphic_design:
+              - q: Would you like some new ideas ?
+              - q: Would you like solutions to specific problem ?
+            level_2:
+              - q: Would you like new products or services ?
+              - q: Would you like to enhance products or services ?
+        
+        - category:
+            id: graphic_design
+            questions:
+              - q: Would you like some new ideas ?
+              - q: Would you like solutions to specific problem new ideas ?
+        
+        - category:
+            id: audio_original_content
+            questions:
+              -q: Would you like some new ideas ?
+              -q: Would you like solutions to specific problem new ideas ?

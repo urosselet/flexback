@@ -87,3 +87,40 @@ client.search({
     });
 
 });
+
+/* ---------------------------------- */
+/* ---------------------------------- */
+
+function(err, results) {
+
+    sails.log.info('Found category :: ', results.hits.hits[0]._source.category);
+
+    flexClient.assert(results.hits.hits[0]._source.category, function(result) {
+        return res.json(result.category.questions);
+    });
+
+}
+
+/* ---------------------------------- */
+/* ---------------------------------- */
+
+client.search({
+    index: 'operation',
+    type: 'conversion',
+    body: {
+        'filtered': {
+            'filter': {
+                'term': {
+                    'session': 8392371938321
+                }
+            }
+        }
+    }
+}, function(error, response) {
+    return res.json(response)
+});
+
+, function(err, results) {
+            sails.log.info('Found category :: ', results.hits.hits[0]._source.category);
+            return cb(results.hits.hits[0]._source.category);
+        };
