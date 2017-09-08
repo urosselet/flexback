@@ -6,12 +6,21 @@
  */
 module.exports = {
 
+    /**
+     * Get datatset base on the specified ES type
+     * @param  {[type]} req [description]
+     * @param  {[type]} res [description]
+     * @return {[type]}     [description]
+     */
     find: function(req, res) {
-        ESClientService.process({
-            'type': req.param('type')
-        }, function(result) {
-            return res.json(result);
-        });
+        ESClientService.process({ 'type': req.param('type') })
+            .then(function(results) {
+                let response = [];
+                if (typeof results.hits !== 'undefined') {
+                    response = results.hits.hits;
+                }
+                return res.json(response);
+            });
     },
 
     /**
@@ -21,7 +30,7 @@ module.exports = {
      * @return {[type]}     [description]
      */
     import: function(req, res) {
-        ESClientService.import({}, function(result) {
+        ESOperationService.import({}, function(result) {
             return res.ok();
         });
     },
@@ -33,7 +42,7 @@ module.exports = {
      * @return {[type]}     [description]
      */
     dump: function(req, res) {
-        ESClientService.export({}, function(err, results) {
+        ESOperationService.export({}, function(err, results) {
             return res.ok();
         });
     }

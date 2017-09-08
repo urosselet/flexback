@@ -14,7 +14,7 @@ module.exports = {
         'body': {
             'query': {
                 'multi_match': {
-                    'query': '%query',
+                    'query': '{{query}}',
                     'type': 'most_fields', 
                     'fields': ['cat_name^10', 'cat_name.std']
                 }
@@ -28,7 +28,7 @@ module.exports = {
         'body': {
             'suggest': {
                 'didYouMean': {
-                    'text': '%query',
+                    'text': '{{query}}',
                     'phrase': {
                         'field': 'did_you_mean'
                     }
@@ -36,15 +36,28 @@ module.exports = {
             },
             'query': {
                 'multi_match': {
-                    'query': '%query',
+                    'query': '{{query}}',
                     'fields': ['description', 'title']
                 }
             }
         }
     },
 
-    interpolate: function(query, value) {
-    	return replace('%query', value, this[query]);
+    PROCESS: {
+        'index': 'operation',
+        'type': '{{type}}',
+        'from': 0,
+        'size': 200,
+        'body': {
+            'query': {
+                'match_all': {}
+            }
+        }
+        
+    },
+
+    interpolate: function(query, template, value) {
+    	return replace(template, value, this[query]);
     }
 
 }

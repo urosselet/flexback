@@ -4,21 +4,22 @@ intent:
         # 1. I would like some ideas to solve specific issues
         - category:
             id: get_ideas_and_solutions_to_specific_questions
-            questions: 
-              - q: Would you like some new ideas ?
-              - q: Would you like solutions to specific problem ?
-            level_2:
-              - q: Would you like new products or services ?
-              - q: Would you like to enhance products or services ?
+            question: 
+                q: Would you like some new ideas ?
+                level_2:
+                  q: Would you like new products or services ?
+                q: Would you like solutions to specific problem ?
+                level_2:
+                  q: Would you like new products or services ?
         
         - category:
             id: graphic_design
-            questions:
+            question:
               - q: Would you like some new ideas ?
               - q: Would you like solutions to specific problem new ideas ?
         
         - category:
             id: audio_original_content
-            questions:
+            question:
               -q: Would you like some new ideas ?
               -q: Would you like solutions to specific problem new ideas ?
