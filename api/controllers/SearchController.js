@@ -9,6 +9,12 @@ const flexClient = Flexcrowd.init({ 'file': 'flow.yml' });
 
 module.exports = {
 
+    /**
+     * Full text search
+     * @param  {[type]} req [description]
+     * @param  {[type]} res [description]
+     * @return {[type]}     [description]
+     */
     find: function(req, res) {
 
         let query = req.param('query');
