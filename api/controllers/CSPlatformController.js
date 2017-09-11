@@ -20,6 +20,8 @@ module.exports = {
                     response = results.hits.hits;
                 }
                 return res.json(response);
+            }, function(error) {
+                console.log(error);
             });
     },
 

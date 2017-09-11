@@ -52,16 +52,19 @@ const Flexcrowd = (function() {
 
         },
 
+        /**
+         * Start the state machine process session
+         * @return {[type]} [description]
+         */
         sessionStart: function() {
 
             this.fsm = new StateMachine({
-                init: 'level_0',
+                init: 'level_1',
                 transitions: [
-                    { name: 'proceed', from: 'level_0', to: 'level_1' },
                     { name: 'proceed', from: 'level_1', to: 'level_2' },
                     { name: 'proceed', from: 'level_2', to: 'level_3' },
                     { name: 'proceed', from: 'level_3', to: 'level_4' },
-                    { name: 'proceed', from: 'level_4', to: 'level_5' }
+                    { name: 'proceed', from: 'level_4', to: 'level_5' },
                 ]
             });
 
@@ -77,6 +80,7 @@ const Flexcrowd = (function() {
 
             let deferred = defer();
             let that = this;
+            let entity = [];
 
             this.queries.push(query);
 
@@ -89,18 +93,32 @@ const Flexcrowd = (function() {
 
             this.nodeStructure.text.name = cat;
 
-            sails.log.info('Found intent :: ', intent);
+            // let questions = _.pluck(_.pluck(intent.category.questions['level_2'], 'item'), 'q');
+
+            sails.log.info('Found intent :: ', intent.category.entities['level_2']);
+            
+            sails.log.info(_.pluck(_.pluck(intent.category.entities['level_2'], 'entity'), 'q'));
+
+            _.pluck(intent.category.entities['level_2'], 'entities')
+                .forEach( function(entity, index) {
+                    entity.push({ id: entity.id, 'q': entity.q, type: entity.type })
+                });
 
             this.fsm.proceed();
 
             sails.log.info('State :: ', this.fsm.state);
 
-            deferred.resolve(intent);
+            deferred.resolve(entity);
 
             return deferred.promise;
 
         },
 
+        /**
+         * Proceed to the next level of the state flow
+         * @param  {[type]} query [description]
+         * @return {[type]}       [description]
+         */
         proceed: function(query) {
 
             let deferred = defer();
@@ -111,16 +129,19 @@ const Flexcrowd = (function() {
             this.queries.push(query);
 
             sails.log.info('State :: ', this.fsm.state);
+            sails.log.info('Query :: ', query);
 
-            this.fsm.proceed();
+            // this.fsm.proceed();
 
             let intent = _.find(this.decisionTree.intent['level_1'], function(foundCat) {
-                
+
                 if (foundCat.category.id === that.category) {
-                    return foundCat.category[that.fsm.state]
+                    return foundCat['question'][that.fsm.state]
                 }
 
             });
+
+            console.log('Intent :', intent.category[this.fsm.state])
 
             deferred.resolve(intent.category[this.fsm.state]);
 

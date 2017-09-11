@@ -28,7 +28,7 @@ module.exports = {
 
                     flexClient.assert(results.hits.hits[0]._source.category, query)
                         .then(function(result) {
-                            return res.json([{'q': result.category.question.q}]);
+                            return res.json(result);
                         });
 
                 });

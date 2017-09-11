@@ -1,0 +1,93 @@
+{
+    "template" : "te*",
+    "settings":{
+    	"number_of_shards" :   1,
+        "number_of_replicas" : 0,
+        "analysis":{
+            "filter":{
+                "stemmer":{
+                    "type": "stemmer",
+                    "language": "english"
+                },
+                "autocomplete_filter":{
+                    "max_shingle_size": "5",
+            		"min_shingle_size": "2",
+            		"type": "shingle"
+                },
+                "stopwords":{
+                    "type": "stop",
+                    "stopwords":[
+                        "_english_"
+                    ]
+                }
+            },
+            "analyzer":{
+                "autocomplete":{
+                    "type": "custom",
+                    "tokenizer": "standard",
+                    "filter":[
+                        "lowercase",
+                        "autocomplete_filter"
+                    ]
+                },
+                "didYouMean":{
+                    "filter":[
+                        "lowercase"
+                    ],
+                    "char_filter":[
+                        "html_strip"
+                    ],
+                    "type": "custom",
+                    "tokenizer": "standard"
+                },
+                "default":{
+                    "filter":[
+                        "lowercase",
+                        "stopwords",
+                        "stemmer"
+                    ],
+                    "char_filter":[
+                        "html_strip"
+                    ],
+                    "type": "custom",
+                    "tokenizer": "standard"
+                }
+            }
+        }
+    },
+    "mappings": {
+        "category": {
+            "properties": {
+                "cat_name": { 
+                    "type": "string",
+                    "analyzer": "english",
+                    "fields": {
+                        "std":   { 
+                            "type":     "string",
+                            "analyzer": "standard"
+                        }
+                    }
+                }
+            }
+        },
+        "platform":{  
+	        "properties":{  
+	            "autocomplete":{  
+	                "type":"string",
+	                "analyzer":"autocomplete"
+	            },
+	            "description":{  
+	                "type":"string",
+	                "copy_to":[  
+	                    "did_you_mean",
+	                    "autocomplete"
+	                ]
+	            },
+	            "did_you_mean":{  
+	                "type":"string",
+	                "analyzer":"didYouMean"
+	            }
+	        }
+	    }
+    }
+}
