@@ -23,13 +23,13 @@ module.exports = {
                 async.auto({
 
                     import_platform: function(callback) {
-                        shell.exec(`elastic-import ${dataPath}platforms.json localhost:9200 operation platform --json`, function(code) {
+                        shell.exec(`elastic-import ${dataPath}platforms.json localhost:9200 operation platform -l error --json`, function(code) {
                             callback(null, code);
                         });
                     },
 
                     import_category: function(callback) {
-                        shell.exec(`elastic-import ${dataPath}categories.json localhost:9200 operation category --json`, function(code) {
+                        shell.exec(`elastic-import ${dataPath}categories.json localhost:9200 operation category -l error --json`, function(code) {
                             callback(null, code);
                         });
                     }
