@@ -1,4 +1,5 @@
 let nrc = require('node-run-cmd'),
+    shell = require('shelljs'),
     fs = require('fs'),
     path = require('path'),
     esSettings = require('../../data/settings.json'),
@@ -14,32 +15,23 @@ module.exports = {
      */
     import: function(option, cb) {
 
+        let dataPath = path.join(path.dirname(process.mainModule.filename), '/data/');
+
         client.indices.create({ 'index': 'operation', 'body': esSettings })
             .then(function(res) {
                 sails.log.info('Index settings: ', res);
                 async.auto({
 
                     import_platform: function(callback) {
-
-                        nrc.run('elastic-import ./data/plateforms.json localhost:9200 operation platform -i ignoreMe, myArray[*].ignoreMe --json')
-                            .then(function(exitCode) {
-                                sails.log.info('Platform dataset import: ', exitCode);
-                                callback(null, exitCode);
-                            }, function(err) {
-                                sails.log.info('Platform dataset import error: ', err);
-                                callback(null, err);
-                            });
+                        shell.exec(`elastic-import ${dataPath}platforms.json localhost:9200 operation platform --json`, function(code) {
+                            callback(null, code);
+                        });
                     },
 
                     import_category: function(callback) {
-                        nrc.run('elastic-import ./data/categories.json localhost:9200 operation category -i ignoreMe, myArray[*].ignoreMe --json')
-                            .then(function(exitCode) {
-                                sails.log.info('Category dataset import: ', exitCode);
-                                callback(null, exitCode);
-                            }, function(err) {
-                                sails.log.info('Category dataset import error: ', err);
-                                callback(null, err);
-                            });
+                        shell.exec(`elastic-import ${dataPath}categories.json localhost:9200 operation category --json`, function(code) {
+                            callback(null, code);
+                        });
                     }
                     
                 }, function(err, results) {
@@ -49,7 +41,6 @@ module.exports = {
             }, function(err) {
                 return cb(err, null);
             });
-
     },
 
     /**
@@ -61,19 +52,19 @@ module.exports = {
     export: function(option, cb) {
 
         let timestamp = Date.now();
-        let dumpFoler = path.join(path.dirname(process.mainModule.filename), `/data/es_dump/${timestamp}`);
+        let dumpFolder = path.join(path.dirname(process.mainModule.filename), `/data/es_dump/${timestamp}`);
 
         /* check if folder exists */
-        if (!fs.existsSync(dumpFoler)) {
-            fs.mkdirSync(dumpFoler);
-            fs.chmod(dumpFoler, 0777);
+        if (!fs.existsSync(dumpFolder)) {
+            fs.mkdirSync(dumpFolder);
+            fs.chmod(dumpFolder, 0777);
         } else{
-            fs.chmod(dumpFoler, 0777);
+            fs.chmod(dumpFolder, 0777);
         }
 
         async.auto({
             export_data: function(callback) {
-                nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFoler}/flexcrowd_data.json --type=data`)
+                nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFolder}/flexcrowd_data.json --type=data`)
                     .then(function(exitCode) {
                         callback(null, exitCode);
                     }, function(err) {
@@ -81,7 +72,7 @@ module.exports = {
                     });
             },
             export_mapping: function(callback) {
-                nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFoler}/flexcrowd_mapping.json --type=mapping`)
+                nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFolder}/flexcrowd_mapping.json --type=mapping`)
                     .then(function(exitCode) {
                         callback(null, exitCode);
                     }, function(err) {
@@ -89,7 +80,7 @@ module.exports = {
                     });
             },
             export_analyzer: function(callback) {
-                nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFoler}/flexcrowd_analyzer.json --type=analyzer`)
+                nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFolder}/flexcrowd_analyzer.json --type=analyzer`)
                     .then(function(exitCode) {
                         callback(null, exitCode);
                     }, function(err) {
