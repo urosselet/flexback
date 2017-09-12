@@ -16,14 +16,16 @@ module.exports = {
 
         client.indices.create({ 'index': 'operation', 'body': esSettings })
             .then(function(res) {
-                sails.log.info(res);
+                sails.log.info('Index settings: ', res);
                 async.auto({
 
                     import_platform: function(callback) {
                         nrc.run('elastic-import ./data/liste_plateformes_crowdflower_vf.json localhost:9200 operation platform -i ignoreMe, myArray[*].ignoreMe --json')
                             .then(function(exitCode) {
+                                sails.log.info('Platform dataset import: ', exitCode);
                                 callback(null, exitCode);
                             }, function(err) {
+                                sails.log.info('Platform dataset import error: ', err);
                                 callback(null, err);
                             });
                     },
@@ -31,8 +33,10 @@ module.exports = {
                     import_category: function(callback) {
                         nrc.run('elastic-import ./data/description_categories.json localhost:9200 operation category -i ignoreMe, myArray[*].ignoreMe --json')
                             .then(function(exitCode) {
+                                sails.log.info('Category dataset import: ', exitCode);
                                 callback(null, exitCode);
                             }, function(err) {
+                                sails.log.info('Category dataset import error: ', err);
                                 callback(null, err);
                             });
                     }
