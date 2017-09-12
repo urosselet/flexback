@@ -10,13 +10,13 @@
  */
 module.exports.bootstrap = function(cb) {
 
-	// It's very important to trigger this callback method when you are finished
+    // It's very important to trigger this callback method when you are finished
     // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-	ESOperationService.import({}, function() {
-		sails.log.info('**********************************');
-		sails.log.info('* ES Dataset import successfully *');
-		sails.log.info('**********************************');
-		cb();
-	});
-    
+    ESOperationService.import({}, function() {
+        sails.log.info('**********************************');
+        sails.log.info('* ES Dataset import successfully *');
+        sails.log.info('**********************************');
+        cb();
+    });
+
 };
