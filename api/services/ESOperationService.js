@@ -1,7 +1,7 @@
 let nrc = require('node-run-cmd'),
     fs = require('fs'),
     path = require('path'),
-    esSettings = require('../../data/es_settings.json'),
+    esSettings = require('../../data/settings.json'),
     client = sails.config.es.client;
 
 module.exports = {
@@ -20,7 +20,8 @@ module.exports = {
                 async.auto({
 
                     import_platform: function(callback) {
-                        nrc.run('elastic-import ./data/liste_plateformes_crowdflower_vf.json localhost:9200 operation platform -i ignoreMe, myArray[*].ignoreMe --json')
+
+                        nrc.run('elastic-import ./data/plateforms.json localhost:9200 operation platform -i ignoreMe, myArray[*].ignoreMe --json')
                             .then(function(exitCode) {
                                 sails.log.info('Platform dataset import: ', exitCode);
                                 callback(null, exitCode);
@@ -31,7 +32,7 @@ module.exports = {
                     },
 
                     import_category: function(callback) {
-                        nrc.run('elastic-import ./data/description_categories.json localhost:9200 operation category -i ignoreMe, myArray[*].ignoreMe --json')
+                        nrc.run('elastic-import ./data/categories.json localhost:9200 operation category -i ignoreMe, myArray[*].ignoreMe --json')
                             .then(function(exitCode) {
                                 sails.log.info('Category dataset import: ', exitCode);
                                 callback(null, exitCode);

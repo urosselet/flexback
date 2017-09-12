@@ -1,51 +1,51 @@
 {
     "settings":{
-    	"number_of_shards" :   1,
-        "number_of_replicas" : 0,
-        "analysis":{
-            "filter":{
-                "stemmer":{
+    	"number_of_shards": 1,
+        "number_of_replicas": 0,
+        "analysis": {
+            "filter": {
+                "stemmer": {
                     "type": "stemmer",
                     "language": "english"
                 },
-                "autocomplete_filter":{
-                    "max_shingle_size": "5",
-            		"min_shingle_size": "2",
-            		"type": "shingle"
+                "autocomplete_filter": {
+                    "type": "shingle",
+                    "min_shingle_size": "2",
+                    "max_shingle_size": "5"
                 },
-                "stopwords":{
+                "stopwords": {
                     "type": "stop",
-                    "stopwords":[
+                    "stopwords": [
                         "_english_"
                     ]
                 }
             },
-            "analyzer":{
-                "autocomplete":{
+            "analyzer": {
+                "autocomplete": {
                     "type": "custom",
                     "tokenizer": "standard",
-                    "filter":[
+                    "filter": [
                         "lowercase",
                         "autocomplete_filter"
                     ]
                 },
-                "didYouMean":{
-                    "filter":[
+                "didYouMean": {
+                    "filter": [
                         "lowercase"
                     ],
-                    "char_filter":[
+                    "char_filter": [
                         "html_strip"
                     ],
                     "type": "custom",
                     "tokenizer": "standard"
                 },
-                "default":{
-                    "filter":[
+                "default": {
+                    "filter": [
                         "lowercase",
                         "stopwords",
                         "stemmer"
                     ],
-                    "char_filter":[
+                    "char_filter": [
                         "html_strip"
                     ],
                     "type": "custom",
@@ -57,34 +57,34 @@
     "mappings": {
         "category": {
             "properties": {
-                "cat_name": { 
+                "cat_name": {
                     "type": "string",
                     "analyzer": "english",
                     "fields": {
-                        "std":   { 
-                            "type":     "string",
+                        "std": {
+                            "type": "string",
                             "analyzer": "standard"
                         }
                     }
                 }
             }
         },
-        "platform":{  
-	        "properties":{  
-	            "autocomplete":{  
-	                "type":"string",
-	                "analyzer":"autocomplete"
+        "platform": {
+	        "properties": {
+	            "autocomplete": {
+	                "type": "string",
+	                "analyzer": "autocomplete"
 	            },
-	            "description":{  
-	                "type":"string",
-	                "copy_to":[  
+	            "description": {
+	                "type": "string",
+	                "copy_to":[
 	                    "did_you_mean",
 	                    "autocomplete"
 	                ]
 	            },
-	            "did_you_mean":{  
-	                "type":"string",
-	                "analyzer":"didYouMean"
+	            "did_you_mean": {
+	                "type": "string",
+	                "analyzer": "didYouMean"
 	            }
 	        }
 	    }
