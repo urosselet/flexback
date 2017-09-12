@@ -7,21 +7,32 @@ angular.module('flexcrowd.controllers', [])
 
         $scope.platforms = [];
         $scope.categories = [];
+        
+        $scope.treeDiagram = false;
         $scope.alertVisible = false;
         $scope.dumpAlertVisible = false;
-        $scope.treeDiagram = false;
+        $scope.exportError = false;
+        $scope.importError = false;
+        $scope.loadError = false;
 
+        /**
+         * Define application state and call the corresponding api
+         * @param  {[type]} $state.params.menu [description]
+         * @return {[type]}                    [description]
+         */
         switch ($state.params.menu) {
             case 'categories':
                 ESService.findAll('category')
                     .then(function(res) {
                         $scope.categories = res;
                     }, function(error) {
-                        console.log(error);
+                        $scope.loadError = true;
+                        $timeout(function() {
+                            $scope.loadError = false;
+                        }, 5000);
                     });
                 break;
             case 'tree-diagram':
-                console.log('')
                 $scope.treeDiagram = true
                 break;
             default:
@@ -29,11 +40,17 @@ angular.module('flexcrowd.controllers', [])
                     .then(function(res) {
                         $scope.platforms = res;
                     }, function(error) {
-                        console.log(error);
+                        $scope.loadError = true;
+                        $timeout(function() {
+                            $scope.loadError = false;
+                        }, 5000);
                     });
-
         };
 
+        /**
+         * Import ES dataset, mappings and tokenizer
+         * @return {[type]} [description]
+         */
         $scope.import = function() {
             ESService.import()
                 .then(function(res) {
@@ -41,15 +58,29 @@ angular.module('flexcrowd.controllers', [])
                     $timeout(function() {
                         $scope.alertVisible = false;
                     }, 5000);
+                }, function(err) {
+                    $scope.importError = true;
+                    $timeout(function() {    
+                        $scope.importError = false;
+                    }, 5000);
                 });
         };
 
-        $scope.dump = function() {
-            ESService.dump()
+        /**
+         * Import ES dataset, mappings and tokenizer
+         * @return {[type]} [description]
+         */
+        $scope.export = function() {
+            ESService.export()
                 .then(function(res) {
                     $scope.dumpAlertVisible = true;
                     $timeout(function() {
                         $scope.dumpAlertVisible = false;
+                    }, 5000);
+                }, function(err) {
+                    $scope.exportError = true;
+                    $timeout(function() {
+                        $scope.exportError = false;
                     }, 5000);
                 });
         };

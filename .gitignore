@@ -3,6 +3,7 @@
 /assets/bower_components
 
 /flx-process/node_modules
+/data/es_dump
 
 *.log
 

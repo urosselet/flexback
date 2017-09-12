@@ -16,13 +16,18 @@
                     <div class="alert alert-success" role="alert" ng-show="alertVisible">Dataset imported successfully</div>
                     <div class="alert alert-success" role="alert" ng-show="dumpAlertVisible">Dataset exported successfully</div>
 
+                    <div class="alert alert-danger" role="alert" ng-show="importError">Dataset import failed</div>
+                    <div class="alert alert-danger" role="alert" ng-show="exportError">Dataset export failed</div>
+                    
+                    <div class="alert alert-danger" role="alert" ng-show="loadError">Error while loading the require data ! Please check you request response !</div>
+
                     <ul class="nav nav-tabs">
                         <li role="presentation" ng-class="{'active': platforms.length > 0 }"><a ui-sref="index">Platforms</a></li>
                         <li role="presentation" ng-class="{'active': categories.length > 0 }" ><a ui-sref="menu({ menu: 'categories' })">Categories</a></li>
                         <li role="presentation" ng-class="{'active': treeDiagram === true }" ><a ui-sref="menu({ menu: 'tree-diagram' })">Tree diagram</a></li>
                         <li class="pull-right">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-warning" ng-click="dump()">Dump Data</button>
+                                <button type="button" class="btn btn-warning" ng-click="export()">Dump Data</button>
                                 <button type="button" class="btn btn-success" ng-click="import()">Import Data</button>
                             </div>
                         </li>

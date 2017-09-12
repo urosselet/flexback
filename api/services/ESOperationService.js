@@ -14,38 +14,35 @@ module.exports = {
      */
     import: function(option, cb) {
 
-        client.indices.putTemplate({ 'name': 'operation', 'body': esSettings })
+        client.indices.create({ 'index': 'operation', 'body': esSettings })
             .then(function(res) {
-            
+                sails.log.info(res);
                 async.auto({
+
                     import_platform: function(callback) {
                         nrc.run('elastic-import ./data/liste_plateformes_crowdflower_vf.json localhost:9200 operation platform -i ignoreMe, myArray[*].ignoreMe --json')
                             .then(function(exitCode) {
-                                callback(exitCode);
+                                callback(null, exitCode);
                             }, function(err) {
-                                callback(err);
+                                callback(null, err);
                             });
                     },
 
                     import_category: function(callback) {
                         nrc.run('elastic-import ./data/description_categories.json localhost:9200 operation category -i ignoreMe, myArray[*].ignoreMe --json')
                             .then(function(exitCode) {
-                                callback(exitCode);
+                                callback(null, exitCode);
                             }, function(err) {
-                                callback(err);
+                                callback(null, err);
                             });
-                    },
-
-                    import_processing: ['import_platform', 'import_category', function(results, callback) {
-                        callback(results);
-                    }],
-
+                    }
+                    
                 }, function(err, results) {
-                    cb(err, results);
+                    return cb(err, results);
                 });
 
             }, function(err) {
-                console.log(err);
+                return cb(err, null);
             });
 
     },
@@ -73,29 +70,29 @@ module.exports = {
             export_data: function(callback) {
                 nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFoler}/flexcrowd_data.json --type=data`)
                     .then(function(exitCode) {
-                        callback(exitCode);
+                        callback(null, exitCode);
                     }, function(err) {
-                        callback(err);
+                        callback(null, err);
                     });
             },
             export_mapping: function(callback) {
                 nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFoler}/flexcrowd_mapping.json --type=mapping`)
                     .then(function(exitCode) {
-                        callback(exitCode);
+                        callback(null, exitCode);
                     }, function(err) {
-                        callback(err);
+                        callback(null, err);
                     });
             },
             export_analyzer: function(callback) {
                 nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFoler}/flexcrowd_analyzer.json --type=analyzer`)
                     .then(function(exitCode) {
-                        callback(exitCode);
+                        callback(null, exitCode);
                     }, function(err) {
-                        callback(err);
+                        callback(null, err);
                     });
             },
             export_processing: ['export_data', 'export_mapping', 'export_analyzer', function(results, callback) {
-                callback(results);
+                callback(null, results);
             }],
         }, function(err, results) {
             cb(err, results);

@@ -21,7 +21,7 @@ module.exports = {
                 }
                 return res.json(response);
             }, function(error) {
-                console.log(error);
+                return res.serverError(error);
             });
     },
 
@@ -32,7 +32,8 @@ module.exports = {
      * @return {[type]}     [description]
      */
     import: function(req, res) {
-        ESOperationService.import({}, function(result) {
+        ESOperationService.import({}, function(err, result) {
+            if (err) return res.serverError(err);
             return res.ok();
         });
     },
@@ -43,8 +44,9 @@ module.exports = {
      * @param  {[type]} res [description]
      * @return {[type]}     [description]
      */
-    dump: function(req, res) {
+    export: function(req, res) {
         ESOperationService.export({}, function(err, results) {
+            if (err) return res.serverError(err);
             return res.ok();
         });
     }
