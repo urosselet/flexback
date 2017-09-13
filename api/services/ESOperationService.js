@@ -17,29 +17,35 @@ module.exports = {
 
         let dataPath = path.join(path.dirname(process.mainModule.filename), '/data/');
 
-        client.indices.create({ 'index': 'operation', 'body': esSettings })
+        client.indices.exists({ 'index': 'operation' })
             .then(function(res) {
-                sails.log.info('Index settings: ', res);
-                async.auto({
+                if (res) return cb(true);
 
-                    import_platform: function(callback) {
-                        shell.exec(`elastic-import ${dataPath}platforms.json localhost:9200 operation platform -l error --json`, function(code) {
-                            callback(null, code);
+                client.indices.create({ 'index': 'operation', 'body': esSettings })
+                    .then(function(res) {
+                        sails.log.info('Index settings: ', res);
+                        async.auto({
+
+                            import_platform: function(callback) {
+                                shell.exec(`elastic-import ${dataPath}platforms.json localhost:9200 operation platform -l error --json`, function(code) {
+                                    callback(null, code);
+                                });
+                            },
+
+                            import_category: function(callback) {
+                                shell.exec(`elastic-import ${dataPath}categories.json localhost:9200 operation category -l error --json`, function(code) {
+                                    callback(null, code);
+                                });
+                            }
+                            
+                        }, function(err, results) {
+                            return cb(err, results);
                         });
-                    },
 
-                    import_category: function(callback) {
-                        shell.exec(`elastic-import ${dataPath}categories.json localhost:9200 operation category -l error --json`, function(code) {
-                            callback(null, code);
-                        });
-                    }
-                    
-                }, function(err, results) {
-                    return cb(err, results);
-                });
+                    }, function(err) {
+                        return cb(err, null);
+                    });
 
-            }, function(err) {
-                return cb(err, null);
             });
     },
 

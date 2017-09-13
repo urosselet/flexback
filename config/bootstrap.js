@@ -15,10 +15,17 @@ module.exports.bootstrap = function(cb) {
      * with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
      */
     ESOperationService.import({}, function(res) {
-        
-        sails.log.info('**********************************');
-        sails.log.info('* ES Dataset import successfully *');
-        sails.log.info('**********************************');
+
+        if (!res) {
+            sails.log.info('**********************************');
+            sails.log.info('* ES Dataset import successfully *');
+            sails.log.info('**********************************');
+
+        } else {
+            sails.log.info('**********************************');
+            sails.log.info('*  ES Dataset already imported   *');
+            sails.log.info('**********************************');
+        }
         
         cb();
 
