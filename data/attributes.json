@@ -1,0 +1,40 @@
+
+[
+    /* CS Process */
+    { "index":  { "_index": "operation", "_type": "process", "_id": 1 } },
+    { "preselection_of_contributors": [ { "id": "qualification_based", "description": "Qualification-based" }, { "id": "context_specific", "description": "Context specific" }, { "id": "both", "description": "Both" }, { "id": "none", "description": "None" } ] }
+
+    { "index":  { "_index": "operation", "_type": "process", "_id": 2 } },
+    { "peer_contributions_accessibility": [ { "id": "modify", "description": "Modify" }, { "id": "assess", "description": "Assess" }, { "id": "view", "description": "View" }, { "id": "none", "description": "None" } ] }
+
+    { "index":  { "_index": "operation", "_type": "process", "_id": 3 } },
+    { "aggregation_of_contributions": [ { "id": "integrative", "description": "Integrative" }, { "id": "selective", "description": "selective" } ] }
+
+    { "index":  { "_index": "operation", "_type": "process", "_id": 4 } },
+    { "remuneration_for_contributions": [ { "id": "fixed", "description": "Fixed" }, { "id": "success_based", "description": "Success-based" }, { "none": "none", "description": "None" } ] }
+
+    /* Goals */
+    { "index":  { "_index": "operation", "_type": "goal", "_id": 1 } },
+    { "main_beneficiary": [ { "id": "initiatior", "description": "initiatior" }, { "id": "crowd_community", "description": "Crowd / Community" } ] }
+
+    { "index":  { "_index": "operation", "_type": "goal", "_id": 2 } },
+    { "value_type": [ { "id": "innovation", "description": "Innovation" }, { "id": "authenticity", "description": "Authenticity" }, { "id": "cost_reduction", "description": "Cost reduction" }, { "id": "risk_reduction", "description": "Risk reduction" } ] }
+
+    { "index":  { "_index": "operation", "_type": "goal", "_id": 3 } },
+    { "input_tolerance": [ { "id": "low", "description": "Low" }, { "id": "high", "description": "High" } ] }
+
+    /* Tasks */
+    { "index":  { "_index": "operation", "_type": "task", "_id": 1 } },
+    { "type": [ { "id": "creation", "description": "Creation" }, { "id": "evaluation", "description": "Evaluation" }, { "id": "organization", "description": "Organization" } ] }
+
+    { "index":  { "_index": "operation", "_type": "task", "_id": 2 } },
+    { "dependencies": [ { "id": "decoupled", "description": "Decoupled" }, { "id": "coupled", "description": "Coupled" } ] }
+
+    /* Crowd */
+    { "index":  { "_index": "operation", "_type": "crowd", "_id": 1 } },
+    { "contribution_type": [ { "id": "opinion_perspective", "description": "Opinion / Perspective" }, { "id": "content", "description": "Content" } ] }
+
+    { "index":  { "_index": "operation", "_type": "crowd", "_id": 2 } },
+    { "main_motivational_driver": [ { "id": "tangible_reward", "description": "Tangible reward" }, { "id": "personal_achievement_and_learning", "description": "Personal achievement and learning" }, { "id": "social_status_and_reputation", "description": "Social status and reputation" }, { "id": "entertainment", "description": "Entertainment" }  ] }
+
+]

@@ -40,19 +40,26 @@ angular.module('flexcrowd',
 
         $stateProvider
             .state('index', {
-                url: '/',
+                url: '',
+                abstract: true,
                 templateUrl: '/templates/index.html',
                 controller: 'IndexCtrl',
             })
 
-            .state('menu', {
-                url: '/:menu',
-                templateUrl: '/templates/index.html',
+            .state('index.list', {
+                url: '/list/:item',
+                templateUrl: '/templates/_lists/platform_list.html',
                 controller: 'IndexCtrl',
+            })
+
+            .state('index.form', {
+                url: '/platform/:id',
+                templateUrl: '/templates/_forms/platform_edit.html',
+                controller: 'FormCtrl',
             })
 
         /* If none of the above states are matched, use this as the fallback */
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/list/platform');
 
     }
 

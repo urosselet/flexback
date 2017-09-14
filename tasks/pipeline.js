@@ -26,20 +26,20 @@ var cssFilesToInject = [
 var jsFilesToInject = [
 
     // Load sails.io before everything else
-    'js/dependencies/sails.io.js',
-    '/bower_components/angular/angular.js',
-    '/bower_components/jquery/dist/jquery.min.js',
-    '/bower_components/angular-ui-router/release/angular-ui-router.js',
+    // 'js/dependencies/sails.io.js',
+    // '/bower_components/angular/angular.js',
+    // '/bower_components/jquery/dist/jquery.min.js',
+    // '/bower_components/angular-ui-router/release/angular-ui-router.js',
 
     /* Public controllers */
-    'js/controllers/IndexCtrl.js',
+    // 'js/controllers/IndexCtrl.js',
 
-    'js/directives/*.js',
-    'js/services/*.js',
+    // 'js/directives/*.js',
+    // 'js/services/*.js',
 
     // All of the rest of your client-side js files
     // will be injected here in no particular order.
-    'js/app.js'
+    // 'js/app.js'
 ];
 
 // Client-side HTML templates are injected using the sources below

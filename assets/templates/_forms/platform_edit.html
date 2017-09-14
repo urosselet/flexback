@@ -1,0 +1,187 @@
+<div class="p-5 plaform-edit">
+    <div class="row">
+        <h1>Update :: {{ platform._source.name }} </h1>
+    </div>
+    <div class="row">
+        <form class="edit-form" name="platformForm">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Platform detail</legend>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" ng-model="platform._source.name">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" ng-model="platform._source.description" rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Website</label>
+                    <input type="text" class="form-control" ng-model="platform._source.platform_website">
+                </div>
+                <div class="row">
+                    <div class="form-group col col-md-6">
+                        <label>Status</label>
+                        <select class="form-control">
+                        	<option></option>
+                            <option>Active</option>
+                            <option>Inactive</option>
+                        </select>
+                    </div>
+                    <div class="form-group col col-md-6">
+                        <label>Pertinence</label>
+                        <select class="form-control">
+                        	<option></option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Crowdsourcing Process Caracteristics</legend>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>Preselection of Contributors Type</label>
+                        <select class="form-control">
+                        	<option></option>
+                            <option>Qualification-based</option>
+                            <option>Context specific</option>
+                            <option>Both</option>
+                            <option>None</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Peer Contributions Accessibility Type</label>
+                        <select class="form-control">
+                        	<option></option>
+                            <option>Modify</option>
+                            <option>Assess</option>
+                            <option>View</option>
+                            <option>None</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>Aggregation of Contributions Type</label>
+                        <select class="form-control">
+                        	<option></option>
+                            <option>Integrative</option>
+                            <option>Selective</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Remuneration for contributions Type</label>
+                        <select class="form-control">
+                        	<option></option>
+                            <option>Fixed</option>
+                            <option>Success-based</option>
+                            <option>None</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Goals | Tasks | Crowd</legend>
+                
+                <!-- Goals -->
+                <div class="row">
+                	<h2>Goals</h2>
+                    <div class="form-group col-md-6">
+                        <label>Main beneficiary</label>
+                        <select class="form-control">
+                        	<option></option>
+                            <option>Initiator</option>
+                            <option>Crowd/Community</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Value type</label>
+                        <select class="form-control">
+                        	<option></option>
+                        	<option>Innovation</option>
+                            <option>Authenticity</option>
+                            <option>Cost reduction</option>
+                            <option>Risk reduction</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Tolerance of inputs</label>
+                        <select class="form-control">
+                        	<option></option>
+                            <option>Low</option>
+                            <option>High</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- END::Goals -->
+                <hr>
+                <!-- Tasks -->
+                <div class="row">
+                	<h2>Tasks</h2>
+                	<div class="form-group col-md-6">
+                        <label>Task Type</label>
+                        <select class="form-control">
+                        	<option></option>
+                            <option>Creation</option>
+                            <option>Evaluation</option>
+                            <option>Organization</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Task Dependency</label>
+                        <select class="form-control">
+                        	<option></option>
+                            <option>Coupled</option>
+                            <option>Decoupled</option>
+                        </select>
+                    </div>
+                    <!-- Other attributes -->
+                    <div class="form-group col-md-6">
+                        <label>Task Novelty</label>
+                        <select class="form-control">
+                        	<option></option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Task Effectiveness</label>
+                        <select class="form-control">
+                        	<option></option>
+                            <option>Effectiveness criteria</option>
+                        </select>
+                    </div>
+                     <!-- END::Other attributes -->
+                </div>
+                <!-- END::Tasks -->
+                <hr>
+                <!-- Crowd -->
+                <div class="row">
+                	<h2>Crowd</h2>
+                    <div class="form-group col-md-6">
+                        <label>Contribution Type</label>
+                        <select class="form-control">
+                        	<option></option>
+                            <option>Opinion / Perspective</option>
+                            <option>Content</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Main motivational Driver</label>
+                        <select class="form-control">
+                        	<option></option>
+                            <option>Tangible reward</option>
+                            <option>Personal achievement and learning</option>
+                            <option>Social status and reputation</option>
+                            <option>Entertainment</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- END::Crowd -->
+
+            </fieldset>
+            <button type="submit" class="btn btn-success pull-right">Save</button>
+        </form>
+    </div>
+</div>

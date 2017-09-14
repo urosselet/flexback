@@ -1,0 +1,80 @@
+<!-- Listings view -->
+<div class="p-5">
+    <div class="alert alert-success" role="alert" ng-show="alertVisible">Dataset imported successfully</div>
+    <div class="alert alert-success" role="alert" ng-show="dumpAlertVisible">Dataset exported successfully</div>
+    <div class="alert alert-danger" role="alert" ng-show="importError">Dataset import failed</div>
+    <div class="alert alert-danger" role="alert" ng-show="exportError">Dataset export failed</div>
+    <div class="alert alert-danger" role="alert" ng-show="loadError">Error while loading the require data ! Please check you request response !</div>
+    <ul class="nav nav-tabs">
+        <li role="presentation" ng-class="{'active': platforms.length > 0 }"><a ui-sref="index.list({ item: 'platforms' })">Platforms</a></li>
+        <li role="presentation" ng-class="{'active': categories.length > 0 }"><a ui-sref="index.list({ item: 'categories' })">Categories</a></li>
+        <li role="presentation" ng-class="{'active': treeDiagram === true }"><a ui-sref="index.list({ item: 'tree-diagram' })">Tree diagram</a></li>
+        <li class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning" ng-click="export()">Dump Data</button>
+                <button type="button" class="btn btn-success" ng-click="import()">Import Data</button>
+            </div>
+        </li>
+    </ul>
+    <!-- Platform listings -->
+    <table class="table table-striped table-bordered" ng-if="platforms.length > 0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Url</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="platform in platforms">
+                <td>
+                    <span>{{ platform._id }}</span>
+                </td>
+                <td>
+                    <span editable-text="platform._source.name">{{ platform._source.name }}</span>
+                </td>
+                <td>
+                    <span editable-textarea="platform._source.description">{{ platform._source.description }}</span>
+                </td>
+                <td>
+                    <span><a href="{{ platform._source.platform_website }}" target="_blank">{{ platform._source.platform_website }}</a></span>
+                </td>
+                <td>
+                    <a ui-sref="index.form({ id: platform._id })" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span>Edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+     <!-- Category listings -->
+    <table class="table table-striped table-bordered category-table" ng-if="categories.length > 0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Category ID</th>
+                <th>Category name</th>
+                <th>Tags</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="category in categories">
+                <td>
+                    <span>{{ category._id }}</span>
+                </td>
+                <td>
+                    <span>{{ category._source.category }}</span>
+                </td>
+                <td>
+                    <span>{{ category._source.cat_name }}</span>
+                </td>
+                <td>
+                    <span class="tag" ng-repeat="(key, value) in category._source.tags">{{ value }}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row" ng-if="treeDiagram === true">
+        <div id="tree-diagram" tree-diagram></div>
+    </div>
+</div>

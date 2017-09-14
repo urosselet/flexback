@@ -87,6 +87,11 @@
 	                "analyzer": "didYouMean"
 	            }
 	        }
-	    }
+	    },
+        "process": {
+            "_parent": {
+                "type": "platform" 
+            }
+        }
     }
 }

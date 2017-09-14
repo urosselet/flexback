@@ -1,3 +1,5 @@
+let client = sails.config.es.client;
+
 /**
  * Cs_platformController
  *
@@ -22,6 +24,19 @@ module.exports = {
                 return res.json(response);
             }, function(error) {
                 return res.serverError(error);
+            });
+    },
+
+    /**
+     * Get platform base on the specified id
+     * @param  {[type]} req [description]
+     * @param  {[type]} res [description]
+     * @return {[type]}     [description]
+     */
+    findOne: function(req, res) {
+        client.get({ index: 'operation', type: 'platform', id: req.param('id') })
+            .then(function(response) {
+                return res.json(response)
             });
     },
 

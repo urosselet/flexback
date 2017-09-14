@@ -1,54 +1,55 @@
 {
-    "name": "flexcrowd-backend",
-    "description": "FlexCrowd Backend Application",
-    "author": "jdlegrand",
-    "private": true,
-    "version": "0.1.0",
-    "keywords": [
-        "flexcrowd",
-        "backend",
-        "crowdsourcing",
-        "predictionio",
-        "elasticsearch"
-    ],
-    "main": "app.js",
-    "scripts": {
-        "debug": "node debug app.js",
-        "start": "nodemon app.js --debug"
-    },
-    "dependencies": {
-        "connect-redis": "^3.3.0",
-        "deep-replace-in-object": "^1.1.7",
-        "ejs": "2.5.7",
-        "elasticsearch": "^13.3.1",
-        "express-session": "^1.15.5",
-        "grunt": "1.0.1",
-        "grunt-contrib-clean": "1.1.0",
-        "grunt-contrib-coffee": "1.0.0",
-        "grunt-contrib-concat": "1.0.1",
-        "grunt-contrib-copy": "1.0.0",
-        "grunt-contrib-cssmin": "2.2.1",
-        "grunt-contrib-jst": "1.0.0",
-        "grunt-contrib-less": "1.4.1",
-        "grunt-contrib-uglify": "3.1.0",
-        "grunt-contrib-watch": "1.0.0",
-        "grunt-sails-linker": "~1.0.4",
-        "grunt-sync": "0.6.2",
-        "include-all": "^4.0.3",
-        "node-wit": "^4.3.0",
-        "promise-defer": "^1.0.0",
-        "rc": "1.2.1",
-        "sails": "~0.12.13"
-    },
-    "devDependencies": {
-        "elastic-import": "^1.2.0",
-        "elasticdump": "^3.3.1",
-        "node-run-cmd": "^1.0.1",
-        "nodemon": "^1.12.0",
-        "shelljs": "^0.7.8"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git@git.ig.he-arc.ch:ulysse.rosselet/flexback.git"
-    }
+  "name": "flexcrowd-backend",
+  "description": "FlexCrowd Backend Application",
+  "author": "jdlegrand",
+  "private": true,
+  "version": "0.1.0",
+  "keywords": [
+    "flexcrowd",
+    "backend",
+    "crowdsourcing",
+    "predictionio",
+    "elasticsearch"
+  ],
+  "main": "app.js",
+  "scripts": {
+    "debug": "node debug app.js",
+    "start": "nodemon app.js --debug"
+  },
+  "dependencies": {
+    "connect-redis": "^3.3.0",
+    "deep-replace-in-object": "^1.1.7",
+    "ejs": "2.5.7",
+    "elasticsearch": "^13.3.1",
+    "express-session": "^1.15.5",
+    "grunt": "1.0.1",
+    "grunt-contrib-clean": "1.1.0",
+    "grunt-contrib-coffee": "1.0.0",
+    "grunt-contrib-concat": "1.0.1",
+    "grunt-contrib-copy": "1.0.0",
+    "grunt-contrib-cssmin": "2.2.1",
+    "grunt-contrib-jst": "1.0.0",
+    "grunt-contrib-less": "1.4.1",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "3.1.0",
+    "grunt-contrib-watch": "1.0.0",
+    "grunt-sails-linker": "~1.0.4",
+    "grunt-sync": "0.6.2",
+    "include-all": "^4.0.3",
+    "node-wit": "^4.3.0",
+    "promise-defer": "^1.0.0",
+    "rc": "1.2.1",
+    "sails": "~0.12.13"
+  },
+  "devDependencies": {
+    "elastic-import": "^1.2.0",
+    "elasticdump": "^3.3.1",
+    "node-run-cmd": "^1.0.1",
+    "nodemon": "^1.12.0",
+    "shelljs": "^0.7.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.ig.he-arc.ch:ulysse.rosselet/flexback.git"
+  }
 }

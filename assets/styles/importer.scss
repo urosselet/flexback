@@ -1,0 +1,119 @@
+/**
+ * importer.scss
+ *
+ * By default, new Sails projects are configured to compile this file
+ * from SASS to CSS.  Unlike CSS files, SASS files are not compiled and
+ * included automatically unless they are imported below.
+ *
+ * The SASS files imported below are compiled and included in the order
+ * they are listed.  Mixins, variables, etc. should be imported first
+ * so that they can be accessed by subsequent SASS stylesheets.
+ *
+ * (Just like the rest of the asset pipeline bundled in Sails, you can
+ * always omit, customize, or replace this behavior with SASS, SCSS,
+ * or any other Grunt tasks you like.)
+ */
+
+@import 'plugins/bootstrap.min.css';
+// @import 'plugins/bootstrap-theme.min.css';
+
+@import '../bower_components/angular-xeditable/dist/css/xeditable.css';
+@import '../js/vendors/treant-js/Treant.css';
+
+/**
+ * Color variables
+ */
+$fc-blue: #2da5b6;
+$fc-orange: #ef7921;
+
+html {
+    height: 100%;
+}
+
+header.masthead {
+    margin-bottom: 5em;
+}
+
+.category-table .tag {
+    margin-right: 5px;
+    padding: 5px;
+
+    color: #fff;
+    border-radius: 2px;
+    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+}
+
+.nav-tabs {
+    margin-bottom: 5rem;
+}
+
+.navbar {
+    height: 75px;
+    margin-bottom: 0;
+
+    border-radius: 0;
+    background-color: $fc-blue;
+    a {
+        font-size: 2em;
+
+        width: 100%;
+
+        text-align: center;
+
+        color: #fff;
+    }
+}
+
+#tree-diagram > .node > p {
+    margin: 0 0 10px;
+    padding: 5px;
+
+    color: #fff;
+    border-radius: 2px;
+    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+}
+
+.plaform-edit {
+    h1 {
+        margin-top: 0;
+        padding-bottom: 1em;
+    }
+    .edit-form {
+        margin-bottom: 4em;
+        padding: 4em;
+
+        border: 1px solid #eee;
+        border-radius: 5px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, .15);
+        fieldset {
+            margin-bottom: 2em;
+            legend {
+                font-weight: bold;
+
+                color: $fc-orange;
+            }
+        }
+        h2 {
+            font-size: 1.5em;
+
+            padding-bottom: 10px;
+            padding-left: 15px;
+
+            color: $fc-blue;
+        }
+    }
+}
+
+/**
+ * Footer stylings
+ */
+footer {
+    position: absolute;
+
+    width: 100%;
+    height: 4em;
+    padding-top: 2rem;
+
+    color: #fff;
+    background: #bdc3c7;
+}

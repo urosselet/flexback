@@ -10,21 +10,28 @@ angular.module('flexcrowd.services', [])
                 /**
                  * Find all by ES type
                  */
-                findAll: function (type) {
+                findAll: function(type) {
                     return Restangular.all('/csplatform?type=' + type).getList();
+                },
+
+                /**
+                 * Get platform by id
+                 */
+                findOne: function(id) {
+                    return Restangular.one('/csplatform', id).get();
                 },
 
                 /**
                  * Import all by ES index/type
                  */
-                import: function () {
+                import: function() {
                     return Restangular.all('/csplatform/import').getList();
                 },
 
                 /**
                  * Dump all by ES index/type and save it to JSON file
                  */
-                export: function () {
+                export: function() {
                     return Restangular.all('/csplatform/export').getList();
                 }
 

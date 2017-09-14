@@ -20,7 +20,18 @@ angular.module('flexcrowd.controllers', [])
          * @param  {[type]} $state.params.menu [description]
          * @return {[type]}                    [description]
          */
-        switch ($state.params.menu) {
+        switch ($state.params.item) {
+            case 'platforms':
+                ESService.findAll('platform')
+                    .then(function(res) {
+                        $scope.platforms = res;
+                    }, function(error) {
+                        $scope.loadError = true;
+                        $timeout(function() {
+                            $scope.loadError = false;
+                        }, 5000);
+                    });
+                break;
             case 'categories':
                 ESService.findAll('category')
                     .then(function(res) {
@@ -36,15 +47,7 @@ angular.module('flexcrowd.controllers', [])
                 $scope.treeDiagram = true
                 break;
             default:
-                ESService.findAll('platform')
-                    .then(function(res) {
-                        $scope.platforms = res;
-                    }, function(error) {
-                        $scope.loadError = true;
-                        $timeout(function() {
-                            $scope.loadError = false;
-                        }, 5000);
-                    });
+                break;
         };
 
         /**
