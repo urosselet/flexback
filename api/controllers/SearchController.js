@@ -16,7 +16,6 @@ module.exports = {
      * @return {[type]}     [description]
      */
     find: function(req, res) {
-
         let query = req.param('query');
 
         if (req.param('status') === 'true') {
@@ -32,16 +31,12 @@ module.exports = {
                         });
 
                 });
-
         } else if (req.param('status') === 'false') {
-
             flexClient.proceed(req.param('query'))
                 .then(function(result) {
                     return res.json(result);
                 });
-
         }
-
     },
 
     /**

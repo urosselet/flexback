@@ -22,6 +22,15 @@ angular.module('flexcrowd.services', [])
                 },
 
                 /**
+                 * Update plateform
+                 * @param  {[type]} id [description]
+                 * @return {[type]}    [description]
+                 */
+                update: function(id, updatedObj) {
+                    return Restangular.one('/csplatform', id).customPUT(updatedObj);
+                },
+
+                /**
                  * Import all by ES index/type
                  */
                 import: function() {

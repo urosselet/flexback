@@ -35,9 +35,33 @@ module.exports = {
      */
     findOne: function(req, res) {
         client.get({ index: 'operation', type: 'platform', id: req.param('id') })
-            .then(function(response) {
-                return res.json(response)
+            .then(function(platform) {
+                ESClientService.getAllAttributes({}, function(attributes) {
+                    return res.json({ 'platform': platform, 'attributes': attributes });
+                });
             });
+    },
+
+    /**
+     * Update a platform document
+     * @param  {[type]} req [description]
+     * @param  {[type]} res [description]
+     * @return {[type]}     [description]
+     */
+    update: function(req, res) {
+
+        client.update({
+            'index': 'operation',
+            'type': 'platform',
+            'id': req.param('id'),
+            'body': {
+                'doc': {
+                    'attributes': req.body
+                }
+            }
+        }, function(error, response) {
+
+        });
     },
 
     /**

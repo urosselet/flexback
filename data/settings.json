@@ -85,13 +85,40 @@
 	            "did_you_mean": {
 	                "type": "string",
 	                "analyzer": "didYouMean"
-	            }
+	            },
+                "attributes": {
+                    "type": "nested",
+                    "properties": {
+                        "process": {
+                            "properties": {
+                                "preselection_of_contributors": { "type": "string" },
+                                "peer_contributions_accessibility": { "type": "string" },
+                                "aggregation_of_contributions": { "type": "string" },
+                                "remuneration_for_contributions": { "type": "string" }
+                            }
+                        },
+                        "goals": {
+                            "properties": {
+                                "main_beneficiary": { "type": "string" },
+                                "value_type": { "type": "string" },
+                                "input_tolerance": { "type": "string" }
+                            }
+                        },
+                        "task": {
+                            "properties": {
+                                "type": { "type": "string" },
+                                "dependencies": { "type": "string" }
+                            }
+                        },
+                        "crowd": {
+                            "properties": {
+                                "contribution_type": { "type": "string" },
+                                "main_motivational_driver": { "type": "string" }
+                            }
+                        }
+                    }
+                }
 	        }
-	    },
-        "process": {
-            "_parent": {
-                "type": "platform" 
-            }
-        }
+	    }
     }
 }

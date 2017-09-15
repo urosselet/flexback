@@ -53,7 +53,6 @@ module.exports = {
                 'match_all': {}
             }
         }
-        
     },
 
     interpolate: function(query, template, value) {

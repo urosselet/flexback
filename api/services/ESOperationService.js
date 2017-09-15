@@ -43,9 +43,12 @@ module.exports = {
                         });
 
                     }, function(err) {
+                        console.log(err)
                         return cb(err, null);
                     });
 
+            }, function(err) {
+                sails.log.info('Error: ', res);
             });
     },
 

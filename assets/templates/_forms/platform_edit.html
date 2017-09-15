@@ -22,7 +22,7 @@
                     <div class="form-group col col-md-6">
                         <label>Status</label>
                         <select class="form-control">
-                        	<option></option>
+                        	<option>--</option>
                             <option>Active</option>
                             <option>Inactive</option>
                         </select>
@@ -30,87 +30,96 @@
                     <div class="form-group col col-md-6">
                         <label>Pertinence</label>
                         <select class="form-control">
-                        	<option></option>
+                        	<option>--</option>
                             <option>Yes</option>
                             <option>No</option>
                         </select>
                     </div>
                 </div>
             </fieldset>
+            <!-- Process -->
             <fieldset class="scheduler-border">
                 <legend class="scheduler-border">Crowdsourcing Process Caracteristics</legend>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label>Preselection of Contributors Type</label>
-                        <select class="form-control">
-                        	<option></option>
-                            <option>Qualification-based</option>
+                        <select class="form-control" name="process" ng-model="platform._source.attributes.process.preselection_of_contributors">
+                        	<option>--</option>
+                            <option ng-repeat="attribute in attributes.process[0]._source.preselection_of_contributors" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <!--<option>Qualification-based</option>
                             <option>Context specific</option>
                             <option>Both</option>
-                            <option>None</option>
+                            <option>None</option>-->
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Peer Contributions Accessibility Type</label>
-                        <select class="form-control">
-                        	<option></option>
-                            <option>Modify</option>
+                        <select class="form-control" name="process" ng-model="platform._source.attributes.process.peer_contributions_accessibility">
+                        	<option>--</option>
+                            <option ng-repeat="attribute in attributes.process[1]._source.peer_contributions_accessibility" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <!--<option>Modify</option>
                             <option>Assess</option>
                             <option>View</option>
-                            <option>None</option>
+                            <option>None</option>-->
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label>Aggregation of Contributions Type</label>
-                        <select class="form-control">
-                        	<option></option>
-                            <option>Integrative</option>
-                            <option>Selective</option>
+                        <select class="form-control" name="process" ng-model="platform._source.attributes.process.aggregation_of_contributions">
+                        	<option>--</option>
+                            <option ng-repeat="attribute in attributes.process[2]._source.aggregation_of_contributions" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <!--<option>Integrative</option>
+                            <option>Selective</option>-->
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Remuneration for contributions Type</label>
-                        <select class="form-control">
-                        	<option></option>
-                            <option>Fixed</option>
+                        <select class="form-control" name="process" ng-model="platform._source.attributes.process.remuneration_for_contributions">
+                        	<option>--</option>
+                            <option ng-repeat="attribute in attributes.process[3]._source.remuneration_for_contributions" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <!--<option>Fixed</option>
                             <option>Success-based</option>
-                            <option>None</option>
+                            <option>None</option>-->
                         </select>
                     </div>
                 </div>
             </fieldset>
+            <!-- END::process -->
+
             <fieldset class="scheduler-border">
                 <legend class="scheduler-border">Goals | Tasks | Crowd</legend>
-                
                 <!-- Goals -->
                 <div class="row">
                 	<h2>Goals</h2>
                     <div class="form-group col-md-6">
                         <label>Main beneficiary</label>
-                        <select class="form-control">
-                        	<option></option>
-                            <option>Initiator</option>
-                            <option>Crowd/Community</option>
+                        <select class="form-control" name="goal" ng-model="platform._source.attributes.goal.main_beneficiary">
+                        	<option>--</option>
+                            <option ng-repeat="attribute in attributes.goal[0]._source.main_beneficiary" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <!--<option>Initiator</option>
+                            <option>Crowd/Community</option>-->
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Value type</label>
-                        <select class="form-control">
-                        	<option></option>
-                        	<option>Innovation</option>
+                        <select class="form-control" name="goal" ng-model="platform._source.attributes.goal.value_type">
+                        	<option>--</option>
+                            <option ng-repeat="attribute in attributes.goal[1]._source.value_type" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                        	<!--<option>Innovation</option>
                             <option>Authenticity</option>
                             <option>Cost reduction</option>
-                            <option>Risk reduction</option>
+                            <option>Risk reduction</option>-->
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Tolerance of inputs</label>
-                        <select class="form-control">
-                        	<option></option>
-                            <option>Low</option>
-                            <option>High</option>
+                        <select class="form-control" name="goal" ng-model="platform._source.attributes.goal.input_tolerance">
+                        	<option>--</option>
+                            <option ng-repeat="attribute in attributes.goal[2]._source.input_tolerance" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <!--<option>Low</option>
+                            <option>High</option>-->
                         </select>
                     </div>
                 </div>
@@ -121,22 +130,25 @@
                 	<h2>Tasks</h2>
                 	<div class="form-group col-md-6">
                         <label>Task Type</label>
-                        <select class="form-control">
-                        	<option></option>
-                            <option>Creation</option>
+                        <select class="form-control" name="task" ng-model="platform._source.attributes.task.type">
+                        	<option>--</option>
+                            <option ng-repeat="attribute in attributes.task[0]._source.type" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <!--<option>Creation</option>
                             <option>Evaluation</option>
-                            <option>Organization</option>
+                            <option>Organization</option>-->
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Task Dependency</label>
-                        <select class="form-control">
-                        	<option></option>
-                            <option>Coupled</option>
-                            <option>Decoupled</option>
+                        <select class="form-control" name="task" ng-model="platform._source.attributes.task.dependencies">
+                        	<option>--</option>
+                            <option ng-repeat="attribute in attributes.task[1]._source.dependencies" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <!--<option>Coupled</option>
+                            <option>Decoupled</option>-->
                         </select>
                     </div>
-                    <!-- Other attributes -->
+
+                    <!-- Other attributes
                     <div class="form-group col-md-6">
                         <label>Task Novelty</label>
                         <select class="form-control">
@@ -152,7 +164,9 @@
                             <option>Effectiveness criteria</option>
                         </select>
                     </div>
-                     <!-- END::Other attributes -->
+                    -->
+                    <!-- END::Other attributes -->
+
                 </div>
                 <!-- END::Tasks -->
                 <hr>
@@ -161,27 +175,29 @@
                 	<h2>Crowd</h2>
                     <div class="form-group col-md-6">
                         <label>Contribution Type</label>
-                        <select class="form-control">
-                        	<option></option>
-                            <option>Opinion / Perspective</option>
-                            <option>Content</option>
+                        <select class="form-control" name="crowd" ng-model="platform._source.attributes.crowd.contribution_type">
+                        	<option>--</option>
+                            <option ng-repeat="attribute in attributes.crowd[0]._source.contribution_type" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <!--<option>Opinion / Perspective</option>
+                            <option>Content</option>-->
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Main motivational Driver</label>
-                        <select class="form-control">
-                        	<option></option>
-                            <option>Tangible reward</option>
+                        <select class="form-control" name="crowd" ng-model="platform._source.attributes.crowd.main_motivational_driver">
+                        	<option>--</option>
+                            <option ng-repeat="attribute in attributes.crowd[1]._source.main_motivational_driver" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <!--<option>Tangible reward</option>
                             <option>Personal achievement and learning</option>
                             <option>Social status and reputation</option>
-                            <option>Entertainment</option>
+                            <option>Entertainment</option>-->
                         </select>
                     </div>
                 </div>
                 <!-- END::Crowd -->
 
             </fieldset>
-            <button type="submit" class="btn btn-success pull-right">Save</button>
+            <button type="submit" class="btn btn-success pull-right" ng-click="update(platform, platform._source.attributes)">Save</button>
         </form>
     </div>
 </div>

@@ -59,7 +59,7 @@ angular.module('flexcrowd',
             })
 
         /* If none of the above states are matched, use this as the fallback */
-        $urlRouterProvider.otherwise('/list/platform');
+        $urlRouterProvider.otherwise('/list/platforms');
 
     }
 
