@@ -14,13 +14,11 @@ angular.module('flexcrowd.controllers')
     			$scope.attributes = res.attributes;
     		});
 
-    		
+
     	$scope.update = function(updatedPlatform, attributes) {
 
     		ESService.update($state.params.id, attributes)
-	    		.then(function(res) {
-	    			
-	    		});
+	    		.then(function(res) {});
     	};
 
     }

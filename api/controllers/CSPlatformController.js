@@ -60,8 +60,10 @@ module.exports = {
                 }
             }
         }, function(error, response) {
-
+            if (error) return res.serverError();
+            return res.ok()
         });
+
     },
 
     /**
