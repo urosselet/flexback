@@ -4,36 +4,50 @@
     </div>
     <div class="row">
         <form class="edit-form" name="platformForm">
+
             <fieldset class="scheduler-border">
                 <legend class="scheduler-border">Platform detail</legend>
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" class="form-control" ng-model="platform._source.name">
-                </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea class="form-control" ng-model="platform._source.description" rows="5"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Website</label>
-                    <input type="text" class="form-control" ng-model="platform._source.platform_website">
-                </div>
+
                 <div class="row">
-                    <div class="form-group col col-md-6">
-                        <label>Status</label>
-                        <select class="form-control">
-                        	<option>--</option>
-                            <option>Active</option>
-                            <option>Inactive</option>
-                        </select>
+                    <div class="col-md-3">
+                        <div class="platform-img " upload-image>
+                            <div class="img-container">
+                                <img ng-src="images/48_99tests.png">
+                                <input type="file" file-upload>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col col-md-6">
-                        <label>Pertinence</label>
-                        <select class="form-control">
-                        	<option>--</option>
-                            <option>Yes</option>
-                            <option>No</option>
-                        </select>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" ng-model="platform._source.name">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" ng-model="platform._source.description" rows="5"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Website</label>
+                            <input type="text" class="form-control" ng-model="platform._source.platform_website">
+                        </div>
+                        <div class="row">
+                            <div class="form-group col col-md-6">
+                                <label>Status</label>
+                                <select class="form-control" ng-model="platform._source.inactif">
+                                	<option>--</option>
+                                    <option value="true">Active</option>
+                                    <option value="false">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="form-group col col-md-6">
+                                <label>Pertinence</label>
+                                <select class="form-control" ng-model="platform._source.non_pertinent">
+                                	<option>--</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </fieldset>

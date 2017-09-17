@@ -50,19 +50,35 @@ module.exports = {
      */
     update: function(req, res) {
 
-        client.update({
+        //console.log(req)
+        console.log(req.body)
+
+        req.file('image').upload({}, function(err, files) {
+            console.log(files)
+        });
+
+        /*client.index({
             'index': 'operation',
             'type': 'platform',
             'id': req.param('id'),
-            'body': {
-                'doc': {
-                    'attributes': req.body
-                }
-            }
+            'body': req.body.platform
         }, function(error, response) {
-            if (error) return res.serverError();
-            return res.ok()
-        });
+
+            client.update({
+                'index': 'operation',
+                'type': 'platform',
+                'id': req.param('id'),
+                'body': {
+                    'doc': {
+                        'attributes': req.body.attributes
+                    }
+                }
+            }, function(error, response) {
+                if (error) return res.serverError();
+                return res.ok()
+            });
+
+        });*/
 
     },
 

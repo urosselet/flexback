@@ -6,8 +6,8 @@
     <div class="alert alert-danger" role="alert" ng-show="exportError">Dataset export failed</div>
     <div class="alert alert-danger" role="alert" ng-show="loadError">Error while loading the require data ! Please check you request response !</div>
     <ul class="nav nav-tabs">
-        <li role="presentation" ng-class="{'active': platforms.length > 0 }"><a ui-sref="index.list({ item: 'platforms' })">Platforms</a></li>
-        <li role="presentation" ng-class="{'active': categories.length > 0 }"><a ui-sref="index.list({ item: 'categories' })">Categories</a></li>
+        <li role="presentation" ng-class="{'active': platforms.length > 0 }"><a ui-sref="index.list({ item: 'platform' })">Platforms</a></li>
+        <li role="presentation" ng-class="{'active': categories.length > 0 }"><a ui-sref="index.list({ item: 'category' })">Categories</a></li>
         <li role="presentation" ng-class="{'active': treeDiagram === true }"><a ui-sref="index.list({ item: 'tree-diagram' })">Tree diagram</a></li>
         <li class="pull-right">
             <div class="btn-group">
@@ -33,10 +33,10 @@
                     <span>{{ platform._id }}</span>
                 </td>
                 <td>
-                    <span editable-text="platform._source.name">{{ platform._source.name }}</span>
+                    <span>{{ platform._source.name }}</span>
                 </td>
                 <td>
-                    <span editable-textarea="platform._source.description">{{ platform._source.description }}</span>
+                    <span>{{ platform._source.description }}</span>
                 </td>
                 <td>
                     <span><a href="{{ platform._source.platform_website }}" target="_blank">{{ platform._source.platform_website }}</a></span>

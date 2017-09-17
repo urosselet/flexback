@@ -43,23 +43,32 @@ angular.module('flexcrowd',
                 url: '',
                 abstract: true,
                 templateUrl: '/templates/index.html',
-                controller: 'IndexCtrl',
             })
 
             .state('index.list', {
                 url: '/list/:item',
                 templateUrl: '/templates/_lists/platform_list.html',
                 controller: 'IndexCtrl',
+                resolve: {
+                    results: function(ESService, $stateParams) {
+                        return ESService.findAll($stateParams);
+                    }
+                }
             })
 
             .state('index.form', {
                 url: '/platform/:id',
                 templateUrl: '/templates/_forms/platform_edit.html',
                 controller: 'FormCtrl',
+                resolve: {
+                    platform: function(ESService, $stateParams) {
+                        return ESService.findOne($stateParams);
+                    }
+                }
             })
 
         /* If none of the above states are matched, use this as the fallback */
-        $urlRouterProvider.otherwise('/list/platforms');
+        $urlRouterProvider.otherwise('/list/platform');
 
     }
 

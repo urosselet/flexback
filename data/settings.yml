@@ -1,0 +1,96 @@
+---
+settings:
+  number_of_shards: 1
+  number_of_replicas: 0
+  analysis:
+    filter:
+      stemmer:
+        type: stemmer
+        language: english
+      autocomplete_filter:
+        type: shingle
+        min_shingle_size: '2'
+        max_shingle_size: '5'
+      stopwords:
+        type: stop
+        stopwords:
+        - _english_
+    analyzer:
+      autocomplete:
+        type: custom
+        tokenizer: standard
+        filter:
+        - lowercase
+        - autocomplete_filter
+      didYouMean:
+        filter:
+        - lowercase
+        char_filter:
+        - html_strip
+        type: custom
+        tokenizer: standard
+      default:
+        filter:
+        - lowercase
+        - stopwords
+        - stemmer
+        char_filter:
+        - html_strip
+        type: custom
+        tokenizer: standard
+mappings:
+  category:
+    properties:
+      cat_name:
+        type: string
+        analyzer: english
+        fields:
+          std:
+            type: string
+            analyzer: standard
+  platform:
+    properties:
+      autocomplete:
+        type: string
+        analyzer: autocomplete
+      description:
+        type: string
+        copy_to:
+        - did_you_mean
+        - autocomplete
+      did_you_mean:
+        type: string
+        analyzer: didYouMean
+      attributes:
+        type: nested
+        properties:
+          process:
+            properties:
+              preselection_of_contributors:
+                type: string
+              peer_contributions_accessibility:
+                type: string
+              aggregation_of_contributions:
+                type: string
+              remuneration_for_contributions:
+                type: string
+          goals:
+            properties:
+              main_beneficiary:
+                type: string
+              value_type:
+                type: string
+              input_tolerance:
+                type: string
+          task:
+            properties:
+              type:
+                type: string
+              dependencies:
+                type: string
+          crowd:
+            properties:
+              contribution_type:
+                type: string
+              main_motivational_driver:
+                type: string

@@ -66,4 +66,46 @@ angular.module('flexcrowd.directives', [])
         }
     }
 
-]);
+])
+
+.directive('uploadImage', function() {
+
+    function link(scope, element, attrs) {
+
+        jQuery('input:file', element).on('change', function(event) {
+            let input = jQuery(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, ''),
+                files = event.target.files;
+
+            input.trigger('fileselect', [numFiles, label]);
+
+            for (var i = 0; i < files.length; i++) {
+                scope.$emit('fileSelected', { 'file': files[i] });
+            }
+        });
+
+        jQuery('input:file', element).on('fileselect', function(event, numFiles, label) {
+
+            jQuery('.img-container', element).show().attr('style', 'display: block !important;');
+
+            var input = jQuery(this).parents('.input-group').find(':text'),
+                log = numFiles > 1 ? numFiles + ' files selected' : label,
+                tmppath = URL.createObjectURL(event.target.files[0]);
+
+            if (label.split('.').pop() !== 'pdf') {
+                jQuery(element).find('.img-container').show(function() {
+                    jQuery(this).find('img').attr('src', tmppath);
+                });
+            }
+
+        });
+
+    }
+
+    return {
+        link: link,
+        restrict: 'A'
+    };
+
+});

@@ -101,6 +101,14 @@ header.masthead {
 
             color: $fc-blue;
         }
+        .platform-img {
+            margin-top: 2em;
+
+            border: 1px solid #efefef;
+            img {
+                width: 100%;
+            }
+        }
     }
 }
 

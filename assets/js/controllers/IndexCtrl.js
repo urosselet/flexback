@@ -2,8 +2,8 @@
 
 angular.module('flexcrowd.controllers', [])
 
-.controller('IndexCtrl', ['$scope', '$state', '$timeout', 'ESService',
-    function($scope, $state, $timeout, ESService) {
+.controller('IndexCtrl', ['$scope', '$state', '$timeout', 'results',
+    function($scope, $state, $timeout, results) {
 
         $scope.platforms = [];
         $scope.categories = [];
@@ -21,27 +21,11 @@ angular.module('flexcrowd.controllers', [])
          * @return {[type]}                    [description]
          */
         switch ($state.params.item) {
-            case 'platforms':
-                ESService.findAll('platform')
-                    .then(function(res) {
-                        $scope.platforms = res;
-                    }, function(error) {
-                        $scope.loadError = true;
-                        $timeout(function() {
-                            $scope.loadError = false;
-                        }, 5000);
-                    });
+            case 'platform':
+                $scope.platforms = results;
                 break;
-            case 'categories':
-                ESService.findAll('category')
-                    .then(function(res) {
-                        $scope.categories = res;
-                    }, function(error) {
-                        $scope.loadError = true;
-                        $timeout(function() {
-                            $scope.loadError = false;
-                        }, 5000);
-                    });
+            case 'category':
+                $scope.categories = results;
                 break;
             case 'tree-diagram':
                 $scope.treeDiagram = true
