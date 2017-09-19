@@ -12,7 +12,7 @@
                     <div class="col-md-3">
                         <div class="platform-img " upload-image>
                             <div class="img-container">
-                                <img ng-src="images/48_99tests.png">
+                                <img ng-src="{{ platform._source.platform_img_url }}">
                                 <input type="file" file-upload>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="form-group col col-md-6">
                                 <label>Status</label>
-                                <select class="form-control" ng-model="platform._source.inactif">
+                                <select class="form-control" name="inactif" ng-model="platform._source.inactif">
                                 	<option>--</option>
                                     <option value="true">Active</option>
                                     <option value="false">Inactive</option>
@@ -41,7 +41,7 @@
                             </div>
                             <div class="form-group col col-md-6">
                                 <label>Pertinence</label>
-                                <select class="form-control" ng-model="platform._source.non_pertinent">
+                                <select class="form-control" name="non_pertinent" ng-model="platform._source.non_pertinent">
                                 	<option>--</option>
                                     <option value="true">Yes</option>
                                     <option value="false">No</option>
@@ -60,10 +60,6 @@
                         <select class="form-control" name="process" ng-model="platform._source.attributes.process.preselection_of_contributors">
                         	<option>--</option>
                             <option ng-repeat="attribute in attributes.process[0]._source.preselection_of_contributors" value="{{ attribute.id }}">{{ attribute.description }}</option>
-                            <!--<option>Qualification-based</option>
-                            <option>Context specific</option>
-                            <option>Both</option>
-                            <option>None</option>-->
                         </select>
                     </div>
                     <div class="form-group col-md-6">
@@ -71,10 +67,6 @@
                         <select class="form-control" name="process" ng-model="platform._source.attributes.process.peer_contributions_accessibility">
                         	<option>--</option>
                             <option ng-repeat="attribute in attributes.process[1]._source.peer_contributions_accessibility" value="{{ attribute.id }}">{{ attribute.description }}</option>
-                            <!--<option>Modify</option>
-                            <option>Assess</option>
-                            <option>View</option>
-                            <option>None</option>-->
                         </select>
                     </div>
                 </div>
@@ -84,8 +76,6 @@
                         <select class="form-control" name="process" ng-model="platform._source.attributes.process.aggregation_of_contributions">
                         	<option>--</option>
                             <option ng-repeat="attribute in attributes.process[2]._source.aggregation_of_contributions" value="{{ attribute.id }}">{{ attribute.description }}</option>
-                            <!--<option>Integrative</option>
-                            <option>Selective</option>-->
                         </select>
                     </div>
                     <div class="form-group col-md-6">
@@ -93,9 +83,13 @@
                         <select class="form-control" name="process" ng-model="platform._source.attributes.process.remuneration_for_contributions">
                         	<option>--</option>
                             <option ng-repeat="attribute in attributes.process[3]._source.remuneration_for_contributions" value="{{ attribute.id }}">{{ attribute.description }}</option>
-                            <!--<option>Fixed</option>
-                            <option>Success-based</option>
-                            <option>None</option>-->
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Form of remuneration</label>
+                        <select class="form-control" name="process" ng-model="platform._source.attributes.process.form_of_remuneration">
+                            <option>--</option>
+                            <option ng-repeat="attribute in attributes.process[4]._source.form_of_remuneration" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                 </div>
@@ -112,8 +106,6 @@
                         <select class="form-control" name="goal" ng-model="platform._source.attributes.goal.main_beneficiary">
                         	<option>--</option>
                             <option ng-repeat="attribute in attributes.goal[0]._source.main_beneficiary" value="{{ attribute.id }}">{{ attribute.description }}</option>
-                            <!--<option>Initiator</option>
-                            <option>Crowd/Community</option>-->
                         </select>
                     </div>
                     <div class="form-group col-md-6">
@@ -121,10 +113,6 @@
                         <select class="form-control" name="goal" ng-model="platform._source.attributes.goal.value_type">
                         	<option>--</option>
                             <option ng-repeat="attribute in attributes.goal[1]._source.value_type" value="{{ attribute.id }}">{{ attribute.description }}</option>
-                        	<!--<option>Innovation</option>
-                            <option>Authenticity</option>
-                            <option>Cost reduction</option>
-                            <option>Risk reduction</option>-->
                         </select>
                     </div>
                     <div class="form-group col-md-6">
@@ -132,8 +120,6 @@
                         <select class="form-control" name="goal" ng-model="platform._source.attributes.goal.input_tolerance">
                         	<option>--</option>
                             <option ng-repeat="attribute in attributes.goal[2]._source.input_tolerance" value="{{ attribute.id }}">{{ attribute.description }}</option>
-                            <!--<option>Low</option>
-                            <option>High</option>-->
                         </select>
                     </div>
                 </div>
@@ -147,9 +133,6 @@
                         <select class="form-control" name="task" ng-model="platform._source.attributes.task.type">
                         	<option>--</option>
                             <option ng-repeat="attribute in attributes.task[0]._source.type" value="{{ attribute.id }}">{{ attribute.description }}</option>
-                            <!--<option>Creation</option>
-                            <option>Evaluation</option>
-                            <option>Organization</option>-->
                         </select>
                     </div>
                     <div class="form-group col-md-6">
@@ -157,30 +140,24 @@
                         <select class="form-control" name="task" ng-model="platform._source.attributes.task.dependencies">
                         	<option>--</option>
                             <option ng-repeat="attribute in attributes.task[1]._source.dependencies" value="{{ attribute.id }}">{{ attribute.description }}</option>
-                            <!--<option>Coupled</option>
-                            <option>Decoupled</option>-->
                         </select>
                     </div>
-
-                    <!-- Other attributes
+                    <!-- Other attributes -->
                     <div class="form-group col-md-6">
                         <label>Task Novelty</label>
-                        <select class="form-control">
-                        	<option></option>
-                            <option>Yes</option>
-                            <option>No</option>
+                        <select class="form-control" name="task" ng-model="platform._source.attributes.task.novelty">
+                            <option>--</option>
+                            <option ng-repeat="attribute in attributes.task[2]._source.novelty" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Task Effectiveness</label>
-                        <select class="form-control">
-                        	<option></option>
-                            <option>Effectiveness criteria</option>
+                        <select class="form-control" name="task" ng-model="platform._source.attributes.task.effectiveness">
+                            <option>--</option>
+                            <option ng-repeat="attribute in attributes.task[3]._source.effectiveness" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
-                    -->
                     <!-- END::Other attributes -->
-
                 </div>
                 <!-- END::Tasks -->
                 <hr>
@@ -192,8 +169,6 @@
                         <select class="form-control" name="crowd" ng-model="platform._source.attributes.crowd.contribution_type">
                         	<option>--</option>
                             <option ng-repeat="attribute in attributes.crowd[0]._source.contribution_type" value="{{ attribute.id }}">{{ attribute.description }}</option>
-                            <!--<option>Opinion / Perspective</option>
-                            <option>Content</option>-->
                         </select>
                     </div>
                     <div class="form-group col-md-6">
@@ -201,10 +176,6 @@
                         <select class="form-control" name="crowd" ng-model="platform._source.attributes.crowd.main_motivational_driver">
                         	<option>--</option>
                             <option ng-repeat="attribute in attributes.crowd[1]._source.main_motivational_driver" value="{{ attribute.id }}">{{ attribute.description }}</option>
-                            <!--<option>Tangible reward</option>
-                            <option>Personal achievement and learning</option>
-                            <option>Social status and reputation</option>
-                            <option>Entertainment</option>-->
                         </select>
                     </div>
                 </div>

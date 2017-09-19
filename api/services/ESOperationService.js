@@ -88,17 +88,14 @@ module.exports = {
                         callback(null, err);
                     });
             },
-            export_analyzer: function(callback) {
+            /*export_analyzer: function(callback) {
                 nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFolder}/flexcrowd_analyzer.json --type=analyzer`)
                     .then(function(exitCode) {
                         callback(null, exitCode);
                     }, function(err) {
                         callback(null, err);
                     });
-            },
-            export_processing: ['export_data', 'export_mapping', 'export_analyzer', function(results, callback) {
-                callback(null, results);
-            }],
+            }*/
         }, function(err, results) {
             cb(err, results);
         });

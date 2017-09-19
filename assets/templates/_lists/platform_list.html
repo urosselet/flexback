@@ -16,13 +16,17 @@
             </div>
         </li>
     </ul>
+
     <!-- Platform listings -->
-    <table class="table table-striped table-bordered" ng-if="platforms.length > 0">
+    <table st-table="platforms" class="table table-striped table-bordered" ng-if="platforms.length > 0">
+        <h4 ng-if="platforms.length > 0">{{ platforms.length }} Platforms</h4>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
+                <th st-sort="_id">ID</th>
+                <th st-sort="_source.name">Name</th>
                 <th>Description</th>
+                <th>Inactif</th>
+                <th>Non-pertinent</th>
                 <th>Url</th>
                 <th>Actions</th>
             </tr>
@@ -30,13 +34,19 @@
         <tbody>
             <tr ng-repeat="platform in platforms">
                 <td>
-                    <span>{{ platform._id }}</span>
+                    <span>{{ platform._id | number }}</span>
                 </td>
                 <td>
                     <span>{{ platform._source.name }}</span>
                 </td>
                 <td>
                     <span>{{ platform._source.description }}</span>
+                </td>
+                <td>
+                    <span>{{ platform._source.inactif | booleanTransform }}</span>
+                </td>
+                 <td>
+                    <span>{{ platform._source.non_pertinent | booleanTransform }}</span>
                 </td>
                 <td>
                     <span><a href="{{ platform._source.platform_website }}" target="_blank">{{ platform._source.platform_website }}</a></span>
@@ -46,14 +56,23 @@
                 </td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7" class="text-center">
+                    <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                </td>
+            </tr>
+        </tfoot>
     </table>
-     <!-- Category listings -->
-    <table class="table table-striped table-bordered category-table" ng-if="categories.length > 0">
+    
+    <!-- Category listings -->
+    <table st-table="categories" class="table table-striped table-bordered category-table" ng-if="categories.length > 0">
+        <h4 ng-if="categories.length > 0">{{ categories.length }} Categories</h4>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Category ID</th>
-                <th>Category name</th>
+                <th st-sort="_id">ID</th>
+                <th st-sort="_source.category">Category ID</th>
+                <th st-sort="_source.cat_name">Category name</th>
                 <th>Tags</th>
             </tr>
         </thead>
@@ -73,6 +92,13 @@
                 </td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5" class="text-center">
+                    <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                </td>
+            </tr>
+        </tfoot>
     </table>
     <div class="row" ng-if="treeDiagram === true">
         <div id="tree-diagram" tree-diagram></div>

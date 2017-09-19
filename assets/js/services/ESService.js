@@ -39,7 +39,7 @@ angular.module('flexcrowd.services', [])
                 update: function(id, updatedObj) {
                     return Restangular.one('/csplatform', id)
                         .withHttpConfig({ 'transformRequest': angular.identity })
-                        .customPUT(updatedObj, '', undefined, { 'Content-Type': undefined });
+                        .customPUT(updatedObj, null, null, { 'Content-Type': undefined });
                 },
 
                 /**

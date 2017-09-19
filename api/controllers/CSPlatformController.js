@@ -1,4 +1,7 @@
-let client = sails.config.es.client;
+let client = sails.config.es.client,
+    fs = require('fs'),
+    path = require('path'),
+    util = require('util');
 
 /**
  * Cs_platformController
@@ -50,35 +53,44 @@ module.exports = {
      */
     update: function(req, res) {
 
-        //console.log(req)
-        console.log(req.body)
+        req.file('file').upload({}, function(err, file) {
 
-        req.file('image').upload({}, function(err, files) {
-            console.log(files)
-        });
+            let platform = JSON.parse(req.body.platform);
+            let attributes = JSON.parse(req.body.attributes);
 
-        /*client.index({
-            'index': 'operation',
-            'type': 'platform',
-            'id': req.param('id'),
-            'body': req.body.platform
-        }, function(error, response) {
+            let uploadFolder = path.join(path.dirname(process.mainModule.filename), `/assets/upload/${file[0].filename}`);
+            let logoUrl = util.format(`%s/upload/${file[0].filename}`, sails.config.asset_url);
 
-            client.update({
+            platform.platform_img_url = logoUrl;
+
+            fs.rename(file[0].fd, uploadFolder, function(err) {
+                if (err) return sails.log.error(err);
+                sails.log.info('The file was saved!');
+            });
+
+            client.index({
                 'index': 'operation',
                 'type': 'platform',
                 'id': req.param('id'),
-                'body': {
-                    'doc': {
-                        'attributes': req.body.attributes
-                    }
-                }
+                'body': platform
             }, function(error, response) {
-                if (error) return res.serverError();
-                return res.ok()
+                client.update({
+                    'index': 'operation',
+                    'type': 'platform',
+                    'id': req.param('id'),
+                    'body': {
+                        'doc': {
+                            'attributes': attributes
+                        }
+                    }
+                }, function(error, response) {
+                    if (error) return res.serverError();
+                    return res.ok()
+                });
+
             });
 
-        });*/
+        });
 
     },
 

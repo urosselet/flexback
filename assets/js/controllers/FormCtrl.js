@@ -5,7 +5,9 @@ angular.module('flexcrowd.controllers')
 .controller('FormCtrl', ['$scope', '$state', '$timeout', 'platform', 'ESService',
     function($scope, $state, $timeout, platform, ESService) {
 
-        $scope.formData = new FormData();
+        let formData = new FormData();
+        let contentArray = [];
+
     	$scope.platform = null;
     	$scope.attributes = null;
 
@@ -14,17 +16,17 @@ angular.module('flexcrowd.controllers')
 
         $scope.$on('fileSelected', function(event, args) {
             $scope.$apply(function() {
-                $scope.file = args.file;
-                $scope.formData.append('image', args.file);
+                contentArray.push({ 'file': args.file });
             });
         });
 
     	$scope.update = function(updatedPlatform, attributes) {
 
-            $scope.formData.append('platform', updatedPlatform._source);
-            $scope.formData.append('attributes',attributes);
+            formData.append('file', contentArray[0]['file']);
+            formData.append('platform', JSON.stringify(updatedPlatform._source));
+            formData.append('attributes', JSON.stringify(attributes));
 
-    		ESService.update($state.params.id, $scope.formData)
+    		ESService.update($state.params.id, formData)
 	    		.then(function(res) {
                     $state.reload();
                 });

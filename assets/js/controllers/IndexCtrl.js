@@ -2,8 +2,8 @@
 
 angular.module('flexcrowd.controllers', [])
 
-.controller('IndexCtrl', ['$scope', '$state', '$timeout', 'results',
-    function($scope, $state, $timeout, results) {
+.controller('IndexCtrl', ['$scope', '$state', '$timeout', 'results', 'ESService',
+    function($scope, $state, $timeout, results, ESService) {
 
         $scope.platforms = [];
         $scope.categories = [];
@@ -14,6 +14,8 @@ angular.module('flexcrowd.controllers', [])
         $scope.exportError = false;
         $scope.importError = false;
         $scope.loadError = false;
+
+        $scope.itemsByPage = 10;
 
         /**
          * Define application state and call the corresponding api

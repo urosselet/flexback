@@ -4,6 +4,7 @@ angular.module('flexcrowd',
     [   
         'restangular',
         'xeditable',
+        'smart-table',
         'ui.router',
         'flexcrowd.directives',
         'flexcrowd.filters',

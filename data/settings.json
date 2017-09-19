@@ -94,7 +94,8 @@
                                 "preselection_of_contributors": { "type": "string" },
                                 "peer_contributions_accessibility": { "type": "string" },
                                 "aggregation_of_contributions": { "type": "string" },
-                                "remuneration_for_contributions": { "type": "string" }
+                                "remuneration_for_contributions": { "type": "string" },
+                                "form_of_remuneration": { "type": "string" }
                             }
                         },
                         "goals": {
@@ -107,7 +108,9 @@
                         "task": {
                             "properties": {
                                 "type": { "type": "string" },
-                                "dependencies": { "type": "string" }
+                                "dependencies": { "type": "string" },
+                                "novelty": { "type": "string" },
+                                "effectiveness": { "type": "string" }
                             }
                         },
                         "crowd": {
