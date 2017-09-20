@@ -45,6 +45,13 @@ module.exports = {
             });
     },
 
+    getPlatformDetail: function(req, res) {
+        client.get({ index: 'operation', type: 'platform', id: req.param('id') })
+            .then(function(platform) {
+                return res.json(platform._source);
+            });
+    },
+
     /**
      * Update a platform document
      * @param  {[type]} req [description]

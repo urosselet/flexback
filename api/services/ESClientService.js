@@ -14,7 +14,7 @@ module.exports = {
      */
     query: function(option) {
 
-        return client.search(RequestService.interpolate('SEARCH', '{{query}}', option.query));
+        return client.search(RequestService.interpolate(option.type, '{{query}}', option.query));
 
     },
 

@@ -6,6 +6,20 @@ let replace = require('deep-replace-in-object');
  */
 module.exports = {
 
+    PLATFORM: {
+        'index': 'operation',
+        'type': 'platform',
+        'body': {
+            'query': {
+                'multi_match': {
+                    'query': '{{query}}',
+                    'type': 'most_fields', 
+                    'fields': ['description']
+                }
+            }
+        }
+    },
+
 	SEARCH: {
         'index': 'operation',
         'type': 'category',
