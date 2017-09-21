@@ -13,7 +13,6 @@ module.exports = {
             'query': {
                 'multi_match': {
                     'query': '{{query}}',
-                    'type': 'most_fields', 
                     'fields': ['description']
                 }
             }
@@ -29,7 +28,7 @@ module.exports = {
             'query': {
                 'multi_match': {
                     'query': '{{query}}',
-                    'type': 'most_fields', 
+                    'type': 'most_fields',
                     'fields': ['cat_name^10', 'cat_name.std']
                 }
             }

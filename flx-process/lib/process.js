@@ -80,11 +80,9 @@ const Flexcrowd = (function() {
 
             let deferred = defer();
             let that = this;
-            let entity = [];
+            let entities = []
 
             this.queries.push(query);
-
-            sails.log.info('Decision Tree :: ', this.decisionTree.intent['level_1']);
 
             let intent = _.find(this.decisionTree.intent['level_1'], function(foundCat) {
                 that.category = cat;
@@ -94,21 +92,18 @@ const Flexcrowd = (function() {
             this.nodeStructure.text.name = cat;
 
             // let questions = _.pluck(_.pluck(intent.category.questions['level_2'], 'item'), 'q');
+            // sails.log.info('Found intent :: ', intent.category.entities['level_2']);            
+            // sails.log.info(_.pluck(_.pluck(intent.category.entities['level_2'], 'entity'), 'q'));
 
-            sails.log.info('Found intent :: ', intent.category.entities['level_2']);
-            
-            sails.log.info(_.pluck(_.pluck(intent.category.entities['level_2'], 'entity'), 'q'));
-
-            _.pluck(intent.category.entities['level_2'], 'entities')
-                .forEach( function(entity, index) {
-                    entity.push({ id: entity.id, 'q': entity.q, type: entity.type })
-                });
+            intent.category['entities']['level_2'].forEach(function(item, index) {
+                entities.push({ id: item.entity.id, 'q': item.entity.q, type: item.entity.type });
+            });
 
             this.fsm.proceed();
 
-            sails.log.info('State :: ', this.fsm.state);
+            // sails.log.info('State :: ', this.fsm.state);
 
-            deferred.resolve(entity);
+            deferred.resolve(entities);
 
             return deferred.promise;
 
@@ -140,8 +135,6 @@ const Flexcrowd = (function() {
                 }
 
             });
-
-            console.log('Intent :', intent.category[this.fsm.state])
 
             deferred.resolve(intent.category[this.fsm.state]);
 

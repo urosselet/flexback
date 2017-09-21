@@ -24,6 +24,23 @@ intent:
         
         - category:
             id: graphic_design
+            entities:
+              level_2:
+                - entity: 
+                    id: 1
+                    q: What kind of logo ?
+                    type: multiple_choices
+                    choices:
+                      q: Would you like new products or services ?
+                      q: Find names ?
+                      q: Would you to enhanced existing products or services ?
+                - entity:
+                    id: 2
+                    q: Should it be for a corporate website ?
+                    type: multiple_choices
+                    choices:
+                      - q: Innovation or R&I
+                      - q: Other issues
         
         - category:
             id: audio_original_content

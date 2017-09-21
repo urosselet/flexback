@@ -23,33 +23,33 @@ module.exports = {
 
             flexClient.sessionStart();
 
-            /*ESClientService.query({ 'type': 'SEARCH', 'query': query })
-                .then(function(results) {
+            ESClientService.query({ 'type': 'SEARCH', 'query': query })
+                .then(function(queryResults) {
 
-                    flexClient.assert(results.hits.hits[0]._source.category, query)
-                        .then(function(result) {
-                            //return res.json(result);
+                    flexClient.assert(queryResults.hits.hits[0]._source.category, query)
+                        .then(function(assertResult) {
+                            
+                            ESClientService.query({ 'type': 'PLATFORM', 'query': query })
+                                .then(function(platformResults) {
+
+                                    let maxScore = platformResults.hits.max_score;
+                                    let mediumHits = [];
+                                    let highHits = [];
+
+                                    platformResults.hits.hits.forEach(function(ele) {
+                                        ele._source['id'] = ele._id;
+                                        if (ele._score > ((maxScore / 100) * 85)) {
+                                            highHits.push(ele._source);
+                                        } else if (ele._score < ((maxScore / 100) * 85)) {
+                                            mediumHits.push(ele._source);
+                                        }
+                                    });
+
+                                    return res.json({'results': { 'medium_hits': mediumHits, 'high_hits': highHits }, 'q': assertResult });
+
+                                });
                         });
 
-                });*/
-
-            ESClientService.query({ 'type': 'PLATFORM', 'query': query })
-                .then(function(results) {
-
-                    let maxScore = results.hits.max_score;
-                    let mediumHits = [];
-                    let highHits = [];
-
-                    results.hits.hits.forEach(function(ele) {
-                        ele._source['id'] = ele._id;
-                        if (ele._score > (maxScore/2)) {
-                            highHits.push(ele._source);
-                        } else if (ele._score < (maxScore/2)) {
-                            mediumHits.push(ele._source);
-                        }
-                    });
-
-                    return res.json({'results': { 'medium_hits': mediumHits, 'high_hits': highHits }});
                 });
 
         } else if (req.param('status') === 'false') {
@@ -68,9 +68,9 @@ module.exports = {
 
                     results.hits.hits.forEach(function(ele) {
                         ele._source['id'] = ele._id;
-                        if (ele._score > (maxScore/2)) {
+                        if (ele._score > ((maxScore / 100) * 85)) {
                             highHits.push(ele._source);
-                        } else if (ele._score < (maxScore/2)) {
+                        } else if (ele._score < ((maxScore / 100) * 85)) {
                             mediumHits.push(ele._source);
                         }
                     });
