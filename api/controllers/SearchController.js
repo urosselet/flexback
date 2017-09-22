@@ -19,66 +19,30 @@ module.exports = {
 
         let query = req.param('query');
 
-        if (req.param('status') === 'true') {
+        ESClientService.query({ 'type': 'SEARCH', 'query': query })
+            .then(function(queryResults) {
 
-            flexClient.sessionStart();
+                ESClientService.query({ 'type': 'PLATFORM', 'query': query })
+                    .then(function(platformResults) {
 
-            ESClientService.query({ 'type': 'SEARCH', 'query': query })
-                .then(function(queryResults) {
+                        let maxScore = platformResults.hits.max_score;
+                        let mediumHits = [];
+                        let highHits = [];
 
-                    flexClient.assert(queryResults.hits.hits[0]._source.category, query)
-                        .then(function(assertResult) {
-                            
-                            ESClientService.query({ 'type': 'PLATFORM', 'query': query })
-                                .then(function(platformResults) {
-
-                                    let maxScore = platformResults.hits.max_score;
-                                    let mediumHits = [];
-                                    let highHits = [];
-
-                                    platformResults.hits.hits.forEach(function(ele) {
-                                        ele._source['id'] = ele._id;
-                                        if (ele._score > ((maxScore / 100) * 85)) {
-                                            highHits.push(ele._source);
-                                        } else if (ele._score < ((maxScore / 100) * 85)) {
-                                            mediumHits.push(ele._source);
-                                        }
-                                    });
-
-                                    return res.json({'results': { 'medium_hits': mediumHits, 'high_hits': highHits }, 'q': assertResult });
-
-                                });
+                        platformResults.hits.hits.forEach(function(ele) {
+                            ele._source['id'] = ele._id;
+                            if (ele._score > ((maxScore / 100) * 85)) {
+                                highHits.push(ele._source);
+                            } else if (ele._score < ((maxScore / 100) * 85)) {
+                                mediumHits.push(ele._source);
+                            }
                         });
 
-                });
+                        return res.json({'results': { 'medium_hits': mediumHits, 'high_hits': highHits }, 'cat': queryResults.hits.hits[0]._source.cat_name });
 
-        } else if (req.param('status') === 'false') {
-
-            /* flexClient.proceed(req.param('query'))
-                .then(function(result) {
-                    return res.json(result);
-                });*/
-
-            ESClientService.query({ 'type': 'PLATFORM', 'query': query })
-                .then(function(results) {
-
-                    let maxScore = results.hits.max_score;
-                    let mediumHits = [];
-                    let highHits = [];
-
-                    results.hits.hits.forEach(function(ele) {
-                        ele._source['id'] = ele._id;
-                        if (ele._score > ((maxScore / 100) * 85)) {
-                            highHits.push(ele._source);
-                        } else if (ele._score < ((maxScore / 100) * 85)) {
-                            mediumHits.push(ele._source);
-                        }
                     });
 
-                    return res.json({'results': { 'medium_hits': mediumHits, 'high_hits': highHits }});
-                });
-
-        }
+            });
     },
 
     /**
