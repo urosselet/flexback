@@ -34,12 +34,12 @@
         "grunt-contrib-uglify": "3.1.0",
         "grunt-contrib-watch": "1.0.0",
         "grunt-sails-linker": "~1.0.4",
-        "grunt-sync": "0.6.2",
+        "grunt-sync": "0.7.0",
         "include-all": "^4.0.3",
         "node-wit": "^4.3.0",
         "promise-defer": "^1.0.0",
         "rc": "1.2.1",
-        "sails": "~0.12.13"
+        "sails": "~0.12.14"
     },
     "devDependencies": {
         "elastic-import": "^1.2.0",
