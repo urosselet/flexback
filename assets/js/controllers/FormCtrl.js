@@ -22,13 +22,19 @@ angular.module('flexcrowd.controllers')
 
     	$scope.update = function(updatedPlatform, attributes) {
 
-            formData.append('file', contentArray[0]['file']);
+            console.log(contentArray)
+            if (contentArray.length !== 0) {
+                formData.append('file', contentArray[0]['file']);
+            } else {
+                formData.append('file', null);
+            }
+            
             formData.append('platform', JSON.stringify(updatedPlatform._source));
             formData.append('attributes', JSON.stringify(attributes));
 
     		ESService.update($state.params.id, formData)
 	    		.then(function(res) {
-                    $state.reload();
+                    $state.go('index.list', { 'item': 'platform' });
                 });
     	};
 

@@ -6,9 +6,9 @@ angular.module('flexcrowd.filters', [])
     function($filter) {
 
         return function(data) {
-            if (data === true) {
+            if (data === true || data === 'true') {
             	return 'Yes';
-            } else if (data === false) {
+            } else if (data === false || data === 'false') {
 				return 'No';
             }
         };

@@ -31,20 +31,32 @@
                             <input type="text" class="form-control" ng-model="platform._source.platform_website">
                         </div>
                         <div class="row">
-                            <div class="form-group col col-md-6">
-                                <label>Status</label>
-                                <select class="form-control" name="inactif" ng-model="platform._source.inactif">
-                                	<option>--</option>
-                                    <option value="true">Active</option>
-                                    <option value="false">Inactive</option>
+                            <div class="form-group col col-md-4">
+                                <label>Cluster</label>
+                                <select class="form-control" name="cluster" ng-model="platform._source.cluster">
+                                    <option>--</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
                                 </select>
                             </div>
-                            <div class="form-group col col-md-6">
-                                <label>Pertinence</label>
+                            <div class="form-group col col-md-4">
+                                <label>Inactif</label>
+                                <select class="form-control" name="inactif" ng-model="platform._source.inactif">
+                                	<option>--</option>
+                                    <option value="true">True</option>
+                                    <option value="false">False</option>
+                                </select>
+                            </div>
+                            <div class="form-group col col-md-4">
+                                <label>Non-pertinent</label>
                                 <select class="form-control" name="non_pertinent" ng-model="platform._source.non_pertinent">
                                 	<option>--</option>
-                                    <option value="true">Yes</option>
-                                    <option value="false">No</option>
+                                    <option value="true">True</option>
+                                    <option value="false">False</option>
                                 </select>
                             </div>
                         </div>
@@ -56,33 +68,33 @@
                 <legend class="scheduler-border">Crowdsourcing Process Caracteristics</legend>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label>Preselection of Contributors Type</label>
-                        <select class="form-control" name="process" ng-model="platform._source.attributes.process.preselection_of_contributors">
-                        	<option>--</option>
-                            <option ng-repeat="attribute in attributes.process[0]._source.preselection_of_contributors" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                        <label>Aggregation of Contributions Type</label>
+                        <select class="form-control" name="process" ng-model="platform._source.attributes.process.aggregation_of_contributions">
+                            <option>--</option>
+                            <option ng-repeat="attribute in attributes.process[2]._source.aggregation_of_contributions" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Peer Contributions Accessibility Type</label>
                         <select class="form-control" name="process" ng-model="platform._source.attributes.process.peer_contributions_accessibility">
-                        	<option>--</option>
+                            <option>--</option>
                             <option ng-repeat="attribute in attributes.process[1]._source.peer_contributions_accessibility" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label>Aggregation of Contributions Type</label>
-                        <select class="form-control" name="process" ng-model="platform._source.attributes.process.aggregation_of_contributions">
-                        	<option>--</option>
-                            <option ng-repeat="attribute in attributes.process[2]._source.aggregation_of_contributions" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                        <label>Remuneration for contributions Type</label>
+                        <select class="form-control" name="process" ng-model="platform._source.attributes.process.remuneration_for_contributions">
+                            <option>--</option>
+                            <option ng-repeat="attribute in attributes.process[3]._source.remuneration_for_contributions" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label>Remuneration for contributions Type</label>
-                        <select class="form-control" name="process" ng-model="platform._source.attributes.process.remuneration_for_contributions">
-                        	<option>--</option>
-                            <option ng-repeat="attribute in attributes.process[3]._source.remuneration_for_contributions" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                        <label>Preselection of Contributors Type</label>
+                        <select class="form-control" name="process" ng-model="platform._source.attributes.process.preselection_of_contributors">
+                            <option>--</option>
+                            <option ng-repeat="attribute in attributes.process[0]._source.preselection_of_contributors" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">

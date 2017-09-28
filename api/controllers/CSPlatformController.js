@@ -65,15 +65,19 @@ module.exports = {
             let platform = JSON.parse(req.body.platform);
             let attributes = JSON.parse(req.body.attributes);
 
-            let uploadFolder = path.join(path.dirname(process.mainModule.filename), `/assets/upload/${file[0].filename}`);
-            let logoUrl = util.format(`%s/upload/${file[0].filename}`, sails.config.asset_url);
+            console.log(file)
 
-            platform.platform_img_url = logoUrl;
+            if (file.length !== 0) {
+                let uploadFolder = path.join(path.dirname(process.mainModule.filename), `/assets/upload/${file[0].filename}`);
+                let logoUrl = util.format(`%s/upload/${file[0].filename}`, sails.config.asset_url);
 
-            fs.rename(file[0].fd, uploadFolder, function(err) {
-                if (err) return sails.log.error(err);
-                sails.log.info('The file was saved!');
-            });
+                platform.platform_img_url = logoUrl;
+
+                fs.rename(file[0].fd, uploadFolder, function(err) {
+                    if (err) return sails.log.error(err);
+                    sails.log.info('The file was saved!');
+                });
+            }
 
             client.index({
                 'index': 'operation',
