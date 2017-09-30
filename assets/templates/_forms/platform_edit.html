@@ -1,6 +1,7 @@
 <div class="p-5 plaform-edit">
     <div class="row">
-        <h1>Update :: {{ platform._source.name }} </h1>
+        <h1 ng-if="context === 'update'">Update :: {{ platform._source.name }}</h1>
+        <h1 ng-if="context === 'create'">Add Platform</h1>
     </div>
     <div class="row">
         <form class="edit-form" name="platformForm">
@@ -19,6 +20,10 @@
                     </div>
                     <div class="col-md-9">
                         <div class="form-group">
+                            <label>Id</label>
+                            <input type="number" class="form-control" ng-model="platform.id">
+                        </div>
+                        <div class="form-group">
                             <label>Name</label>
                             <input type="text" class="form-control" ng-model="platform._source.name">
                         </div>
@@ -35,12 +40,12 @@
                                 <label>Cluster</label>
                                 <select class="form-control" name="cluster" ng-model="platform._source.cluster">
                                     <option>--</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
+                                    <option value="1">(1) Sharing authentic experiences</option>
+                                    <option value="2">(2) Relationship building through user generated content</option>
+                                    <option value="3">(3) Curating ideas and features</option>
+                                    <option value="4">(4) Problem solving</option>
+                                    <option value="5">(5) Ad hoc temporary hiring</option>
+                                    <option value="6">(6) Sourcing specific digital goods</option>
                                 </select>
                             </div>
                             <div class="form-group col col-md-4">
@@ -194,7 +199,8 @@
                 <!-- END::Crowd -->
 
             </fieldset>
-            <button type="submit" class="btn btn-success pull-right" ng-click="update(platform, platform._source.attributes)">Save</button>
+            <button type="submit" class="btn btn-success pull-right" ng-click="update(platform, platform._source.attributes)" ng-if="context === 'update'">Save</button>
+            <button type="submit" class="btn btn-success pull-right" ng-click="save(platform, platform._source.attributes)" ng-if="context === 'create'">Add platform</button>
         </form>
     </div>
 </div>

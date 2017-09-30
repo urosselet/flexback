@@ -42,6 +42,31 @@ angular.module('flexcrowd.services', [])
                         .customPUT(updatedObj, null, null, { 'Content-Type': undefined });
                 },
 
+                 /**
+                 * Update plateform
+                 * @param  {[type]} id [description]
+                 * @return {[type]}    [description]
+                 */
+                create: function(updatedObj) {
+                    return Restangular.one('/csplatform')
+                        .withHttpConfig({ 'transformRequest': angular.identity })
+                        .customPOST(updatedObj, null, null, { 'Content-Type': undefined });
+                },
+
+                /**
+                 * Get all attributes
+                 * @param  {[type]} id [description]
+                 * @return {[type]}    [description]
+                 */
+                getAttributes: function(id, updatedObj) {
+                    let dfd = $q.defer();
+                    Restangular.one('/csplatform/getAttributes').get()
+                        .then(function(res) {
+                            dfd.resolve(res);
+                        });
+                    return dfd.promise;
+                },
+
                 /**
                  * Import all by ES index/type
                  */

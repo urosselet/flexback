@@ -45,11 +45,32 @@ module.exports = {
             });
     },
 
-    getPlatformDetail: function(req, res) {
-        client.get({ index: 'operation', type: 'platform', id: req.param('id') })
-            .then(function(platform) {
-                return res.json(platform._source);
-            });
+    /**
+     * [create description]
+     * @return {[type]} [description]
+     */
+    create: function() {
+
+        req.file('file').upload({}, function(err, file) {
+
+            let platform = JSON.parse(req.body.platform);
+            let attributes = JSON.parse(req.body.attributes);
+
+            console.log(file, platform, attributes)
+
+            /*if (file.length !== 0) {
+                let uploadFolder = path.join(path.dirname(process.mainModule.filename), `/assets/upload/${file[0].filename}`);
+                let logoUrl = util.format(`%s/upload/${file[0].filename}`, sails.config.asset_url);
+
+                platform.platform_img_url = logoUrl;
+
+                fs.rename(file[0].fd, uploadFolder, function(err) {
+                    if (err) return sails.log.error(err);
+                    sails.log.info('The file was saved!');
+                });
+            }*/
+
+        });
     },
 
     /**
@@ -64,8 +85,6 @@ module.exports = {
 
             let platform = JSON.parse(req.body.platform);
             let attributes = JSON.parse(req.body.attributes);
-
-            console.log(file)
 
             if (file.length !== 0) {
                 let uploadFolder = path.join(path.dirname(process.mainModule.filename), `/assets/upload/${file[0].filename}`);
@@ -103,6 +122,31 @@ module.exports = {
 
         });
 
+    },
+
+    /**
+     * Get platform source
+     * @param  {[type]} req [description]
+     * @param  {[type]} res [description]
+     * @return {[type]}     [description]
+     */
+    getPlatformDetail: function(req, res) {
+        client.get({ index: 'operation', type: 'platform', id: req.param('id') })
+            .then(function(platform) {
+                return res.json(platform._source);
+            });
+    },
+
+    /**
+     * Get all attributes
+     * @param  {[type]} req [description]
+     * @param  {[type]} res [description]
+     * @return {[type]}     [description]
+     */
+    getAttributes: function(req, res) {
+        ESClientService.getAllAttributes({}, function(attributes) {
+            return res.json(attributes);
+        });
     },
 
     /**

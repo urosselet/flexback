@@ -74,6 +74,13 @@ angular.module('flexcrowd.controllers', [])
                 });
         };
 
+        /**
+         * Add a new CS platform
+         */
+        $scope.addPlatform = function() {
+            $state.go('index.platform');
+        };
+
     }
 
 ]);

@@ -8,6 +8,8 @@ angular.module('flexcrowd.controllers')
         let formData = new FormData();
         let contentArray = [];
 
+        $scope.context = 'update';
+
     	$scope.platform = null;
     	$scope.attributes = null;
 
@@ -20,9 +22,14 @@ angular.module('flexcrowd.controllers')
             });
         });
 
+        /**
+         * Update platform detail
+         * @param  {[type]} updatedPlatform [description]
+         * @param  {[type]} attributes      [description]
+         * @return {[type]}                 [description]
+         */
     	$scope.update = function(updatedPlatform, attributes) {
 
-            console.log(contentArray)
             if (contentArray.length !== 0) {
                 formData.append('file', contentArray[0]['file']);
             } else {

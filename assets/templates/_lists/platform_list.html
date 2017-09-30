@@ -11,6 +11,7 @@
         <li role="presentation" ng-class="{'active': treeDiagram === true }"><a ui-sref="index.list({ item: 'tree-diagram' })">Tree diagram</a></li>
         <li class="pull-right">
             <div class="btn-group">
+                <button type="button" class="btn btn-warning" ng-click="addPlatform()">Add Platform</button>
                 <button type="button" class="btn btn-warning" ng-click="export()">Dump Data</button>
                 <button type="button" class="btn btn-success" ng-click="import()">Import Data</button>
             </div>
@@ -28,6 +29,7 @@
                 <th>Inactif</th>
                 <th>Non-pertinent</th>
                 <th>Url</th>
+                <th>Cluster</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -45,11 +47,14 @@
                 <td>
                     <span>{{ platform._source.inactif | booleanTransform }}</span>
                 </td>
-                 <td>
+                <td>
                     <span>{{ platform._source.non_pertinent | booleanTransform }}</span>
                 </td>
                 <td>
                     <span><a href="{{ platform._source.platform_website }}" target="_blank">{{ platform._source.platform_website }}</a></span>
+                </td>
+                <td>
+                    <span>{{ platform._source.cluster | clusterText }}</span>
                 </td>
                 <td>
                     <a ui-sref="index.form({ id: platform._id })" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span>Edit</a>

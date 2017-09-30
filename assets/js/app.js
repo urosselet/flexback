@@ -68,6 +68,18 @@ angular.module('flexcrowd',
                 }
             })
 
+            .state('index.platform', {
+                url: '/platform/add',
+                templateUrl: '/templates/_forms/platform_edit.html',
+                controller: 'CreateCtrl',
+                resolve: {
+                    attributes: function(ESService) {
+                        return ESService.getAttributes();
+                    }
+                }
+            })
+
+
         /* If none of the above states are matched, use this as the fallback */
         $urlRouterProvider.otherwise('/list/platform');
 
