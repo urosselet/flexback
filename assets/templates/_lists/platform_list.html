@@ -35,7 +35,6 @@
                 <th st-sort="_source.inactif">Inactif</th>
                 <th st-sort="_source.non_pertinent">Non-pertinent</th>
                 <th st-sort="_source.status">Status</th>
-                <th>Url</th>
                 <th>Cluster</th>
                 <th>Actions</th>
             </tr>
@@ -64,7 +63,6 @@
                         <option ng-repeat="row in platforms | unique:'status'" value="{{ row._source.status }}">{{ row._source.status }}</option>
                     </select>
                 </th>
-                <th></th>
                 <th>
                     <select st-search="_source.cluster">
                         <option value="">All</option>
@@ -81,7 +79,7 @@
                     <span>{{ platform._id | number }}</span>
                 </td>
                 <td style="width:30%">
-                    <span>{{ platform._source.name }}</span>
+                    <span><a href="{{ platform._source.platform_website }}" target="_blank">{{ platform._source.name }}</a></span>
                 </td>
                 <!--
                 <td>
@@ -96,9 +94,6 @@
                 </td>
                 <td>
                     <span>{{ platform._source.status }}</span>
-                </td>
-                <td>
-                    <span><a href="{{ platform._source.platform_website }}" target="_blank">{{ platform._source.platform_website }}</a></span>
                 </td>
                 <td>
                     <span>{{ platform._source.cluster | clusterText }}</span>

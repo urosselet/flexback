@@ -71,23 +71,39 @@ module.exports = {
             fs.chmod(dumpFolder, 0777);
         }
 
+        nrc.run(`elasticsearch-export --output test.json --index operation --type platform --host http://localhost --port 9200`)
+            .then(function(exitCode) {
+                callback(null, exitCode);
+            }, function(err) {
+                callback(null, err);
+            });
+
         async.auto({
             export_data: function(callback) {
+                nrc.run(`elasticsearch-export --output ${dumpFolder}/test.json --index operation --type platform --host http://localhost --port 9200`)
+                    .then(function(exitCode) {
+                        console.log(exitCode)
+                        callback(null, exitCode);
+                    }, function(err) {
+                        callback(null, err);
+                    });
+            },
+            /*export_data: function(callback) {
                 nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFolder}/flexcrowd_data.json --type=data`)
                     .then(function(exitCode) {
                         callback(null, exitCode);
                     }, function(err) {
                         callback(null, err);
                     });
-            },
-            export_mapping: function(callback) {
+            },*/
+            /*export_mapping: function(callback) {
                 nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFolder}/flexcrowd_mapping.json --type=mapping`)
                     .then(function(exitCode) {
                         callback(null, exitCode);
                     }, function(err) {
                         callback(null, err);
                     });
-            },
+            },*/
             /*export_analyzer: function(callback) {
                 nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFolder}/flexcrowd_analyzer.json --type=analyzer`)
                     .then(function(exitCode) {
