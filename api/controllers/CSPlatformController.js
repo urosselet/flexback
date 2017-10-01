@@ -46,29 +46,36 @@ module.exports = {
     },
 
     /**
-     * [create description]
+     * Add a new platform to ES Index
      * @return {[type]} [description]
      */
-    create: function() {
+    create: function(req, res) {
 
         req.file('file').upload({}, function(err, file) {
-
+            
             let platform = JSON.parse(req.body.platform);
-            let attributes = JSON.parse(req.body.attributes);
 
-            console.log(file, platform, attributes)
-
-            /*if (file.length !== 0) {
+            if (file.length !== 0) {
                 let uploadFolder = path.join(path.dirname(process.mainModule.filename), `/assets/upload/${file[0].filename}`);
                 let logoUrl = util.format(`%s/upload/${file[0].filename}`, sails.config.asset_url);
 
-                platform.platform_img_url = logoUrl;
+                platform.body.platform_img_url = logoUrl;
 
                 fs.rename(file[0].fd, uploadFolder, function(err) {
                     if (err) return sails.log.error(err);
                     sails.log.info('The file was saved!');
                 });
-            }*/
+            }
+
+            client.create({
+                'index': 'operation',
+                'type': 'platform',
+                'id': platform._id,
+                'body': platform.body
+            }, function(error, response) {
+                if (error) return res.serverError();
+                return res.ok()
+            });
 
         });
     },
@@ -103,7 +110,7 @@ module.exports = {
                 'type': 'platform',
                 'id': req.param('id'),
                 'body': platform
-            }, function(error, response) {
+            }, function(errorCreate, resIndex) {
                 client.update({
                     'index': 'operation',
                     'type': 'platform',
@@ -113,8 +120,8 @@ module.exports = {
                             'attributes': attributes
                         }
                     }
-                }, function(error, response) {
-                    if (error) return res.serverError();
+                }, function(errorUpdate, resUpdate) {
+                    if (errorUpdate) return res.serverError();
                     return res.ok()
                 });
 

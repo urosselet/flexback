@@ -17,7 +17,12 @@ angular.module('flexcrowd.controllers')
             });
         });
 
-        $scope.save = function(platform, setAttributes) {
+        /**
+         * Save new platform
+         * @param  {[type]} platform      [description]
+         * @return {[type]}               [description]
+         */
+        $scope.save = function(platform) {
 
             if (contentArray.length !== 0) {
                 formData.append('file', contentArray[0]['file']);
@@ -25,20 +30,14 @@ angular.module('flexcrowd.controllers')
                 formData.append('file', null);
             }
 
-            let platformObj = {
-                id: platform.id,
-                body: platform._source
-            };
-
-            console.log(platformObj)
+            let platformObj = { id: platform.id, body: platform._source };
             
-            formData.append('platform', JSON.stringify(platform));
-            formData.append('attributes', JSON.stringify(attributes));
+            formData.append('platform', JSON.stringify(platformObj));
 
-            /*ESService.create(formData)
+            ESService.create(formData)
                 .then(function(res) {
                     $state.go('index.list', { 'item': 'platform' });
-                });*/
+                });
         
         };
 

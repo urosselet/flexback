@@ -35,6 +35,10 @@ angular.module('flexcrowd.controllers')
             } else {
                 formData.append('file', null);
             }
+
+            if (typeof attributes === 'undefined') {
+                attributes = {};
+            }
             
             formData.append('platform', JSON.stringify(updatedPlatform._source));
             formData.append('attributes', JSON.stringify(attributes));

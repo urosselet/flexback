@@ -21,7 +21,7 @@
                     <div class="col-md-9">
                         <div class="form-group">
                             <label>Id</label>
-                            <input type="number" class="form-control" ng-model="platform.id">
+                            <input type="text" class="form-control" ng-model="platform._id">
                         </div>
                         <div class="form-group">
                             <label>Name</label>
@@ -36,7 +36,7 @@
                             <input type="text" class="form-control" ng-model="platform._source.platform_website">
                         </div>
                         <div class="row">
-                            <div class="form-group col col-md-4">
+                            <div class="form-group col col-md-3">
                                 <label>Cluster</label>
                                 <select class="form-control" name="cluster" ng-model="platform._source.cluster">
                                     <option>--</option>
@@ -48,7 +48,7 @@
                                     <option value="6">(6) Sourcing specific digital goods</option>
                                 </select>
                             </div>
-                            <div class="form-group col col-md-4">
+                            <div class="form-group col col-md-3">
                                 <label>Inactif</label>
                                 <select class="form-control" name="inactif" ng-model="platform._source.inactif">
                                 	<option>--</option>
@@ -56,12 +56,21 @@
                                     <option value="false">False</option>
                                 </select>
                             </div>
-                            <div class="form-group col col-md-4">
+                            <div class="form-group col col-md-3">
                                 <label>Non-pertinent</label>
                                 <select class="form-control" name="non_pertinent" ng-model="platform._source.non_pertinent">
                                 	<option>--</option>
                                     <option value="true">True</option>
                                     <option value="false">False</option>
+                                </select>
+                            </div>
+                            <div class="form-group col col-md-3">
+                                <label>Status (Unfound or Name different)</label>
+                                <select class="form-control" name="status" ng-model="platform._source.status">
+                                    <option>--</option>
+                                    <option value="unfound">Unfound</option>
+                                    <option value="different_name">Different Name</option>
+                                    <option value="ok">OK</option>
                                 </select>
                             </div>
                         </div>

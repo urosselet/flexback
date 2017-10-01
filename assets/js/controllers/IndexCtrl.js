@@ -17,6 +17,12 @@ angular.module('flexcrowd.controllers', [])
 
         $scope.itemsByPage = 10;
 
+        $scope.displayCollection = [].concat($scope.platforms);
+
+        $scope.$on('filteredList', function(event, args) {
+            $scope.itemCount = args.val.length;
+        });
+
         /**
          * Define application state and call the corresponding api
          * @param  {[type]} $state.params.menu [description]

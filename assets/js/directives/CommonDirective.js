@@ -19,44 +19,35 @@ angular.module('flexcrowd.directives', [])
                         text: {
                             name: 'get_ideas_and_solutions_to_specific_questions'
                         },
-                        children: [
-                            {
-                                collapsable: true,
+                        children: [{
+                            collapsable: true,
+                            text: {
+                                name: 'New ideas'
+                            },
+                            children: [{
                                 text: {
-                                    name: 'New ideas'
+                                    name: 'New product or services'
                                 },
-                                children: [
-                                    {
-                                        text: {
-                                            name: 'New product or services'
-                                        },
-                                    },
-                                    {
-                                        text: {
-                                            name: 'Enhance product or services'
-                                        },
-                                    }
-                                ]
-                            }, 
-                            {   
-                                collapsable: true,
+                            }, {
                                 text: {
-                                    name: 'Solution to specific problem'
+                                    name: 'Enhance product or services'
                                 },
-                                children: [
-                                    {
-                                        text: {
-                                            name: 'New product or services'
-                                        },
-                                    },
-                                    {
-                                        text: {
-                                            name: 'Enhance product or services'
-                                        },
-                                    }
-                                ]
-                            }
-                        ]
+                            }]
+                        }, {
+                            collapsable: true,
+                            text: {
+                                name: 'Solution to specific problem'
+                            },
+                            children: [{
+                                text: {
+                                    name: 'New product or services'
+                                },
+                            }, {
+                                text: {
+                                    name: 'Enhance product or services'
+                                },
+                            }]
+                        }]
                     }
                 };
 
@@ -81,7 +72,9 @@ angular.module('flexcrowd.directives', [])
             input.trigger('fileselect', [numFiles, label]);
 
             for (var i = 0; i < files.length; i++) {
-                scope.$emit('fileSelected', { 'file': files[i] });
+                scope.$emit('fileSelected', {
+                    'file': files[i]
+                });
             }
         });
 
@@ -108,4 +101,16 @@ angular.module('flexcrowd.directives', [])
         restrict: 'A'
     };
 
+})
+
+.directive('stFilteredCollection', function() {
+    return {
+        require: '^stTable',
+        link: function(scope, element, attr, ctrl) {
+            scope.$watch(ctrl.getFilteredCollection, function(val) {
+                scope.$emit('filteredList', { 'val': val });
+                scope.filteredCollection = val;
+            })
+        }
+    }
 });

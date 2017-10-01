@@ -63,12 +63,7 @@ module.exports = {
         'size': 200,
         'body': {
             'query': {
-                'bool': {
-                    'must': [
-                        { 'term': { 'inactif': false } },
-                        { 'term': { 'non_pertinent': false } }
-                    ]
-                }
+                'match_all': {}
             }
         }
     },

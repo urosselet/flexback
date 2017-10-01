@@ -11,44 +11,91 @@
         <li role="presentation" ng-class="{'active': treeDiagram === true }"><a ui-sref="index.list({ item: 'tree-diagram' })">Tree diagram</a></li>
         <li class="pull-right">
             <div class="btn-group">
-                <button type="button" class="btn btn-warning" ng-click="addPlatform()">Add Platform</button>
                 <button type="button" class="btn btn-warning" ng-click="export()">Dump Data</button>
                 <button type="button" class="btn btn-success" ng-click="import()">Import Data</button>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-success" ng-click="addPlatform()">Add Platform</button>
             </div>
         </li>
     </ul>
 
     <!-- Platform listings -->
-    <table st-table="platforms" class="table table-striped table-bordered" ng-if="platforms.length > 0">
-        <h4 ng-if="platforms.length > 0">{{ platforms.length }} Platforms</h4>
+    <table st-safe-src="platforms" st-table="displayCollection" class="table table-striped table-bordered" st-set-filter="strictFilter" ng-if="platforms.length > 0" st-filtered-collection>
+
+        <h4 ng-if="platforms.length > 0">{{ itemCount }} Platforms </h4>
+
         <thead>
             <tr>
                 <th st-sort="_id">ID</th>
                 <th st-sort="_source.name">Name</th>
+                <!--
                 <th>Description</th>
-                <th>Inactif</th>
-                <th>Non-pertinent</th>
+                -->
+                <th st-sort="_source.inactif">Inactif</th>
+                <th st-sort="_source.non_pertinent">Non-pertinent</th>
+                <th st-sort="_source.status">Status</th>
                 <th>Url</th>
                 <th>Cluster</th>
                 <th>Actions</th>
             </tr>
+            <tr>
+                <th>
+                    <input st-search="_id" placeholder="Search for Id" class="input-sm form-control" type="search" />
+                </th>
+                <th>
+                    <input st-search="_source.name" placeholder="Search by Name" class="input-sm form-control" type="search" />
+                </th>
+                <th>
+                    <select st-search="_source.inactif">
+                        <option value="">All</option>
+                        <option ng-repeat="row in platforms | unique:'inactif'" value="{{ row._source.inactif }}">{{ row._source.inactif }}</option>
+                    </select>
+                </th>
+                <th>
+                    <select st-search="_source.non_pertinent">
+                        <option value="">All</option>
+                        <option ng-repeat="row in platforms | unique:'non_pertinent'" value="{{ row._source.non_pertinent }}">{{ row._source.non_pertinent }}</option>
+                    </select>
+                </th>
+                <th>
+                    <select st-search="_source.status">
+                        <option value="">All</option>
+                        <option ng-repeat="row in platforms | unique:'status'" value="{{ row._source.status }}">{{ row._source.status }}</option>
+                    </select>
+                </th>
+                <th></th>
+                <th>
+                    <select st-search="_source.cluster">
+                        <option value="">All</option>
+                        <option ng-repeat="row in platforms | unique:'cluster'" value="{{ row._source.cluster }}">{{ row._source.cluster | clusterText }}</option>
+                    </select>
+                    <!--<input st-search="_source.cluster" placeholder="search for Id" class="input-sm form-control" type="search" />-->
+                </th>
+                <th></th>
+            </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="platform in platforms">
+            <tr ng-repeat="platform in displayCollection">
                 <td>
                     <span>{{ platform._id | number }}</span>
                 </td>
-                <td>
+                <td style="width:30%">
                     <span>{{ platform._source.name }}</span>
                 </td>
+                <!--
                 <td>
                     <span>{{ platform._source.description }}</span>
                 </td>
+                -->
                 <td>
                     <span>{{ platform._source.inactif | booleanTransform }}</span>
                 </td>
                 <td>
                     <span>{{ platform._source.non_pertinent | booleanTransform }}</span>
+                </td>
+                <td>
+                    <span>{{ platform._source.status }}</span>
                 </td>
                 <td>
                     <span><a href="{{ platform._source.platform_website }}" target="_blank">{{ platform._source.platform_website }}</a></span>
@@ -63,7 +110,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="7" class="text-center">
+                <td colspan="8" class="text-center">
                     <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
                 </td>
             </tr>
