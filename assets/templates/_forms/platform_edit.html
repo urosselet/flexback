@@ -85,7 +85,7 @@
                         <label>Aggregation of Contributions Type</label>
                         <select class="form-control" name="process" ng-model="platform._source.attributes.process.aggregation_of_contributions">
                             <option>--</option>
-                            <option ng-repeat="attribute in attributes.process[2]._source.aggregation_of_contributions" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <option ng-repeat="attribute in attributes.process[4]._source.aggregation_of_contributions" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
@@ -101,21 +101,21 @@
                         <label>Remuneration for contributions Type</label>
                         <select class="form-control" name="process" ng-model="platform._source.attributes.process.remuneration_for_contributions">
                             <option>--</option>
-                            <option ng-repeat="attribute in attributes.process[3]._source.remuneration_for_contributions" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <option ng-repeat="attribute in attributes.process[2]._source.remuneration_for_contributions" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Preselection of Contributors Type</label>
                         <select class="form-control" name="process" ng-model="platform._source.attributes.process.preselection_of_contributors">
                             <option>--</option>
-                            <option ng-repeat="attribute in attributes.process[0]._source.preselection_of_contributors" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <option ng-repeat="attribute in attributes.process[3]._source.preselection_of_contributors" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Form of remuneration</label>
                         <select class="form-control" name="process" ng-model="platform._source.attributes.process.form_of_remuneration">
                             <option>--</option>
-                            <option ng-repeat="attribute in attributes.process[4]._source.form_of_remuneration" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <option ng-repeat="attribute in attributes.process[0]._source.form_of_remuneration" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                 </div>
@@ -131,14 +131,14 @@
                         <label>Main beneficiary</label>
                         <select class="form-control" name="goal" ng-model="platform._source.attributes.goal.main_beneficiary">
                         	<option>--</option>
-                            <option ng-repeat="attribute in attributes.goal[0]._source.main_beneficiary" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <option ng-repeat="attribute in attributes.goal[1]._source.main_beneficiary" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Value type</label>
                         <select class="form-control" name="goal" ng-model="platform._source.attributes.goal.value_type">
                         	<option>--</option>
-                            <option ng-repeat="attribute in attributes.goal[1]._source.value_type" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <option ng-repeat="attribute in attributes.goal[0]._source.value_type" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
@@ -158,14 +158,14 @@
                         <label>Task Type</label>
                         <select class="form-control" name="task" ng-model="platform._source.attributes.task.type">
                         	<option>--</option>
-                            <option ng-repeat="attribute in attributes.task[0]._source.type" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <option ng-repeat="attribute in attributes.task[2]._source.type" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Task Dependency</label>
                         <select class="form-control" name="task" ng-model="platform._source.attributes.task.dependencies">
                         	<option>--</option>
-                            <option ng-repeat="attribute in attributes.task[1]._source.dependencies" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <option ng-repeat="attribute in attributes.task[0]._source.dependencies" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                     <!-- Other attributes -->
@@ -173,14 +173,14 @@
                         <label>Task Novelty</label>
                         <select class="form-control" name="task" ng-model="platform._source.attributes.task.novelty">
                             <option>--</option>
-                            <option ng-repeat="attribute in attributes.task[2]._source.novelty" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <option ng-repeat="attribute in attributes.task[3]._source.novelty" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Task Effectiveness</label>
                         <select class="form-control" name="task" ng-model="platform._source.attributes.task.effectiveness">
                             <option>--</option>
-                            <option ng-repeat="attribute in attributes.task[3]._source.effectiveness" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <option ng-repeat="attribute in attributes.task[1]._source.effectiveness" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                     <!-- END::Other attributes -->
@@ -194,14 +194,14 @@
                         <label>Contribution Type</label>
                         <select class="form-control" name="crowd" ng-model="platform._source.attributes.crowd.contribution_type">
                         	<option>--</option>
-                            <option ng-repeat="attribute in attributes.crowd[0]._source.contribution_type" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <option ng-repeat="attribute in attributes.crowd[1]._source.contribution_type" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Main motivational Driver</label>
                         <select class="form-control" name="crowd" ng-model="platform._source.attributes.crowd.main_motivational_driver">
                         	<option>--</option>
-                            <option ng-repeat="attribute in attributes.crowd[1]._source.main_motivational_driver" value="{{ attribute.id }}">{{ attribute.description }}</option>
+                            <option ng-repeat="attribute in attributes.crowd[0]._source.main_motivational_driver" value="{{ attribute.id }}">{{ attribute.description }}</option>
                         </select>
                     </div>
                 </div>
