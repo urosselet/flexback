@@ -39,6 +39,10 @@ angular.module('flexcrowd.controllers')
             if (typeof attributes === 'undefined') {
                 attributes = {};
             }
+
+            if (typeof updatedPlatform === 'undefined') {
+                updatedPlatform = {};
+            }
             
             formData.append('platform', JSON.stringify(updatedPlatform._source));
             formData.append('attributes', JSON.stringify(attributes));
