@@ -1,11 +1,14 @@
 'use strict';
 
 angular.module('flexcrowd',
-    [   
+    [
         'restangular',
         'xeditable',
         'smart-table',
         'ui.router',
+        'toaster',
+        'angular-loading-bar',
+        'ngAnimate',
         'flexcrowd.directives',
         'flexcrowd.filters',
         'flexcrowd.controllers',
@@ -20,15 +23,15 @@ angular.module('flexcrowd',
         $rootScope.$on('$viewContentLoaded', function() {
             $window.scrollTo(0, 0);
         });
-        
+
     }
 
  ])
 
-.config(['$stateProvider', '$urlRouterProvider', '$logProvider', 'RestangularProvider',
-    function($stateProvider, $urlRouterProvider, $logProvider, RestangularProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$logProvider', 'RestangularProvider', 'cfpLoadingBarProvider',
+    function($stateProvider, $urlRouterProvider, $logProvider, RestangularProvider, cfpLoadingBarProvider) {
 
-        switch(window.location.host) { 
+        switch(window.location.host) {
             case 'localhost:1338':
                 RestangularProvider.setBaseUrl('http://localhost:1338');
                 break;
@@ -38,6 +41,7 @@ angular.module('flexcrowd',
         }
 
         $logProvider.debugEnabled(false);
+        cfpLoadingBarProvider.includeSpinner = false;
 
         $stateProvider
             .state('index', {
@@ -77,8 +81,7 @@ angular.module('flexcrowd',
                         return ESService.getAttributes();
                     }
                 }
-            })
-
+            });
 
         /* If none of the above states are matched, use this as the fallback */
         $urlRouterProvider.otherwise('/list/platform');

@@ -2,8 +2,8 @@
 
 angular.module('flexcrowd.controllers')
 
-.controller('FormCtrl', ['$scope', '$state', '$timeout', 'platform', 'ESService',
-    function($scope, $state, $timeout, platform, ESService) {
+.controller('FormCtrl', ['$scope', '$state', '$timeout', 'platform', 'ESService', 'toaster',
+    function($scope, $state, $timeout, platform, ESService, toaster) {
 
         let formData = new FormData();
         let contentArray = [];
@@ -49,9 +49,18 @@ angular.module('flexcrowd.controllers')
 
     		ESService.update($state.params.id, formData)
 	    		.then(function(res) {
+                    toaster.pop('success', 'Edit complete', 'Platform');
                     $state.go('index.list', { 'item': 'platform' });
                 });
     	};
+
+        $scope.extract = function(url) {
+
+            ESService.extract(url)
+                .then(function(res) {
+                    $scope.platform['_source'] = res._source;
+                });
+        }
 
     }
 

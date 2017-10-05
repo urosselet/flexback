@@ -1,3 +1,3 @@
-# FlexCrowd Back-end Application
+# Flexcrowd Back-end Application
 
-a [Sails](http://sailsjs.org) application
+A [Sails](http://sailsjs.org) REST application

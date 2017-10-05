@@ -13,11 +13,21 @@
  * always omit, customize, or replace this behavior with SASS, SCSS,
  * or any other Grunt tasks you like.)
  */
+@import url('https://fonts.googleapis.com/css?family=Lato');
 
 @import 'plugins/bootstrap.min.css';
 // @import 'plugins/bootstrap-theme.min.css';
 
+/**
+ * Bower modules CSS
+ */
 @import '../bower_components/angular-xeditable/dist/css/xeditable.css';
+@import '../bower_components/angularjs-toaster/toaster.min.css';
+@import '../bower_components/angular-loading-bar/src/loading-bar.css';
+
+/**
+ * Vendors modules CSS
+ */
 @import '../js/vendors/treant-js/Treant.css';
 
 /**
@@ -25,9 +35,27 @@
  */
 $fc-blue: #2da5b6;
 $fc-orange: #ef7921;
+$fc-dark-blue: #2e3e49;
 
 html {
     height: 100%;
+}
+
+body {
+    background: #fff;
+}
+
+html,
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+label {
+    color: #888;
+}
+
+#loading-bar .bar {
+    background: #000;
 }
 
 header.masthead {
@@ -52,15 +80,18 @@ header.masthead {
     margin-bottom: 0;
 
     border-radius: 0;
-    background-color: $fc-blue;
-    a {
-        font-size: 2em;
+    background-color: $fc-dark-blue;
+    box-shadow: 0 7px 12px 0 rgba(0, 0, 0, .13), 1px 0 0 0 #cfd6d9;
+    .container,
+    .navbar-brand {
+        position: relative;
 
-        width: 100%;
-
-        text-align: center;
-
-        color: #fff;
+        height: 75px;
+        padding: 0;
+        img {
+            width: 40%;
+            padding: 5px;
+        }
     }
 }
 
@@ -109,6 +140,14 @@ header.masthead {
                 width: 100%;
             }
         }
+        .scrapping-container {
+            margin-bottom: 2em;
+            padding: 2em;
+
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            background: #efefef;
+        }
     }
 }
 
@@ -122,6 +161,5 @@ footer {
     height: 4em;
     padding-top: 2rem;
 
-    color: #fff;
-    background: #bdc3c7;
+    background: #e7eaef;
 }

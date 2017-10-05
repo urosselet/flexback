@@ -5,10 +5,17 @@
     </div>
     <div class="row">
         <form class="edit-form" name="platformForm">
-
+            <div class="row scrapping-container">
+                <div class="col-md-10">
+                    <input type="text" class="form-control" placeholder="ex. https://www.flexcrowd.org" ng-model="platform._source.platform_website">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-success pull-right" ng-click="extract(platform._source.platform_website)">Scrap from the web</button>
+                </div>
+            </div>
             <fieldset class="scheduler-border">
                 <legend class="scheduler-border">Platform detail</legend>
-
+                
                 <div class="row">
                     <div class="col-md-3">
                         <div class="platform-img " upload-image>
@@ -65,7 +72,7 @@
                                 </select>
                             </div>
                             <div class="form-group col col-md-3">
-                                <label>Status (Unfound or Name different)</label>
+                                <label>Status</label>
                                 <select class="form-control" name="status" ng-model="platform._source.status">
                                     <option>--</option>
                                     <option value="unfound">Unfound</option>

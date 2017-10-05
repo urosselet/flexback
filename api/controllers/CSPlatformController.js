@@ -1,7 +1,16 @@
 let client = sails.config.es.client,
     fs = require('fs'),
     path = require('path'),
-    util = require('util');
+    util = require('util'),
+    WAE = require('web-auto-extractor').default,
+    request = require('request');
+
+let summarize = require('summarize');
+let superagent = require('superagent');
+let extractor = require('node-article-extractor');
+let scrappy = require('@mrharel/scrappy');
+let ineed = require('ineed');
+let G = require('generatorics');
 
 /**
  * Cs_platformController
@@ -10,6 +19,36 @@ let client = sails.config.es.client,
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 module.exports = {
+
+    extract: function(req, res) {
+
+        /*for (var prod of G.cartesian(['Innovation', 'Authenticity', 'Cost Reduction'], ['Integrative', 'Selective'], ['Qualification-based', 'Context-specific'])) {
+           console.log(prod);
+        }*/
+
+        request(req.param('url'), function (error, response, body) {
+            
+            let data = extractor(body);
+
+            let platform = {
+                _source: {
+                    'name': data.publisher,
+                    'description': data.description,
+                    'platform_img_url': data.image
+                }
+            }
+
+            ineed.collect.texts
+                .from(req.param('url'), function (err, response, result) {
+                    console.log('************** INeed ************');
+                    console.log(result);
+                    platform._source['raw_data'] = result.texts;
+                    return res.json(platform);
+                });
+
+        });
+
+    },
 
     /**
      * Get datatset base on the specified ES type

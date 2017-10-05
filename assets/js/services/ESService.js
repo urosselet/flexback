@@ -79,6 +79,18 @@ angular.module('flexcrowd.services', [])
                  */
                 export: function() {
                     return Restangular.all('/csplatform/export').getList();
+                },
+
+                /**
+                 * Dump all by ES index/type and save it to JSON file
+                 */
+                extract: function(url) {
+                    let dfd = $q.defer();
+                    Restangular.one('/csplatform/extract').get({ 'url': url })
+                        .then(function(res) {
+                            dfd.resolve(res);
+                        });
+                    return dfd.promise;
                 }
 
             }

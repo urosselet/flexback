@@ -2,8 +2,8 @@
 
 angular.module('flexcrowd.controllers')
 
-.controller('CreateCtrl', ['$scope', '$state', '$timeout', 'attributes', 'ESService',
-    function($scope, $state, $timeout, attributes, ESService) {
+.controller('CreateCtrl', ['$scope', '$state', '$timeout', 'attributes', 'ESService', 'toaster',
+    function($scope, $state, $timeout, attributes, ESService, toaster) {
 
         let formData = new FormData();
         let contentArray = [];
@@ -40,6 +40,15 @@ angular.module('flexcrowd.controllers')
                 });
         
         };
+
+        $scope.extract = function(url) {
+
+            ESService.extract(url)
+                .then(function(res) {
+                    toaster.pop('info', 'Scrap complete', 'text');
+                    $scope.platform['_source'] = res._source;
+                });
+        }
 
     }
 

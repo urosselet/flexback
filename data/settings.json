@@ -9,15 +9,13 @@
                     "language": "english"
                 },
                 "autocomplete_filter": {
-                    "type": "shingle",
-                    "min_shingle_size": "2",
-                    "max_shingle_size": "5"
+                    "type": "edge_ngram",
+                    "min_shingle_size": 1,
+                    "max_shingle_size": 20
                 },
                 "stopwords": {
                     "type": "stop",
-                    "stopwords": [
-                        "_english_"
-                    ]
+                    "stopwords": ["_english_"]
                 }
             },
             "analyzer": {
@@ -30,12 +28,8 @@
                     ]
                 },
                 "didYouMean": {
-                    "filter": [
-                        "lowercase"
-                    ],
-                    "char_filter": [
-                        "html_strip"
-                    ],
+                    "filter": ["lowercase"],
+                    "char_filter": ["html_strip"],
                     "type": "custom",
                     "tokenizer": "standard"
                 },
@@ -45,9 +39,7 @@
                         "stopwords",
                         "stemmer"
                     ],
-                    "char_filter": [
-                        "html_strip"
-                    ],
+                    "char_filter": ["html_strip"],
                     "type": "custom",
                     "tokenizer": "standard"
                 }

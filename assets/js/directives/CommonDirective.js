@@ -30,7 +30,11 @@ angular.module('flexcrowd.directives', [])
                                 },
                             }, {
                                 text: {
-                                    name: 'Enhance product or services'
+                                    name: 'Find names'
+                                },
+                            },{
+                                text: {
+                                    name: 'Enhance products or services'
                                 },
                             }]
                         }, {
@@ -40,11 +44,11 @@ angular.module('flexcrowd.directives', [])
                             },
                             children: [{
                                 text: {
-                                    name: 'New product or services'
+                                    name: 'Innovation or R&D'
                                 },
                             }, {
                                 text: {
-                                    name: 'Enhance product or services'
+                                    name: 'Other issues'
                                 },
                             }]
                         }]
