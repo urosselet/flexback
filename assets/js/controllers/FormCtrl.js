@@ -9,6 +9,7 @@ angular.module('flexcrowd.controllers')
         let contentArray = [];
 
         $scope.context = 'update';
+        $scope.showScrapData = false;
 
     	$scope.platform = null;
     	$scope.attributes = null;
@@ -59,6 +60,7 @@ angular.module('flexcrowd.controllers')
             ESService.extract(url)
                 .then(function(res) {
                     toaster.pop('info', 'Platform scrapping', 'Scrap completed');
+                    $scope.showScrapData = true;
                     $scope.platform['_source'] = res._source;
                 });
                 
