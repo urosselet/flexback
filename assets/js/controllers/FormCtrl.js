@@ -13,6 +13,7 @@ angular.module('flexcrowd.controllers')
 
     	$scope.platform = null;
     	$scope.attributes = null;
+        $scope.scrapData = null;
 
     	$scope.platform = platform.platform;
     	$scope.attributes = platform.attributes;
