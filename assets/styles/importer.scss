@@ -55,7 +55,11 @@ label {
 }
 
 #loading-bar .bar {
-    background: #000;
+    background: #ed6a20;
+}
+
+#toast-container > div {
+    box-shadow: none;
 }
 
 header.masthead {
@@ -147,6 +151,22 @@ header.masthead {
             border: 1px solid #ddd;
             border-radius: 3px;
             background: #efefef;
+            .scrapped-data {
+                > dl {
+                    overflow-y: scroll;
+
+                    height: 400px;
+                    margin: 4em 3em 1em 3em;
+                    padding: 2em;
+
+                    color: #fff;
+                    border-radius: 3px;
+                    background: #2da5b6;
+                    dd {
+                        padding-bottom: 2rem;
+                    }
+                }
+            }
         }
     }
 }

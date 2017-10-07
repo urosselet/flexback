@@ -10,6 +10,8 @@ angular.module('flexcrowd.controllers')
 
         $scope.context = 'create';
         $scope.attributes = attributes;
+        $scope.scrapData = attributes;
+        $scope.showScrapData = false;
 
         $scope.$on('fileSelected', function(event, args) {
             $scope.$apply(function() {
@@ -36,6 +38,7 @@ angular.module('flexcrowd.controllers')
 
             ESService.create(formData)
                 .then(function(res) {
+                    toaster.pop('success', 'Platform', 'Platform saved successfully');
                     $state.go('index.list', { 'item': 'platform' });
                 });
         
@@ -45,9 +48,11 @@ angular.module('flexcrowd.controllers')
 
             ESService.extract(url)
                 .then(function(res) {
-                    toaster.pop('info', 'Scrap complete', 'text');
-                    $scope.platform['_source'] = res._source;
+                    toaster.pop('success', 'Platform scrapping', 'Scrap completed');
+                    $scope.showScrapData = true;
+                    $scope.scrapData['_source'] = res._source;
                 });
+                
         }
 
     }

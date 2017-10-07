@@ -12,6 +12,26 @@
                 <div class="col-md-2">
                     <button class="btn btn-success pull-right" ng-click="extract(platform._source.platform_website)">Scrap from the web</button>
                 </div>
+                <div class="row scrapped-data" ng-show="showScrapData">
+                    <dl>
+                        <dt>Title</dt>
+                        <dd>{{ scrapData._source.title }}</dd>
+                        <dt>Description</dt>
+                        <dd>{{ scrapData._source.description }}</dd>
+                        <dt>Image URL</dt>
+                        <dd>{{ scrapData._source.platform_img_url }}</dd>
+                        <dt>Text</dt>
+                        <dd>{{ scrapData._source.text }}</dd>
+                        <dt>Keywords</dt>
+                        <dd>{{ scrapData._source.keywords }}</dd>
+                        <dt>Generated Keywords</dt>
+                        <dd ng-bind-html="scrapData._source.generated_keywords"></dd>
+                        <dt>Tags</dt>
+                        <dd>{{ scrapData._source.tags }}</dd>
+                        <dt>Raw data</dt>
+                        <dd ng-bind-html="scrapData._source.raw_data"></dd>
+                    </dl>
+                </div>
             </div>
             <fieldset class="scheduler-border">
                 <legend class="scheduler-border">Platform detail</legend>

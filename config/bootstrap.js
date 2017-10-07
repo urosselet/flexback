@@ -16,12 +16,11 @@ module.exports.bootstrap = function(cb) {
      */
     ESOperationService.import({}, function(res) {
 
-        if (!res) {
+        if (res === 0) {
             sails.log.info('**********************************');
             sails.log.info('* ES Dataset import successfully *');
             sails.log.info('**********************************');
-
-        } else {
+        } else if (res === true) {
             sails.log.info('**********************************');
             sails.log.info('*  ES Dataset already imported   *');
             sails.log.info('**********************************');

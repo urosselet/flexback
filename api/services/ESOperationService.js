@@ -2,7 +2,7 @@ let nrc = require('node-run-cmd'),
     shell = require('shelljs'),
     fs = require('fs'),
     path = require('path'),
-    esSettings = require('../../data/settings.json'),
+    esSettings = require('../../data/es_dataset/flexcrowd_settings.json'),
     client = sails.config.es.client;
 
 module.exports = {
@@ -15,7 +15,8 @@ module.exports = {
      */
     import: function(option, cb) {
 
-        let dataPath = path.join(path.dirname(process.mainModule.filename), '/data/');
+        let dataPath = path.join(path.dirname(process.mainModule.filename), '/data/es_dataset');
+        let callback = cb;
 
         client.indices.exists({ 'index': 'operation' })
             .then(function(res) {
@@ -23,32 +24,23 @@ module.exports = {
 
                 client.indices.create({ 'index': 'operation', 'body': esSettings })
                     .then(function(res) {
+
                         sails.log.info('Index settings: ', res);
-                        async.auto({
 
-                            import_platform: function(callback) {
-                                shell.exec(`elastic-import ${dataPath}platforms.json localhost:9200 operation platform -l error --json`, function(code) {
-                                    callback(null, code);
-                                });
-                            },
-
-                            import_category: function(callback) {
-                                shell.exec(`elastic-import ${dataPath}categories.json localhost:9200 operation category -l error --json`, function(code) {
-                                    callback(null, code);
-                                });
-                            }
-                            
-                        }, function(err, results) {
-                            return cb(err, results);
-                        });
+                        nrc.run(`elasticdump --input=${dataPath}/flexcrowd_data.json --output=http://localhost:9200/operation --type=data`)
+                            .then(function(code) {
+                                sails.log.info('Import code: ', code[0]);
+                                return callback(code[0], null);
+                            });
 
                     }, function(err) {
-                        console.log(err)
+                        sails.log.error(err);
                         return cb(err, null);
                     });
 
             }, function(err) {
-                sails.log.info('Error: ', res);
+                sails.log.error(err);
+                return cb(err, null);
             });
     },
 
@@ -72,15 +64,6 @@ module.exports = {
         }
 
         async.auto({
-            /*export_data: function(callback) {
-                nrc.run(`elasticsearch-export --output ${dumpFolder}/test.json --index operation --type platform --host http://localhost --port 9200`)
-                    .then(function(exitCode) {
-                        console.log(exitCode)
-                        callback(null, exitCode);
-                    }, function(err) {
-                        callback(null, err);
-                    });
-            },*/
             export_data: function(callback) {
                 nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFolder}/flexcrowd_data.json --type=data`)
                     .then(function(exitCode) {
@@ -88,25 +71,9 @@ module.exports = {
                     }, function(err) {
                         callback(null, err);
                     });
-            },
-            /*export_mapping: function(callback) {
-                nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFolder}/flexcrowd_mapping.json --type=mapping`)
-                    .then(function(exitCode) {
-                        callback(null, exitCode);
-                    }, function(err) {
-                        callback(null, err);
-                    });
-            },*/
-            /*export_analyzer: function(callback) {
-                nrc.run(`elasticdump --input=http://localhost:9200/operation --output=${dumpFolder}/flexcrowd_analyzer.json --type=analyzer`)
-                    .then(function(exitCode) {
-                        callback(null, exitCode);
-                    }, function(err) {
-                        callback(null, err);
-                    });
-            }*/
+            }
         }, function(err, results) {
-            cb(err, results);
+            return cb(err, results);
         });
 
     }

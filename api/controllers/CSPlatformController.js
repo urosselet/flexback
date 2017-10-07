@@ -11,6 +11,7 @@ let extractor = require('node-article-extractor');
 let scrappy = require('@mrharel/scrappy');
 let ineed = require('ineed');
 let G = require('generatorics');
+var glossary = require('glossary');
 
 /**
  * Cs_platformController
@@ -32,14 +33,22 @@ module.exports = {
 
             let platform = {
                 _source: {
+                    'title': data.title,
+                    'softTitle': data.softTitle,
                     'name': data.publisher,
                     'description': data.description,
-                    'platform_img_url': data.image
+                    'platform_img_url': data.image,
+                    'keywords': data.keywords,
+                    'tags': data.tags,
+                    'text': data.text,
+                    'generated_keywords': glossary.extract(data.description)
                 }
             }
 
             ineed.collect.texts
                 .from(req.param('url'), function (err, response, result) {
+                    console.log('************** extractor ************');
+                    console.log(data);
                     console.log('************** INeed ************');
                     console.log(result);
                     platform._source['raw_data'] = result.texts;

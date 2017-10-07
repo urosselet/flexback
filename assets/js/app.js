@@ -2,13 +2,14 @@
 
 angular.module('flexcrowd',
     [
+        'ngAnimate',
+        'ngSanitize',
         'restangular',
         'xeditable',
         'smart-table',
         'ui.router',
         'toaster',
         'angular-loading-bar',
-        'ngAnimate',
         'flexcrowd.directives',
         'flexcrowd.filters',
         'flexcrowd.controllers',

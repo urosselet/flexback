@@ -15,6 +15,8 @@ angular.module('flexcrowd.services', [])
                     Restangular.all('/csplatform?type=' + stateParams.item).getList()
                         .then(function(res) {
                             dfd.resolve(res);
+                        }, function(err) {
+                            dfd.resolve(err.status);
                         });
                     return dfd.promise;
                 },

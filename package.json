@@ -24,6 +24,7 @@
     "elasticsearch": "^13.3.1",
     "express-session": "^1.15.6",
     "generatorics": "^1.1.0",
+    "glossary": "^0.1.1",
     "grunt": "1.0.1",
     "grunt-contrib-clean": "1.1.0",
     "grunt-contrib-coffee": "1.0.0",

@@ -49,7 +49,7 @@ angular.module('flexcrowd.controllers')
 
     		ESService.update($state.params.id, formData)
 	    		.then(function(res) {
-                    toaster.pop('success', 'Edit complete', 'Platform');
+                    toaster.pop('success', 'Platform', 'Platform updated successfully');
                     $state.go('index.list', { 'item': 'platform' });
                 });
     	};
@@ -58,8 +58,10 @@ angular.module('flexcrowd.controllers')
 
             ESService.extract(url)
                 .then(function(res) {
+                    toaster.pop('info', 'Platform scrapping', 'Scrap completed');
                     $scope.platform['_source'] = res._source;
                 });
+                
         }
 
     }
