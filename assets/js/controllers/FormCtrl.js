@@ -61,7 +61,7 @@ angular.module('flexcrowd.controllers')
                 .then(function(res) {
                     toaster.pop('info', 'Platform scrapping', 'Scrap completed');
                     $scope.showScrapData = true;
-                    $scope.platform['_source'] = res._source;
+                    $scope.scrapData['_source'] = res._source;
                 });
                 
         }

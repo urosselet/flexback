@@ -9,9 +9,10 @@ angular.module('flexcrowd.controllers')
         let contentArray = [];
 
         $scope.context = 'create';
+        $scope.showScrapData = false;
+
         $scope.attributes = attributes;
         $scope.scrapData = attributes;
-        $scope.showScrapData = false;
 
         $scope.$on('fileSelected', function(event, args) {
             $scope.$apply(function() {
