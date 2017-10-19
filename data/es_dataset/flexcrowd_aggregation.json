@@ -1,0 +1,87 @@
+{
+    "size": 0,
+    "query" : {
+        "bool" : {
+        	"must": [
+        		{ "match": { "inactif": "false"} },
+        		{ "match": { "non_pertinent": "false"} }
+        	]
+        }
+    },
+    "aggs": {
+        "cluster_weight": {
+            "terms": {
+                "field": "cluster.keyword"
+            },
+            "aggs": {
+            	"criteria": {
+	            	"nested": {
+	            		"path":	"attributes"
+	            	},
+	                "aggs": {
+                        "process:preselection_of_contributors": {
+                            "terms": {
+                                "field": "attributes.process.preselection_of_contributors.keyword"
+                            }
+                        },
+                        "process:peer_contributions_accessibility": {
+                            "terms": {
+                                "field": "attributes.process.peer_contributions_accessibility.keyword"
+                            }
+                        },
+                        "process:aggregation_of_contributions": {
+                            "terms": {
+                                "field": "attributes.process.aggregation_of_contributions.keyword"
+                            }
+                        },
+                        "process:remuneration_for_contributions": {
+                            "terms": {
+                                "field": "attributes.process.remuneration_for_contributions.keyword"
+                            }
+                        },
+                        "process:form_of_remuneration": {
+                            "terms": {
+                                "field": "attributes.process.form_of_remuneration.keyword"
+                            }
+                        },
+                        "goal:main_beneficiary": {
+                            "terms": {
+                                "field": "attributes.goal.main_beneficiary.keyword"
+                            }
+                        },
+	                    "goal:value_type": {
+	                    	"terms": {
+				                "field": "attributes.goal.value_type.keyword"
+				            }
+	                    },
+                        "goal:input_tolerance": {
+                            "terms": {
+                                "field": "attributes.goal.input_tolerance.keyword"
+                            }
+                        },
+                        "task:type": {
+                            "terms": {
+                                "field": "attributes.task.type.keyword"
+                            }
+                        },
+                        "task:dependencies": {
+                            "terms": {
+                                "field": "attributes.task.dependencies.keyword"
+                            }
+                        },
+                        "crowd:contribution_type": {
+                            "terms": {
+                                "field": "attributes.crowd.contribution_type.keyword"
+                            }
+                        },
+                        "crowd:main_motivational_driver": {
+                            "terms": {
+                                "field": "attributes.crowd.main_motivational_driver.keyword"
+                            }
+                        }
+	                }
+            	}
+            }
+        }
+    }
+}

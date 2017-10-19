@@ -10,6 +10,7 @@ angular.module('flexcrowd',
         'ui.router',
         'toaster',
         'angular-loading-bar',
+        'chart.js',
         'flexcrowd.directives',
         'flexcrowd.filters',
         'flexcrowd.controllers',
@@ -60,6 +61,12 @@ angular.module('flexcrowd',
                         return ESService.findAll($stateParams);
                     }
                 }
+            })
+
+            .state('index.cluster', {
+                url: '/cluster/chart',
+                templateUrl: '/templates/_lists/cluster_charts.html',
+                controller: 'ChartCtrl'
             })
 
             .state('index.form', {

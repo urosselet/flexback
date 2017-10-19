@@ -12,12 +12,24 @@ angular.module('flexcrowd.services', [])
                  */
                 findAll: function(stateParams) {
                     let dfd = $q.defer();
-                    Restangular.all('/csplatform?type=' + stateParams.item).getList()
+
+                    if (stateParams.item === 'clusters') {
+
+                        Restangular.all('/csplatform/aggregations').getList()
                         .then(function(res) {
                             dfd.resolve(res);
                         }, function(err) {
                             dfd.resolve(err.status);
                         });
+
+                    } else {
+                        Restangular.all('/csplatform?type=' + stateParams.item).getList()
+                            .then(function(res) {
+                                dfd.resolve(res);
+                            }, function(err) {
+                                dfd.resolve(err.status);
+                            });
+                    }
                     return dfd.promise;
                 },
 

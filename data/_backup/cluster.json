@@ -1,0 +1,38 @@
+[
+    {
+        "_id": 1,
+        "cluster_id": "sharing_authentic_experiences",
+        "name": "Sharing authentic experiences",
+        "description": "This cluster corresponds to a crowd producing authentic contributions that can be useful to the rest of the crowd or general community. The members are driven by social status and reputation in this community. The majority of CS initiatives in this group are implemented according to the integrative sourcing without remuneration process (53%), followed by selective sourcing with crowd assessment (21%) and integrative sourcing with success-based remuneration (21%) If we consider only the aggregation of contributions dimension of the process, we see that integrative aggregation is clearly predominant in this group (79%)."
+    },
+    {
+        "_id": 2,
+        "cluster_id": "relationship_building_through_user_generated_content",
+        "name": "Relationship building through user generated content",
+        "description": "This cluster corresponds to the initiator remunerating the crowd for producing authentic content. This content is used as a means to create proximity and build a relationship with the initiator’s community of users. Two CS process types are mainly present in this group, namely: selective sourcing without crowd assessment (40%) and selective sourcing with crowd assessment (40%). A small share of these initiatives uses the integrative sourcing with fixed remuneration process (13%). If we consider only the aggregation of contributions dimension of the process, we see that integrative aggregation is clearly predominant in this group (83%)."
+    },
+    {
+        "_id": 3,
+        "cluster_id": "curating_ideas_and_features",
+        "name": "Curating ideas and features",
+        "description": "This cluster corresponds to evaluation tasks where the crowd provides its opinion on products, services or ideas submitted by the initiator. The vast majority of CS initiatives in this group are implemented according to the integrative sourcing without remuneration process (65%). The remainder initiatives use the selective sourcing with crowd assessment (17%) and integrative sourcing with fixed remuneration (13%) processes. If we consider only the aggregation of contributions dimension of the process, we see that integrative aggregation is clearly predominant in this group (83%)."
+    },
+    {
+        "_id": 4,
+        "cluster_id": "problem_solving",
+        "name": "Problem solving",
+        "description": "This cluster corresponds to the submission of specific problems requiring innovative solutions from the crowd, with tangible rewards in return. The vast majority of CS initiatives in this group are implemented according to the selective sourcing without crowd assessment (59%). The remainder initiatives use the selective sourcing with crowd assessment (35%) process. If we consider only the aggregation of contributions dimension of the process, we see that almost only selective aggregation is used in this group (94%)."
+    },
+    {
+        "_id": 5,
+        "cluster_id": "ad_hoc_temporary_hiring",
+        "name": "Ad hoc temporary hiring",
+        "description": "This cluster corresponds typically to the outsourcing aspect of CS. It is characterized by the willingness to reduce costs by entrusting decoupled content creation tasks for a tangible reward to the crowd. CS initiatives in this group are mainly implemented in three forms of CS processes: integrative sourcing with fixed remuneration (37%), selective sourcing with crowd assessment (31%) and selective sourcing without crowd assessment (31%). If we consider only the aggregation of contributions dimension of the process, we see that there is a slight favor towards selective (60%) versus integrative (40%) aggregation in this group."
+    },
+    {
+        "_id": 6,
+        "cluster_id": "sourcing_specific_digital_goods",
+        "name": "Sourcing specific digital goods",
+        "description": "This cluster corresponds to the reduction of costs through sourcing of specific contents in return for tangible rewards. Three approaches in terms of CS process are mainly present in this group, namely: integrative sourcing with success-based remuneration (33%), integrative sourcing with fixed remuneration (29%) and selective sourcing without crowd assessment (24%). A small share of these initiatives relies on the integrative sourcing without remuneration process (14%). If we consider only the aggregation of contributions dimension of the process, we see that integrative aggregation is clearly predominant in this group (76%)."
+    }
+]

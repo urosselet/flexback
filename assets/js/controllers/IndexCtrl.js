@@ -35,6 +35,9 @@ angular.module('flexcrowd.controllers', [])
             case 'category':
                 $scope.categories = results;
                 break;
+            case 'clusters':
+                $scope.clusters = results;
+                break;
             case 'tree-diagram':
                 $scope.treeDiagram = true
                 break;

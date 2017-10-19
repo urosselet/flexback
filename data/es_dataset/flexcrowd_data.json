@@ -94,7 +94,7 @@
 {"_index":"operation","_type":"goal","_id":"3","_score":1,"_source":{"input_tolerance":[{"id":"low","description":"Low"},{"id":"high","description":"High"}]}}
 {"_index":"operation","_type":"task","_id":"3","_score":1,"_source":{"novelty":[{"id":"novelty","description":"Novelty"},{"id":"no","description":"No"}]}}
 {"_index":"operation","_type":"category","_id":"3","_score":1,"_source":{"category":"audio_original_content","cat_name":"audio original content"}}
-{"_index":"operation","_type":"category","_id":"11","_score":1,"_source":{"category":"Get_ideas_for_new_products_or_services","cat_name":"Get ideas for new products or services"}}
+{"_index":"operation","_type":"category","_id":"11","_score":1,"_source":{"category":"get_ideas_for_new_products_or_services","cat_name":"Get ideas for new products or services"}}
 {"_index":"operation","_type":"category","_id":"17","_score":1,"_source":{"category":"involve_your_fans_for_events","cat_name":"involve your fans for events"}}
 {"_index":"operation","_type":"category","_id":"23","_score":1,"_source":{"category":"rate_relevance_of_recommendations","cat_name":"rate relevance of recommendations"}}
 {"_index":"operation","_type":"category","_id":"31","_score":1,"_source":{"category":"sort_and_categorize_data","cat_name":"sort and categorize data"}}

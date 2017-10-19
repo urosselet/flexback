@@ -50,11 +50,11 @@
         "category": {
             "properties": {
                 "cat_name": {
-                    "type": "string",
+                    "type": "text",
                     "analyzer": "english",
                     "fields": {
                         "std": {
-                            "type": "string",
+                            "type": "text",
                             "analyzer": "standard"
                         }
                     }
@@ -64,18 +64,18 @@
         "platform": {
 	        "properties": {
 	            "autocomplete": {
-	                "type": "string",
+	                "type": "text",
 	                "analyzer": "autocomplete"
 	            },
 	            "description": {
-	                "type": "string",
+	                "type": "text",
 	                "copy_to":[
 	                    "did_you_mean",
 	                    "autocomplete"
 	                ]
 	            },
 	            "did_you_mean": {
-	                "type": "string",
+	                "type": "text",
 	                "analyzer": "didYouMean"
 	            },
                 "attributes": {
@@ -83,32 +83,130 @@
                     "properties": {
                         "process": {
                             "properties": {
-                                "preselection_of_contributors": { "type": "string" },
-                                "peer_contributions_accessibility": { "type": "string" },
-                                "aggregation_of_contributions": { "type": "string" },
-                                "remuneration_for_contributions": { "type": "string" },
-                                "form_of_remuneration": { "type": "string" }
+                                "preselection_of_contributors": {
+                                    "type": "text",
+                                    "fields": {
+                                        "keyword": {
+                                            "type": "keyword"
+                                        }
+                                    }
+                                },
+                                "peer_contributions_accessibility": {
+                                    "type": "text",
+                                    "fields": {
+                                        "keyword": {
+                                            "type": "keyword"
+                                        }
+                                    }
+                                },
+                                "aggregation_of_contributions": {
+                                    "type": "text",
+                                    "fields": {
+                                        "keyword": {
+                                            "type": "keyword"
+                                        }
+                                    }
+                                },
+                                "remuneration_for_contributions": {
+                                    "type": "text",
+                                    "fields": {
+                                        "keyword": {
+                                            "type": "keyword"
+                                        }
+                                    }
+                                },
+                                "form_of_remuneration": {
+                                    "type": "text",
+                                    "fields": {
+                                        "keyword": {
+                                            "type": "keyword"
+                                        }
+                                    }
+                                }
                             }
                         },
                         "goals": {
                             "properties": {
-                                "main_beneficiary": { "type": "string" },
-                                "value_type": { "type": "string" },
-                                "input_tolerance": { "type": "string" }
+                                "main_beneficiary": {
+                                    "type": "text",
+                                    "fields": {
+                                        "keyword": {
+                                            "type": "keyword"
+                                        }
+                                    }
+                                },
+                                "value_type": {
+                                    "type": "text",
+                                    "fields": {
+                                        "keyword": {
+                                            "type": "keyword"
+                                        }
+                                    }
+                                },
+                                "input_tolerance": {
+                                    "type": "text",
+                                    "fields": {
+                                        "keyword": {
+                                            "type": "keyword"
+                                        }
+                                    }
+                                }
                             }
                         },
                         "task": {
                             "properties": {
-                                "type": { "type": "string" },
-                                "dependencies": { "type": "string" },
-                                "novelty": { "type": "string" },
-                                "effectiveness": { "type": "string" }
+                                "type": {
+                                    "type": "text",
+                                    "fields": {
+                                        "keyword": {
+                                            "type": "keyword"
+                                        }
+                                    }
+                                },
+                                "dependencies": {
+                                    "type": "text",
+                                    "fields": {
+                                        "keyword": {
+                                            "type": "keyword"
+                                        }
+                                    }
+                                },
+                                "novelty": {
+                                    "type": "text",
+                                    "fields": {
+                                        "keyword": {
+                                            "type": "keyword"
+                                        }
+                                    }
+                                },
+                                "effectiveness": {
+                                    "type": "text",
+                                    "fields": {
+                                        "keyword": {
+                                            "type": "keyword"
+                                        }
+                                    }
+                                }
                             }
                         },
                         "crowd": {
                             "properties": {
-                                "contribution_type": { "type": "string" },
-                                "main_motivational_driver": { "type": "string" }
+                                "contribution_type": {
+                                    "type": "text",
+                                    "fields": {
+                                        "keyword": {
+                                            "type": "keyword"
+                                        }
+                                    }
+                                },
+                                "main_motivational_driver": {
+                                    "type": "text",
+                                    "fields": {
+                                        "keyword": {
+                                            "type": "keyword"
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

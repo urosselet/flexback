@@ -76,6 +76,133 @@ module.exports = {
             return cb(err, results);
         });
 
-    }
+    },
 
+    /**
+     * Convert ES buckets to array
+     * @param  {[type]}   option [description]
+     * @param  {Function} cb     [description]
+     * @return {[type]}          [description]
+     * @todo Refactoring
+     */
+    bucketsToArray: function(buckets, cb) {
+
+        let aggs = [];
+
+        async.auto({
+
+            format_array: function(callback) {
+
+                buckets.forEach(function(bucket) {
+
+                    let aggObject = { 'cluster': bucket.key, 'platform_count': bucket.doc_count };
+            
+                    aggObject['attributes'] = {'process': {}, 'goal': {}, 'task': {}, 'crowd': {}};
+
+                    Object.keys(bucket.criteria).forEach(function(attribute) {
+
+                        let res = attribute.split(':');
+                        let attributeBuckets = bucket.criteria[attribute].buckets;
+
+                        if (res[0] !== 'doc_count') {
+
+                            switch (res[0]) {
+
+                                case 'process': {
+
+                                    let tempObj = {};
+
+                                    if (attributeBuckets.length > 0) {
+
+                                        attributeBuckets.forEach(function(item) {
+                                            tempObj[item.key] = item.doc_count;
+                                        });
+
+                                        aggObject['attributes']['process'][res[1]] = tempObj;
+
+                                    } else {
+
+                                        aggObject['attributes']['process'][res[1]] = null;
+                                        
+                                    }
+
+                                } break;
+                                
+                                case 'goal': {
+
+                                    let tempObj = {};
+
+                                    if (attributeBuckets.length > 0) {
+
+                                        attributeBuckets.forEach(function(item) {
+                                            tempObj[item.key] = item.doc_count;
+                                        });
+
+                                        aggObject['attributes']['goal'][res[1]] = tempObj;
+
+                                    } else {
+
+                                        aggObject['attributes']['goal'][res[1]] = null;
+                                        
+                                    }
+
+                                } break;
+
+                                case 'task': {
+
+                                    let tempObj = {};
+
+                                    if (attributeBuckets.length > 0) {
+
+                                        attributeBuckets.forEach(function(item) {
+                                            tempObj[item.key] = item.doc_count;
+                                        });
+
+                                        aggObject['attributes']['task'][res[1]] = tempObj;
+
+                                    } else {
+
+                                        aggObject['attributes']['task'][res[1]] = null;
+
+                                    }
+                                    
+                                } break;
+
+                                case 'crowd': {
+
+                                    let tempObj = {};
+
+                                    if (attributeBuckets.length > 0) {
+
+                                        attributeBuckets.forEach(function(item) {
+                                            tempObj[item.key] = item.doc_count;
+                                        });
+
+                                        aggObject['attributes']['crowd'][res[1]] = tempObj;
+
+                                    } else {
+
+                                        aggObject['attributes']['crowd'][res[1]] = null;
+
+                                    }
+                                    
+                                } break;
+                            }
+                        }
+
+                    });
+
+                    aggs.push(aggObject);
+
+                });
+
+                callback(null, aggs);
+
+            }
+
+        }, function(err, results) {
+            return cb(results.format_array);
+        });
+
+    }
 }

@@ -1,14 +1,21 @@
 <!-- Listings view -->
 <div class="p-5">
+
+    <!-- Alert Messages -->
     <div class="alert alert-success" role="alert" ng-show="alertVisible">Dataset imported successfully</div>
     <div class="alert alert-success" role="alert" ng-show="dumpAlertVisible">Dataset exported successfully</div>
     <div class="alert alert-danger" role="alert" ng-show="importError">Dataset import failed</div>
     <div class="alert alert-danger" role="alert" ng-show="exportError">Dataset export failed</div>
     <div class="alert alert-danger" role="alert" ng-show="loadError">Error while loading the require data ! Please check you request response !</div>
+    
+    <!-- Navigation Tabs -->
     <ul class="nav nav-tabs">
         <li role="presentation" ng-class="{'active': platforms.length > 0 }"><a ui-sref="index.list({ item: 'platform' })">Platforms</a></li>
         <li role="presentation" ng-class="{'active': categories.length > 0 }"><a ui-sref="index.list({ item: 'category' })">Categories</a></li>
+        <li role="presentation" ng-class="{'active': clusters.length > 0 }"><a ui-sref="index.list({ item: 'clusters' })">Clusters</a></li>
         <li role="presentation" ng-class="{'active': treeDiagram === true }"><a ui-sref="index.list({ item: 'tree-diagram' })">Question Tree</a></li>
+        
+        <!-- Actions buttons -->
         <li class="pull-right">
             <div class="btn-group">
                 <button type="button" class="btn btn-warning" ng-click="export()">Dump Data</button>
@@ -147,6 +154,74 @@
             </tr>
         </tfoot>
     </table>
+
+    <!-- Cluster section -->
+    <table st-table="clusters" class="table table-striped table-bordered category-table" ng-if="clusters.length > 0">
+        <h4 class="pull-left" ng-if="clusters.length > 0">{{ clusters.length }} Clusters</h4>
+        <div class="pull-right">
+            <a ui-sref="index.cluster">Charts</a>
+        </div>
+        <thead>
+            <tr>
+                <th st-sort="cluster.cluster">Cluster</th>
+                <th>Platform NB</th>
+                <th>Attributes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="cluster in clusters">
+                <td>
+                    <span>{{ cluster.cluster | clusterText }}</span>
+                </td>
+                <td>
+                    <span>{{ cluster.platform_count }}</span>
+                </td>
+                <td>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Dimension</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(key, dimension) in cluster.attributes">
+                                <td>{{ key | idToText }}</td>
+                                <td>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Sub-dimension</th>
+                                                <th>Characteristics</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="(key, subdimension) in dimension" ng-if="subdimension !== null">
+                                                <td>{{ key | idToText }}</td>
+                                                <td>
+                                                    <table class="table table-striped">
+                                                        <tbody>
+                                                            <tr ng-repeat="(key, characteristics) in subdimension">
+                                                                <td>{{ key | idToText }}</td>
+                                                                <td>{{ characteristics }}</td>
+                                                                <td ng-style="{'background': {true: '#2ecc71', false:'#fff'} [characteristics / cluster.platform_count * 100 == 100]}">{{ characteristics / cluster.platform_count * 100 | number : 1 }} %</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody> 
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tree diagram section -->
     <div class="row" ng-if="treeDiagram === true">
         <div id="tree-diagram" tree-diagram></div>
     </div>

@@ -7,7 +7,7 @@
 
 module.exports = {
 
-	find: function(req, res) {}
+    find: function(req, res) {}
 
 };
 

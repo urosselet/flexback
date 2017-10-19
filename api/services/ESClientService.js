@@ -100,7 +100,7 @@ module.exports = {
                     crowd: results.crowd.hits.hits
                 };
                 callback(null, attributes);
-            }],
+            }]
 
         }, function(err, results) {
             return cb(results.to_array);

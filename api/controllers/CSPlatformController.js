@@ -3,7 +3,8 @@ let client = sails.config.es.client,
     path = require('path'),
     util = require('util'),
     WAE = require('web-auto-extractor').default,
-    request = require('request');
+    request = require('request'),
+    aggQuery = require('../../data/es_dataset/flexcrowd_aggregation.json');
 
 let summarize = require('summarize');
 let superagent = require('superagent');
@@ -11,7 +12,7 @@ let extractor = require('node-article-extractor');
 let scrappy = require('@mrharel/scrappy');
 let ineed = require('ineed');
 let G = require('generatorics');
-var glossary = require('glossary');
+let glossary = require('glossary');
 
 /**
  * Cs_platformController
@@ -201,6 +202,27 @@ module.exports = {
     getAttributes: function(req, res) {
         ESClientService.getAllAttributes({}, function(attributes) {
             return res.json(attributes);
+        });
+    },
+
+    /**
+     * Get attributes aggregations
+     * @return {[type]} [description]
+     */
+    aggregations: function(req, res) {
+
+        client.search({ 
+            'index': 'operation', 
+            'type': 'platform', 
+            'body': aggQuery
+        }).then(function(response) {
+
+            let buckets = response.aggregations.cluster_weight.buckets;
+
+            ESOperationService.bucketsToArray(buckets, function(result) {
+                return res.json(result);
+            });
+
         });
     },
 

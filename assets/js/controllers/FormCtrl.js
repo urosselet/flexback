@@ -2,8 +2,8 @@
 
 angular.module('flexcrowd.controllers')
 
-.controller('FormCtrl', ['$scope', '$state', '$timeout', 'platform', 'ESService', 'toaster',
-    function($scope, $state, $timeout, platform, ESService, toaster) {
+.controller('FormCtrl', ['$scope', '$state', 'platform', 'ESService', 'toaster',
+    function($scope, $state, platform, ESService, toaster) {
 
         let formData = new FormData();
         let contentArray = [];
