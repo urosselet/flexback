@@ -1,39 +1,33 @@
-#cluster-chart
-{
-    .cluster-wrapper
-    {
-        padding: 4rem;
+#cluster-chart {
+    .cluster-wrapper {
+        margin-bottom: 2rem;
 
         border-radius: 3px;
         background: #f9f5e8;
-        margin-bottom: 2rem;
     }
-    h1
-    {
+    h1 {
         font-size: 2.5rem;
         font-weight: bold;
 
         padding-bottom: 1rem;
 
-        border-bottom: 2px solid #ddd;
+        text-align: center;
+
+        border-bottom: 2px solid #fff;
     }
 
-    .taxonomy-wrapper
-    {
+    .taxonomy-wrapper {
         padding: 2rem;
 
-        border-bottom: 1px solid #aaa;
-        h2
-        {
+        border-bottom: 1px solid #fff;
+        h2 {
             padding-bottom: 1rem;
 
             text-align: center;
         }
-        .col
-        {
-            h3
-            {
-                font-size: 1.75rem;
+        .col {
+            h3 {
+                font-size: 1.5rem;
 
                 text-align: center;
             }

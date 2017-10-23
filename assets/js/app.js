@@ -66,7 +66,12 @@ angular.module('flexcrowd',
             .state('index.cluster', {
                 url: '/cluster/chart',
                 templateUrl: '/templates/_lists/cluster_charts.html',
-                controller: 'ChartCtrl'
+                controller: 'ChartCtrl',
+                resolve: {
+                    chartsArray: function(ESService) {
+                        return ESService.getChartsArray();
+                    }
+                }
             })
 
             .state('index.form', {

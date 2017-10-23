@@ -96,7 +96,7 @@ module.exports = {
                 buckets.forEach(function(bucket) {
 
                     let aggObject = { 'cluster': bucket.key, 'platform_count': bucket.doc_count };
-            
+
                     aggObject['attributes'] = {'process': {}, 'goal': {}, 'task': {}, 'crowd': {}};
 
                     Object.keys(bucket.criteria).forEach(function(attribute) {
@@ -123,11 +123,11 @@ module.exports = {
                                     } else {
 
                                         aggObject['attributes']['process'][res[1]] = null;
-                                        
+
                                     }
 
                                 } break;
-                                
+
                                 case 'goal': {
 
                                     let tempObj = {};
@@ -143,7 +143,7 @@ module.exports = {
                                     } else {
 
                                         aggObject['attributes']['goal'][res[1]] = null;
-                                        
+
                                     }
 
                                 } break;
@@ -165,7 +165,7 @@ module.exports = {
                                         aggObject['attributes']['task'][res[1]] = null;
 
                                     }
-                                    
+
                                 } break;
 
                                 case 'crowd': {
@@ -185,7 +185,7 @@ module.exports = {
                                         aggObject['attributes']['crowd'][res[1]] = null;
 
                                     }
-                                    
+
                                 } break;
                             }
                         }
@@ -204,5 +204,61 @@ module.exports = {
             return cb(results.format_array);
         });
 
+    },
+
+    /**
+     * Convert aggregation array to chart array
+     * @param  {[type]}   aggArray [description]
+     * @param  {Function} cb       [description]
+     * @return {[type]}            [description]
+     */
+    convertToChartArray: function(aggArray, cb) {
+
+        let clusters = [];
+
+        aggArray.forEach(function(item) {
+
+            let clusterObj = {};
+            clusterObj['data'] = [];
+
+            clusterObj['cluster'] = item.cluster;
+            clusterObj['platform_count'] = item.platform_count;
+
+            Object.keys(item.attributes).forEach(function(attribute) {
+
+                let dimension = { 'dimension': attribute };
+                dimension['dataset'] = [];
+                dimension['dataset']['dataset'] = {};
+
+                Object.keys(item.attributes[attribute]).forEach(function(value, key) {
+                    
+                    let subdimension = { 
+                        'subdimension': value,
+                        'dataset': {'labels': [], 'values': []}
+                    };
+
+                    dimension['dataset'].push(subdimension);
+
+                    Object.keys(item.attributes[attribute][value]).forEach(function(value1, key1) {
+                        
+                        let datasetValue = item.attributes[attribute][value][value1];
+
+                        dimension['dataset'][key]['dataset']['labels'].push(value1);
+                        dimension['dataset'][key]['dataset']['values'].push(datasetValue);
+                    });
+
+                });
+
+                clusterObj['data'].push(dimension);
+
+            });
+
+            clusters.push(clusterObj);
+
+        });
+
+       return cb(clusters);
+
     }
+
 }

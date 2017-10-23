@@ -92,7 +92,7 @@ angular.module('flexcrowd.filters', [])
                 'context_specific': 'Context specific',
                 'both': 'Both',
                 'modify': 'Modify',
-                'assess': 'View',
+                'assess': 'Assess',
                 'view': 'View',
                 'integrative': 'Integrative',
                 'selective': 'Selective',

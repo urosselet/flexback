@@ -81,6 +81,15 @@ angular.module('flexcrowd.services', [])
                     return dfd.promise;
                 },
 
+                getChartsArray: function() {
+                    let dfd = $q.defer();
+                    Restangular.all('/csplatform/chartsArray').getList()
+                        .then(function(res) {
+                            dfd.resolve(res);
+                        });
+                    return dfd.promise;
+                },
+
                 /**
                  * Import all by ES index/type
                  */

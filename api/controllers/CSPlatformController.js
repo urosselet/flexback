@@ -226,6 +226,26 @@ module.exports = {
         });
     },
 
+    chartsArray: function(req, res) {
+        client.search({ 
+            'index': 'operation', 
+            'type': 'platform', 
+            'body': aggQuery
+        }).then(function(response) {
+
+            let buckets = response.aggregations.cluster_weight.buckets;
+
+            ESOperationService.bucketsToArray(buckets, function(result) {
+
+                ESOperationService.convertToChartArray(result, function(chartArray) {
+                    return res.json(chartArray);
+                });
+                
+            });
+
+        });
+    },
+
     /**
      * Data import to populate ES
      * @param  {[type]} req [description]

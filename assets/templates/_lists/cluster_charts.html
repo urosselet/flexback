@@ -1,107 +1,22 @@
-<!--
-<canvas id="doughnut" class="chart chart-doughnut"
-    chart-data="data" chart-labels="labels">
-</canvas>
--->
-
-<div id="cluster-chart" class="container">
-	
-	<div class="row cluster-wrapper">
-
-		<h1>Cluster 6</h1>
-
-		<!-- Process -->
-		<div class="row taxonomy-wrapper">
-			<h2>Process</h2>
-			<div class="col col-md-3">
-				<h3>Preselection of contributors</h3>
-				<canvas id="doughnut" class="chart chart-doughnut"
-				    chart-data="data" chart-labels="labels">
-				</canvas>
-			</div>
-			<div class="col col-md-3">
-				<h3>Accessibility of peer contributions</h3>
-				<canvas id="doughnut" class="chart chart-doughnut"
-				    chart-data="data" chart-labels="labels">
-				</canvas>
-			</div>
-			<div class="col col-md-3">
-				<h3>Form of remuneration</h3>
-				<canvas id="doughnut" class="chart chart-doughnut"
-				    chart-data="data" chart-labels="labels">
-				</canvas>
-			</div>
-			<div class="col col-md-3">
-				<h3>Remuneration for contributions type</h3>
-				<canvas id="doughnut" class="chart chart-doughnut"
-				    chart-data="data" chart-labels="labels">
-				</canvas>
-			</div>
-			<div class="col col-md-3">
-				<h3>Aggregation of contributions</h3>
-				<canvas id="doughnut" class="chart chart-doughnut"
-				    chart-data="data" chart-labels="labels">
-				</canvas>
+<div id="cluster-chart">
+	<div id="accordion" class="container accordion">
+		<div class="row cluster-wrapper accordion-group" ng-repeat="chart in chartsArray">
+			<div class="accordion-heading">
+	            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapse_{{chart.cluster}}">
+	            	<h1>Cluster {{ chart.cluster | clusterText }} | {{ chart.platform_count }} platforms</h1>
+	           	</a>
+	        </div>
+			<div id="collapse_{{chart.cluster}}" class="accordion-body collapse in">
+				<div  class="row taxonomy-wrapper" ng-repeat="(key, data) in chart.data">
+					<h2>{{ data.dimension | idToText }}</h2>
+					<div class="col col-md-6 accordion-inner" ng-repeat="(key, data) in data.dataset">
+						<h3>{{ data.subdimension | idToText }}</h3>
+						<canvas id="pie" class="chart chart-pie"
+						    chart-data="data.dataset.values" chart-labels="data.dataset.labels" chart-options="options">
+						</canvas>
+					</div>
+				</div>
 			</div>
 		</div>
-
-		<!-- Goal -->
-		<div class="row taxonomy-wrapper">
-			<h2>Goal</h2>
-			<div class="col col-md-3">
-				<h3>Main beneficiary</h3>
-				<canvas id="doughnut" class="chart chart-doughnut"
-				    chart-data="data" chart-labels="labels">
-				</canvas>
-			</div>
-			<div class="col col-md-3">
-				<h3>Value type</h3>
-				<canvas id="doughnut" class="chart chart-doughnut"
-				    chart-data="data" chart-labels="labels">
-				</canvas>
-			</div>
-			<div class="col col-md-3">
-				<h3>Input tolerance</h3>
-				<canvas id="doughnut" class="chart chart-doughnut"
-				    chart-data="data" chart-labels="labels">
-				</canvas>
-			</div>
-		</div>
-
-		<!-- Task -->
-		<div class="row taxonomy-wrapper">
-			<h2>Task</h2>
-			<div class="col col-md-3">
-				<h3>Type</h3>
-				<canvas id="doughnut" class="chart chart-doughnut"
-				    chart-data="data" chart-labels="labels">
-				</canvas>
-			</div>
-			<div class="col col-md-3">
-				<h3>Dependencies</h3>
-				<canvas id="doughnut" class="chart chart-doughnut"
-				    chart-data="data" chart-labels="labels">
-				</canvas>
-			</div>
-		</div>
-
-		<!-- Crowd -->
-		<div class="row taxonomy-wrapper">
-			<h2>Crowd</h2>
-			<div class="col col-md-3">
-				<h3>Contribution type</h3>
-				<canvas id="doughnut" class="chart chart-doughnut"
-				    chart-data="data" chart-labels="labels">
-				</canvas>
-			</div>
-			<div class="col col-md-3">
-				<h3>Main motivational driver</h3>
-				<canvas id="doughnut" class="chart chart-doughnut"
-				    chart-data="data" chart-labels="labels">
-				</canvas>
-			</div>
-		</div>
-
 	</div>
-
 </div>

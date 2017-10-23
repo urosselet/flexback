@@ -1,3 +1,1 @@
-module.exports = {
-    'Flexcrowd': require('./lib/process')
-};
+module.exports = { 'Flexcrowd': require('./lib/process') };
