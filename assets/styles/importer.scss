@@ -13,7 +13,6 @@
  * always omit, customize, or replace this behavior with SASS, SCSS,
  * or any other Grunt tasks you like.)
  */
-
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 @import 'plugins/bootstrap.min.css';
@@ -22,7 +21,6 @@
 /**
  * Bower modules CSS
  */
-
 @import '../bower_components/angular-xeditable/dist/css/xeditable.css';
 @import '../bower_components/AngularJS-Toaster/toaster.min.css';
 @import '../bower_components/angular-loading-bar/src/loading-bar.css';
@@ -31,24 +29,21 @@
 /**
  * Vendors modules CSS
  */
-
 @import '../js/vendors/treant-js/Treant.css';
 
 
 /**
  * Color variables
  */
-
 $fc-blue: #2da5b6;
 $fc-orange: #ef7921;
 $fc-dark-blue: #2e3e49;
 
-
 /**
  * view styles
  */
-
 @import 'cluster_view';
+@import 'csprocess_view';
 
 html {
     height: 100%;
@@ -71,7 +66,7 @@ label {
     background: #ed6a20;
 }
 
-#toast-container>div {
+#toast-container > div {
     box-shadow: none;
 }
 
@@ -112,7 +107,7 @@ header.masthead {
     }
 }
 
-#tree-diagram>.node>p {
+#tree-diagram > .node > p {
     margin: 0 0 10px;
     padding: 5px;
 
@@ -165,7 +160,7 @@ header.masthead {
             border-radius: 3px;
             background: #efefef;
             .scrapped-data {
-                >dl {
+                 > dl {
                     overflow-y: scroll;
 
                     height: 400px;
@@ -184,11 +179,9 @@ header.masthead {
     }
 }
 
-
 /**
  * Footer stylings
  */
-
 footer {
     position: absolute;
 

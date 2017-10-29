@@ -90,6 +90,15 @@ angular.module('flexcrowd.services', [])
                     return dfd.promise;
                 },
 
+                getCSProcess: function() {
+                    let dfd = $q.defer();
+                    Restangular.all('/csprocess').getList()
+                        .then(function(res) {
+                            dfd.resolve(res);
+                        });
+                    return dfd.promise;
+                },
+
                 /**
                  * Import all by ES index/type
                  */

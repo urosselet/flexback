@@ -1,0 +1,55 @@
+#csprocess-view {
+    h1 {
+        margin-bottom: 4rem;
+        padding-bottom: 1rem;
+
+        border-bottom: 2px solid #888;
+    }
+    h2 {
+        font-size: 2rem;
+
+        margin-top: 0;
+        margin-bottom: 2rem;
+
+        text-align: center;
+        text-transform: uppercase;
+    }
+    h3 {
+        font-size: 1.75rem;
+        margin-top: 0;
+    }
+    h5 {
+        font-size: 17px;
+    }
+    h6 {
+        font-size: 16px;
+    }
+    .process-column {
+        margin-bottom: 4rem;
+        padding: 2rem;
+
+        border-right: 5px solid #fff;
+        background: #f9f5e8;
+
+        .dimension-wrapper {
+            padding: 1rem;
+
+            border: 1px solid #aaa;
+        }
+        .label-wrapper,
+        .subimension-wrapper {
+            margin-bottom: 1rem;
+            padding: 1rem;
+
+            border: 1px solid #aaa;
+            border-radius: 3px;
+        }
+        .charactetistic-seperator:not(:last-child) {
+            border-bottom: 1px solid #aaa;
+        }
+        .charactetistic-seperator {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+    }
+}

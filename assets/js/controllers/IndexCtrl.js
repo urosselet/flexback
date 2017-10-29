@@ -84,10 +84,17 @@ angular.module('flexcrowd.controllers', [])
         };
 
         /**
-         * Add a new CS platform
+         * Go to new CS platform insert view
          */
         $scope.addPlatform = function() {
             $state.go('index.platform');
+        };
+
+        /**
+         * Go to CS process management view
+         */
+        $scope.csProcess = function() {
+            $state.go('index.csprocess');
         };
 
     }

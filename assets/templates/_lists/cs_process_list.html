@@ -1,0 +1,57 @@
+<div id="csprocess-view">
+	
+	<div class="row">
+		
+		<h1>CS Process management</h1>
+
+		<div class="col col-md-3 process-column" ng-repeat="csprocess in csprocesses">
+
+			<section>
+				<h2>{{ csprocess._source.process_name }}</h2>
+				<div class="label-wrapper" ng-repeat="(label, obj) in csprocess._source.data.labels">
+					<h3>{{ label }} Label</h3>
+					<div ng-repeat="(attr, value) in obj">{{ value }}</div>
+				</div>
+			</section>
+
+			<section>
+				<h2>Dimensions</h2>
+				<div class="dimension-wrapper" ng-repeat="(dimension, obj) in csprocess._source.data.dimensions">
+
+					<h3>{{ obj.id }}</h3>
+					<div class="label-wrapper" ng-repeat="(attr, value) in obj.labels">
+						<h4>{{ attr }}</h4>
+						<div ng-repeat="(attr1, value1) in value">{{ value1 }}</div>
+					</div>
+
+					<section>
+						<h4>Sub-dimensions</h4>
+						<div class="subimension-wrapper" ng-repeat="(attr, value) in obj.subdimensions">
+							<div class="label-wrapper" ng-repeat="(attr1, value1) in value.labels">
+
+								<h5>{{ attr1 }}</h5>
+
+								<div>{{ value1.label }}</div>
+								<div>{{ value1.description }}</div>
+
+								<div class="label-wrapper" ng-repeat="(attr1, charactetistic) in value1.charactetistics">
+									<div ng-repeat="(attr2, value2) in charactetistic">
+										<h6>{{ attr2 }}</h6>
+										<div class="charactetistic-seperator" ng-repeat="value3 in value2">
+											<div>{{ value3.label }}</div>
+											<div>{{ value3.description }}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+				</div>
+			</section>
+
+		</div>
+
+	</div>
+
+</div>

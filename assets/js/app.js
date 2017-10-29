@@ -74,6 +74,17 @@ angular.module('flexcrowd',
                 }
             })
 
+            .state('index.csprocess', {
+                url: '/cs_process',
+                templateUrl: '/templates/_lists/cs_process_list.html',
+                controller: 'CSProcessCtrl',
+                resolve: {
+                    csprocess: function(ESService) {
+                        return ESService.getCSProcess();
+                    }
+                }
+            })
+
             .state('index.form', {
                 url: '/platform/:id',
                 templateUrl: '/templates/_forms/platform_edit.html',

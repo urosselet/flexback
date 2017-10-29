@@ -5,8 +5,6 @@ angular.module('flexcrowd.controllers')
 .controller('ChartCtrl', ['$scope', '$state', 'chartsArray',
     function($scope, $state, chartsArray) {
 
-    	// console.log(chartsArray)
-
     	$scope.chartsArray = chartsArray;
 
         $scope.labels = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
@@ -24,7 +22,6 @@ angular.module('flexcrowd.controllers')
 	            }
 	        }
 	    };
-
 
     }
 
