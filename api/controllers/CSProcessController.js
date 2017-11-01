@@ -20,7 +20,27 @@ module.exports = {
             'type': 'cs_process', 
             'body': { 'query': { 'match_all': {} } }
         }).then(function(results) {
-            return res.json(results.hits.hits);
+
+        	let csprocessArray = [];
+
+        	results.hits.hits.forEach(function(csprocess) {
+
+        		if (typeof csprocess._source.data.dimensions !== 'undefined') {
+
+        			let csprocessObj = {
+	        			'id': csprocess._id,
+	        			'process_name': csprocess._source.process_name,
+	        			'label': csprocess._source.data.label,
+	        			'dimensions': csprocess._source.data.dimensions[0]
+	        		}
+
+	        		csprocessArray.push(csprocessObj);
+        		}
+
+        	});
+            
+            return res.json(csprocessArray);
+
         });
 	},
 
@@ -32,8 +52,22 @@ module.exports = {
 	 */
 	findOne: function(req, res) {
 		client.get({ index: 'operation', type: 'cs_process', id: req.param('id') })
-            .then(function(csprocess) {
-                return res.json(csprocess)
+            .then(function(csprocesses) {
+
+            	let csprocessArray = [];
+
+            	csprocesses.forEach(function(csprocess) {
+            		let csprocessObj = {
+            			'id': csprocess._id,
+            			'process_name': csprocess._source.data.process_name,
+            			'labels': csprocess._source.data.label,
+            			'dimension': csprocess._source.data.dimensions[0]
+            		}
+            		csprocessArray.push(csprocessArray);
+            	});
+                
+                return res.json(csprocessArray);
+
             });
 	}
 
