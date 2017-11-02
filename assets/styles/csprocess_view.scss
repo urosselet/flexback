@@ -9,14 +9,24 @@
         font-size: 2rem;
 
         margin-top: 0;
-        margin-bottom: 2rem;
+        margin-bottom: 0;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
 
         text-align: center;
         text-transform: uppercase;
     }
     h3 {
         font-size: 1.75rem;
+
         margin-top: 0;
+
+        text-align: center;
+        text-transform: capitalize;
+    }
+    h4 {
+        text-align: center;
+        text-transform: capitalize;
     }
     h5 {
         font-size: 17px;
@@ -26,30 +36,52 @@
     }
     .process-column {
         margin-bottom: 4rem;
-        padding: 2rem;
+        padding-right: 0;
+        padding-left: 0;
 
         border-right: 5px solid #fff;
-        background: #f9f5e8;
+        background: #e0cc8a;
 
-        .dimension-wrapper {
-            padding: 1rem;
+        .process-detail {
+            padding-bottom: 5px;
 
-            border: 1px solid #aaa;
-        }
-        .label-wrapper,
-        .subimension-wrapper {
-            margin-bottom: 1rem;
-            padding: 1rem;
+            color: #fff;
+            background: #2da5b6;
+            h2 {
+                padding-top: 10px;
+                padding-bottom: 10px;
 
-            border: 1px solid #aaa;
-            border-radius: 3px;
+                background: #53c4d4;
+            }
+            .label-wrapper {
+                margin: 1rem;
+                padding: 1rem;
+                border-radius: 3px;
+                border: 1px solid #fff;
+            }
         }
-        .charactetistic-seperator:not(:last-child) {
-            border-bottom: 1px solid #aaa;
-        }
-        .charactetistic-seperator {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
+
+        .process-tree {
+            background: #e0cc8a;
+            .dimension-wrapper {
+                border-bottom: 5px solid #fff;
+            }
+            .label-wrapper,
+            .subimension-wrapper {
+                margin: 1rem;
+                margin-bottom: 1rem;
+                padding: 1rem;
+                border: 1px solid #d6bb61;
+                border-radius: 3px;
+                background: #ebdeb2;
+            }
+            .charactetistic-seperator:not(:last-child) {
+                border-bottom: 1px solid #aaa;
+            }
+            .charactetistic-seperator {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
         }
     }
 }
