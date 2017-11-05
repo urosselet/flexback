@@ -25,29 +25,28 @@ module.exports = {
     },
 
     /**
-     * Find one CS Process based on it's ID
+     * Find CS Process based on it's ID
      * @param  {[type]} req [description]
      * @param  {[type]} res [description]
      * @return {[type]}     [description]
      */
     findOne: function(req, res) {
         client.get({ index: 'operation', type: 'cs_process', id: req.param('id') })
-            .then(function(csprocesses) {
+            .then(function(csprocess) {
+                return res.json(csprocess._source);
+            });
+    },
 
-                let csprocessArray = [];
-
-                csprocesses.forEach(function(csprocess) {
-                    let csprocessObj = {
-                        'id': csprocess._id,
-                        'process_name': csprocess._source.data.process_name,
-                        'labels': csprocess._source.data.label,
-                        'dimension': csprocess._source.data.dimensions[0]
-                    }
-                    csprocessArray.push(csprocessArray);
-                });
-
-                return res.json(csprocessArray);
-
+    /**
+     * Update a CS Process
+     * @param  {[type]} req [description]
+     * @param  {[type]} res [description]
+     * @return {[type]}     [description]
+     */
+    update: function(req, res) {
+        client.update({ index: 'operation', type: 'cs_process', id: req.param('id'), body: { doc: req.body } })
+            .then(function(csprocess) {
+                return res.json(csprocess._source);
             });
     },
 

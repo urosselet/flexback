@@ -1,0 +1,100 @@
+#csprocess-edit {
+    h1 {
+        margin-top: 0;
+
+        text-transform: capitalize;
+    }
+    .process-detail-wrapper {
+        display: flex;
+        .process-detail {
+            width: 35%;
+            margin-right: 4rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
+
+            color: #fff;
+            background: #2da5b6;
+            h2 {
+                font-size: 1.5em;
+
+                margin-top: 0;
+            }
+            label {
+                color: #fff;
+            }
+        }
+    }
+
+    .dimension-wrapper {
+        display: flex;
+        .dimension-detail {
+            width: 35%;
+            margin-right: 4rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
+
+            color: #fff;
+            background: #e0cc8a;
+            h2 {
+                font-size: 1.5em;
+
+                margin-top: 0;
+            }
+            h3 {
+                font-size: 1.35em;
+
+                margin-top: 0;
+            }
+            label {
+                color: #fff;
+            }
+        }
+    }
+
+    .subdimension-wrapper {
+        .subdimension-detail {
+             > div {
+                margin-right: 4rem;
+                margin-bottom: 2rem;
+                padding: 2rem;
+
+                color: #fff;
+                background: #ceaf47;
+                h2 {
+                    font-size: 1.5em;
+
+                    margin-top: 0;
+                }
+                h3 {
+                    font-size: 1.35em;
+
+                    margin-top: 0;
+                }
+                label {
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    .characteristics-wrapper {
+        .characteristics-detail {
+            display: flex;
+             > div {
+                width: 35%;
+                margin-right: 2rem;
+                margin-bottom: 2rem;
+                padding: 1rem;
+
+                border: 1px solid;
+                border-radius: 3px;
+            }
+        }
+    }
+
+    .form-control {
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}

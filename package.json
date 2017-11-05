@@ -3,7 +3,7 @@
     "description": "FlexCrowd Backend Application",
     "author": "jdlegrand",
     "private": true,
-    "version": "0.1.0",
+    "version": "0.2.0",
     "keywords": [
         "flexcrowd",
         "backend",
@@ -27,7 +27,7 @@
         "glossary": "^0.1.1",
         "grunt": "1.0.1",
         "grunt-contrib-clean": "1.1.0",
-        "grunt-contrib-coffee": "1.0.0",
+        "grunt-contrib-coffee": "2.0.0",
         "grunt-contrib-concat": "1.0.1",
         "grunt-contrib-copy": "1.0.0",
         "grunt-contrib-cssmin": "2.2.1",

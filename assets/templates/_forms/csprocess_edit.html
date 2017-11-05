@@ -1,0 +1,101 @@
+<div id="csprocess-edit" class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<h1>{{ csprocess.process_name }}</h1>
+			<form>
+
+				<!-- Process detail section -->
+				<div class="row process-detail-wrapper">
+					<div class="process-detail" ng-repeat="(key, object) in csprocess.data.label">
+						<div class="row">
+							<h2>{{ key }}</h2>
+			                <div class="form-group">
+			                    <label>Title</label>
+			                    <input type="text" class="form-control" ng-model="object.title">
+			                </div>
+			                <div class="form-group">
+			                    <label>Description</label>
+			                    <textarea class="form-control" ng-model="object.description"></textarea>
+			                </div>
+		                </div>
+					</div>
+					<div class="process-detail">
+						<div class="row">
+							<h2>Add cluster definition</h2>
+		                </div>
+		            </div>
+	            </div>
+	            <!-- END::Process detail section -->
+
+	            <!-- Dimension section -->
+	            <div class="row">
+	            	<div ng-repeat="dimension in csprocess.data.dimensions">
+						<h2>{{ dimension.id }}</h2>
+						<div class="dimension-wrapper row">
+							<div class="dimension-detail" ng-repeat="(key, object) in dimension.label">
+								<h3>{{ key }}</h3>
+				                <div class="form-group">
+				                    <label>Title</label>
+				                    <input type="text" class="form-control" ng-model="object.title">
+				                </div>
+				                <div class="form-group">
+				                    <label>Description</label>
+				                    <textarea class="form-control" ng-model="object.description"></textarea>
+				                </div>
+			                </div>
+		                </div>
+		            </div>
+	            </div>
+	            <!-- END::Dimension section -->
+
+	            <!-- Sub-dimension section -->
+	            <div class="row">
+	            	<div class="subdimension-wrapper" ng-repeat="dimension in csprocess.data.dimensions">
+						<div ng-repeat="subdimension in dimension.subdimensions">
+							<h2>{{ subdimension.id }}</h2>
+							<div class="subdimension-detail">
+								<div ng-repeat="(key, object) in subdimension.label">
+									<div>
+										<h3>{{ key }}</h3>
+						                <div class="form-group">
+						                    <label>Title</label>
+						                    <input type="text" class="form-control" ng-model="object.title">
+						                </div>
+						                <div class="form-group">
+						                    <label>Description</label>
+						                    <textarea class="form-control" ng-model="object.description"></textarea>
+						                </div>
+					                </div>
+					                <hr>
+					                <h3>Characteristics</h3>
+					                <div class="characteristics-wrapper">
+						                <div class="characteristics-detail" ng-repeat="(key1, object1) in object.characteristics">
+						                	<div ng-repeat="(key2, object2) in object1">
+							                	<h4>{{ key1 }}</h4>
+								                <div class="form-group">
+								                    <label>Title</label>
+								                    <input type="text" class="form-control" ng-model="object2.title">
+								                </div>
+								                <div class="form-group">
+								                    <label>Description</label>
+								                    <textarea class="form-control" ng-model="object2.description"></textarea>
+								                </div>
+							                </div>
+						                </div>
+					                </div>
+
+								</div>
+							</div>
+						</div>
+		            </div>
+	            </div>
+	             <!-- END::Sub-dimension section -->
+
+	            <div class="row">
+	            	<button ng-click="save(csprocess)">Save</button>
+	            </div>
+
+			</form>
+		</div>
+	</div>
+</div>

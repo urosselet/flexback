@@ -1,0 +1,61 @@
+{
+	"process_name": "processing",
+	"data": {
+		"label": {
+			"default": {
+				"title": "Processing (Default label)",
+				"description": "Processing description (Default)"
+			},
+			"cluster_1": {
+				"title": "Processing (Cluster 1 label)",
+				"description": "Processing description (Cluster_1)"
+			}
+		},
+		"dimensions": [
+			{
+				"id": "crowd",
+				"label": {
+					"default": {
+						"title": "Crowd (Default label)",
+						"description": "Crowd description (Default)"
+					},
+					"cluster_1": {
+						"title": "Crowd (Cluster 1 label)",
+						"description": "Crowd description (Cluster_1)"
+					}
+				},
+				"subdimensions": [
+					{
+						"id": "main_motivational_driver",
+						"label": {
+							"default": {
+								"title": "Main motivational driver (Default label)",
+								"description": "Main motivational driver description (Default)",
+								"characteristics": {
+									"default": [
+										{
+											"title": "Tangible reward (Default label)",
+											"description": "Tangible reward description (Default)"
+										},
+										{
+											"title": "Personal achievement and learning (Default label)",
+											"description": "Personal achievement and learning description (Default)"
+										},
+										{
+											"title": "Social status and reputation (Default label)",
+											"description": "Social status and reputation description (Default)"
+										},
+										{
+											"title": "Entertainment (Default label)",
+											"description": "Entertainment description (Default)"
+										}
+									]
+								}
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+}

@@ -1,0 +1,139 @@
+{
+	"process_name": "participation",
+	"data": {
+		"label": {
+			"default": {
+				"title": "Participation (Default label)",
+				"description": "Participation description (Default)"
+			},
+			"cluster_1": {
+				"title": "Participation (Cluster 1 label)",
+				"description": "Participation description (Cluster_1)"
+			}
+		},
+		"dimensions": [
+			{
+				"id": "goal",
+				"label": {
+					"default": {
+						"title": "Goal (Default label)",
+						"description": "Goal description (Default)"
+					},
+					"cluster_1": {
+						"title": "Goal (Cluster 1 label)",
+						"description": "Goal description (Cluster_1)"
+					}
+				},
+				"subdimensions": [
+					{
+						"id": "main_beneficiary",
+						"label": {
+							"default": {
+								"title": "Main beneficiary (Default label)",
+								"description": "Main beneficiary description (Default)",
+								"characteristics": {
+									"default": [
+										{
+											"title": "Initiator (Default label)",
+											"description": "Initiator description (Default)"
+										},
+										{
+											"title": "Crowd / Community (Default label)",
+											"description": "Crowd / Community description (Default)"
+										}
+									],
+									"cluster_1": [
+										{
+											"title": "Initiator (Cluster 1 label)",
+											"description": "Initiator description (Cluster_1)"
+										},
+										{
+											"title": "Crowd / Community (Cluster 1 label)",
+											"description": "Crowd / Community description (Cluster_1)"
+										}
+									]
+								}
+							},
+							"cluster_1": {
+								"title": "Main beneficiary (Cluster_1 label)",
+								"description": "Main beneficiary description (Cluster_1)",
+								"characteristics": {
+									"default": [
+										{
+											"title": "Initiator",
+											"description": "Initiator"
+										},
+										{
+											"title": "Crowd / Community",
+											"description": "Crowd / Community"
+										}
+									],
+									"cluster_1": [
+										{
+											"title": "Initiator",
+											"description": "Initiator"
+										},
+										{
+											"title": "Crowd / Community",
+											"description": "Crowd / Community"
+										}
+									]
+								}
+							}
+						}
+					},
+					{
+						"id": "value_type",
+						"label": {
+							"default": {
+								"title": "Value Type (Default label)",
+								"description": "Description of value Type (Default)",
+								"characteristics": {
+									"default": [
+										{
+											"title": "Innovation",
+											"description": "Innovation"
+										},
+										{
+											"title": "Authenticity",
+											"description": "Authenticityy"
+										},
+										{
+											"title": "Cost reduction",
+											"description": "Cost reduction"
+										},
+										{
+											"title": "Risk reduction",
+											"description": "Risk reduction"
+										}
+									]
+								}
+							}
+						}
+					},
+					{
+						"id": "input_tolerance",
+						"label": {
+							"default": {
+								"title": "Input tolerance (Default label)",
+								"description": "Description of input tolerance (Default)",
+								"characteristics": {
+									"default": [
+										{
+											"title": "Low",
+											"description": "Low"
+										},
+										{
+											"title": "High",
+											"description": "High"
+										}
+									]
+								}
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+}

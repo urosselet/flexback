@@ -8,7 +8,7 @@
 
 			<!-- Process type section -->
 			<section class="process-detail">
-				<h2>{{ csprocess._source.process_name }}</h2>
+				<h2><a ui-sref="index.csprocess-edit({ id: csprocess._id })">{{ csprocess._source.process_name }}</a></h2>
 				<div class="label-wrapper" ng-repeat="(label, obj) in csprocess._source.data.label">
 					<h3>{{ label }} Label</h3>
 					<div ng-repeat="(attr, value) in obj">{{ value }}</div>

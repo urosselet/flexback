@@ -81,6 +81,10 @@ angular.module('flexcrowd.services', [])
                     return dfd.promise;
                 },
 
+                /**
+                 * Get array formatted for chart's display
+                 * @return {[type]} [description]
+                 */
                 getChartsArray: function() {
                     let dfd = $q.defer();
                     Restangular.all('/csplatform/chartsArray').getList()
@@ -90,13 +94,36 @@ angular.module('flexcrowd.services', [])
                     return dfd.promise;
                 },
 
-                getCSProcess: function() {
+                /**
+                 * Get CS Process based on it's ID
+                 * @param  {[type]} stateParams [description]
+                 * @return {[type]}             [description]
+                 */
+                getCSProcess: function(stateParams) {
                     let dfd = $q.defer();
-                    Restangular.all('/csprocess').getList()
-                        .then(function(res) {
-                            dfd.resolve(res);
-                        });
+
+                    if (typeof stateParams === 'undefined') {
+                        Restangular.all('/csprocess').getList()
+                            .then(function(res) {
+                                dfd.resolve(res);
+                            });
+                    } else {
+                        Restangular.one('/csprocess', stateParams.id).get()
+                            .then(function(res) {
+                                dfd.resolve(res);
+                            });
+                    }
                     return dfd.promise;
+                },
+
+                /**
+                 * CS Process update
+                 * @param  {[type]} id [description]
+                 * @return {[type]}    [description]
+                 */
+                updateCSProcess: function(id, updatedObj) {
+                    return Restangular.one('/csprocess', id)
+                        .customPUT(updatedObj);
                 },
 
                 /**

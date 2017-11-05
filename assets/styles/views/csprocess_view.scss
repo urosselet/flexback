@@ -15,6 +15,9 @@
 
         text-align: center;
         text-transform: uppercase;
+        a {
+            color: #fff;
+        }
     }
     h3 {
         font-size: 1.75rem;
@@ -56,8 +59,9 @@
             .label-wrapper {
                 margin: 1rem;
                 padding: 1rem;
-                border-radius: 3px;
+
                 border: 1px solid #fff;
+                border-radius: 3px;
             }
         }
 
@@ -71,6 +75,7 @@
                 margin: 1rem;
                 margin-bottom: 1rem;
                 padding: 1rem;
+
                 border: 1px solid #d6bb61;
                 border-radius: 3px;
                 background: #ebdeb2;

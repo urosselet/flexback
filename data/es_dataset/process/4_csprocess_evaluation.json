@@ -1,0 +1,15 @@
+{
+	"process_name": "evaluation",
+	"data": {
+		"labels": {
+			"default": {
+				"label": "Evaluation (Default label)",
+				"description": "Evaluation description (Default)"
+			},
+			"cluster_1": {
+				"label": "Evaluation (Cluster 1 label)",
+				"description": "Evaluation description (Cluster_1)"
+			}
+		}
+	}
+}

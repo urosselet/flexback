@@ -1,0 +1,143 @@
+{
+	"process_name": "realisation",
+	"data": {
+		"label": {
+			"default": {
+				"title": "Realisation (Default label)",
+				"description": "Realisation description (Default)"
+			},
+			"cluster_1": {
+				"title": "Realisation (Cluster 1 label)",
+				"description": "Realisation description (Cluster_1)"
+			}
+		},
+		"dimensions": [
+			{
+				"id": "task",
+				"label": {
+					"default": {
+						"title": "Task (Default label)",
+						"description": "Task description (Default)"
+					},
+					"cluster_1": {
+						"title": "Task (Cluster 1 label)",
+						"description": "Task description (Cluster_1)"
+					}
+				},
+				"subdimensions": [
+					{
+						"id": "type",
+						"label": {
+							"default": {
+								"title": "Type (Default label)",
+								"description": "Type description (Default)",
+								"characteristics": {
+									"default": [
+										{
+											"title": "Creation (Default label)",
+											"description": "Creation description (Default)"
+										},
+										{
+											"title": "Evaluation (Default label)",
+											"description": "Evaluation description (Default)"
+										},
+										{
+											"title": "Organisation (Default label)",
+											"description": "Organisation description (Default)"
+										}
+									]
+								}
+							}
+						}
+					},
+					{
+						"id": "dependencies",
+						"label": {
+							"default": {
+								"title": "Dependencies (Default label)",
+								"description": "Dependencies description (Default)",
+								"characteristics": {
+									"default": [
+										{
+											"title": "Coupled",
+											"description": "Coupled"
+										},
+										{
+											"title": "Decoupled",
+											"description": "Decoupled"
+										}
+									]
+								}
+							}
+						}
+					}
+				]
+			},
+			{
+				"id": "process",
+				"label": {
+					"default": {
+						"title": "Process (Default label)",
+						"description": "Process description (Default)"
+					},
+					"cluster_1": {
+						"title": "Process (Cluster 1 label)",
+						"description": "Process description (Cluster_1)"
+					}
+				},
+				"subdimensions": [
+					{
+						"id": "aggregation_of_contributions",
+						"label": {
+							"default": {
+								"title": "Aggregation of contributions (Default label)",
+								"description": "Aggregation of contributions description (Default)",
+								"characteristics": {
+									"default": [
+										{
+											"title": "Selective (Default label)",
+											"description": "Selective description (Default)"
+										},
+										{
+											"title": "Integrative (Default label)",
+											"description": "Integrative description (Default)"
+										}
+									]
+								}
+							}
+						}
+					},
+					{
+						"id": "peer_contributions_accessibility",
+						"label": {
+							"default": {
+								"title": "Peer contributions accessibility (Default label)",
+								"description": "Peer contributions accessibility description (Default)",
+								"characteristics": {
+									"default": [
+										{
+											"title": "Modify",
+											"description": "Modify"
+										},
+										{
+											"title": "Assess",
+											"description": "Assess"
+										},
+										{
+											"title": "View",
+											"description": "View"
+										},
+										{
+											"title": "None",
+											"description": "None"
+										}
+									]
+								}
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+}
