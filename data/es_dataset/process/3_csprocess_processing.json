@@ -1,5 +1,7 @@
 {
+	"index": 3,
 	"process_name": "processing",
+	"icon": "fa fa-crosshairs",
 	"data": {
 		"label": {
 			"default": {
@@ -35,19 +37,23 @@
 									"default": [
 										{
 											"title": "Tangible reward (Default label)",
-											"description": "Tangible reward description (Default)"
+											"description": "Tangible reward description (Default)",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "Personal achievement and learning (Default label)",
-											"description": "Personal achievement and learning description (Default)"
+											"description": "Personal achievement and learning description (Default)",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "Social status and reputation (Default label)",
-											"description": "Social status and reputation description (Default)"
+											"description": "Social status and reputation description (Default)",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "Entertainment (Default label)",
-											"description": "Entertainment description (Default)"
+											"description": "Entertainment description (Default)",
+											"icon": "fa fa-crosshairs"
 										}
 									]
 								}

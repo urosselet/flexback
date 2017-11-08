@@ -1,5 +1,7 @@
 {
+	"index": 2,
 	"process_name": "realisation",
+	"icon": "fa fa-crosshairs",
 	"data": {
 		"label": {
 			"default": {
@@ -35,15 +37,18 @@
 									"default": [
 										{
 											"title": "Creation (Default label)",
-											"description": "Creation description (Default)"
+											"description": "Creation description (Default)",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "Evaluation (Default label)",
-											"description": "Evaluation description (Default)"
+											"description": "Evaluation description (Default)",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "Organisation (Default label)",
-											"description": "Organisation description (Default)"
+											"description": "Organisation description (Default)",
+											"icon": "fa fa-crosshairs"
 										}
 									]
 								}
@@ -60,11 +65,13 @@
 									"default": [
 										{
 											"title": "Coupled",
-											"description": "Coupled"
+											"description": "Coupled",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "Decoupled",
-											"description": "Decoupled"
+											"description": "Decoupled",
+											"icon": "fa fa-crosshairs"
 										}
 									]
 								}
@@ -96,11 +103,13 @@
 									"default": [
 										{
 											"title": "Selective (Default label)",
-											"description": "Selective description (Default)"
+											"description": "Selective description (Default)",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "Integrative (Default label)",
-											"description": "Integrative description (Default)"
+											"description": "Integrative description (Default)",
+											"icon": "fa fa-crosshairs"
 										}
 									]
 								}
@@ -117,19 +126,23 @@
 									"default": [
 										{
 											"title": "Modify",
-											"description": "Modify"
+											"description": "Modify",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "Assess",
-											"description": "Assess"
+											"description": "Assess",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "View",
-											"description": "View"
+											"description": "View",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "None",
-											"description": "None"
+											"description": "None",
+											"icon": "fa fa-crosshairs"
 										}
 									]
 								}

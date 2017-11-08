@@ -14,7 +14,7 @@ angular.module('flexcrowd.controllers')
         $scope.save = function(object) {
         	ESService.updateCSProcess($state.params.id, object)
         		.then(function() {
-
+                    $state.go('index.csprocess');
         		});
         };
 

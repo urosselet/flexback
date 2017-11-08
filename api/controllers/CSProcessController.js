@@ -18,7 +18,7 @@ module.exports = {
         client.search({
             'index': 'operation',
             'type': 'cs_process',
-            'body': { 'query': { 'match_all': {} } }
+            'body': { 'query': { 'match_all': {} }, 'sort': [ { 'index': { 'order': 'asc' } } ] }
         }).then(function(results) {
             return res.json(results.hits.hits);
         });
@@ -70,7 +70,8 @@ module.exports = {
                         'id': csprocess._id,
                         'process_name': csprocess._source.process_name,
                         'label': csprocess._source.data.label,
-                        'dimensions': dimensions[0]
+                        'dimensions': dimensions[0],
+                        'icon': csprocess._source.icon
                     };
                     if (dimensions.length > 1) {
                         let subdimensionArray = [];

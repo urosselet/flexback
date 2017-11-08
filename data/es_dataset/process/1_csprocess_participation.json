@@ -1,5 +1,7 @@
 {
+	"index": 1,
 	"process_name": "participation",
+	"icon": "fa fa-crosshairs",
 	"data": {
 		"label": {
 			"default": {
@@ -35,21 +37,25 @@
 									"default": [
 										{
 											"title": "Initiator (Default label)",
-											"description": "Initiator description (Default)"
+											"description": "Initiator description (Default)",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "Crowd / Community (Default label)",
-											"description": "Crowd / Community description (Default)"
+											"description": "Crowd / Community description (Default)",
+											"icon": "fa fa-crosshairs"
 										}
 									],
 									"cluster_1": [
 										{
 											"title": "Initiator (Cluster 1 label)",
-											"description": "Initiator description (Cluster_1)"
+											"description": "Initiator description (Cluster_1)",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "Crowd / Community (Cluster 1 label)",
-											"description": "Crowd / Community description (Cluster_1)"
+											"description": "Crowd / Community description (Cluster_1)",
+											"icon": "fa fa-crosshairs"
 										}
 									]
 								}
@@ -61,21 +67,25 @@
 									"default": [
 										{
 											"title": "Initiator",
-											"description": "Initiator"
+											"description": "Initiator",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "Crowd / Community",
-											"description": "Crowd / Community"
+											"description": "Crowd / Community",
+											"icon": "fa fa-crosshairs"
 										}
 									],
 									"cluster_1": [
 										{
 											"title": "Initiator",
-											"description": "Initiator"
+											"description": "Initiator",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "Crowd / Community",
-											"description": "Crowd / Community"
+											"description": "Crowd / Community",
+											"icon": "fa fa-crosshairs"
 										}
 									]
 								}
@@ -92,19 +102,23 @@
 									"default": [
 										{
 											"title": "Innovation",
-											"description": "Innovation"
+											"description": "Innovation",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "Authenticity",
-											"description": "Authenticityy"
+											"description": "Authenticityy",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "Cost reduction",
-											"description": "Cost reduction"
+											"description": "Cost reduction",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "Risk reduction",
-											"description": "Risk reduction"
+											"description": "Risk reduction",
+											"icon": "fa fa-crosshairs"
 										}
 									]
 								}
@@ -121,11 +135,13 @@
 									"default": [
 										{
 											"title": "Low",
-											"description": "Low"
+											"description": "Low",
+											"icon": "fa fa-crosshairs"
 										},
 										{
 											"title": "High",
-											"description": "High"
+											"description": "High",
+											"icon": "fa fa-crosshairs"
 										}
 									]
 								}

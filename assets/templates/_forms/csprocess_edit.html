@@ -3,7 +3,14 @@
 		<div class="col-sm-12">
 			<h1>{{ csprocess.process_name }}</h1>
 			<form>
-
+				<div class="form-group">
+                    <label>Index</label>
+                    <input type="text" class="form-control" ng-model="csprocess.index" />
+                </div>
+                <div class="form-group">
+                    <label>Icon</label>
+                    <input type="text" class="form-control" ng-model="csprocess.icon" />
+                </div>
 				<!-- Process detail section -->
 				<div class="row process-detail-wrapper">
 					<div class="process-detail" ng-repeat="(key, object) in csprocess.data.label">
@@ -11,7 +18,7 @@
 							<h2>{{ key }}</h2>
 			                <div class="form-group">
 			                    <label>Title</label>
-			                    <input type="text" class="form-control" ng-model="object.title">
+			                    <input type="text" class="form-control" ng-model="object.title" />
 			                </div>
 			                <div class="form-group">
 			                    <label>Description</label>
@@ -36,7 +43,7 @@
 								<h3>{{ key }}</h3>
 				                <div class="form-group">
 				                    <label>Title</label>
-				                    <input type="text" class="form-control" ng-model="object.title">
+				                    <input type="text" class="form-control" ng-model="object.title" />
 				                </div>
 				                <div class="form-group">
 				                    <label>Description</label>
@@ -59,7 +66,7 @@
 										<h3>{{ key }}</h3>
 						                <div class="form-group">
 						                    <label>Title</label>
-						                    <input type="text" class="form-control" ng-model="object.title">
+						                    <input type="text" class="form-control" ng-model="object.title" />
 						                </div>
 						                <div class="form-group">
 						                    <label>Description</label>
@@ -74,11 +81,15 @@
 							                	<h4>{{ key1 }}</h4>
 								                <div class="form-group">
 								                    <label>Title</label>
-								                    <input type="text" class="form-control" ng-model="object2.title">
+								                    <input type="text" class="form-control" ng-model="object2.title" />
 								                </div>
 								                <div class="form-group">
 								                    <label>Description</label>
 								                    <textarea class="form-control" ng-model="object2.description"></textarea>
+								                </div>
+								                 <div class="form-group">
+								                    <label>Icon</label>
+								                    <input type="text" class="form-control" ng-model="object2.icon" />
 								                </div>
 							                </div>
 						                </div>
@@ -91,8 +102,10 @@
 	            </div>
 	             <!-- END::Sub-dimension section -->
 
-	            <div class="row">
-	            	<button ng-click="save(csprocess)">Save</button>
+	            <div class="row pull-right">
+	            	<div class="col-md-12 ">
+	            		<button type="button" class="btn btn-success" ng-click="save(csprocess)">Save</button>
+	            	</div>
 	            </div>
 
 			</form>
