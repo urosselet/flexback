@@ -13,28 +13,25 @@
  * always omit, customize, or replace this behavior with SASS, SCSS,
  * or any other Grunt tasks you like.)
  */
-
 @import url('https://fonts.googleapis.com/css?family=Lato');
 @import 'plugins/bootstrap.min.css';
 
 /**
  * Bower modules CSS
  */
-
 @import '../bower_components/angular-xeditable/dist/css/xeditable.css';
 @import '../bower_components/AngularJS-Toaster/toaster.min.css';
 @import '../bower_components/angular-loading-bar/src/loading-bar.css';
+@import '../bower_components/angular-bootstrap/ui-bootstrap-csp.css';
 
 /**
  * Vendors modules CSS
  */
-
 @import '../js/vendors/treant-js/Treant.css';
 
 /**
  * Color variables
  */
-
 $fc-blue: #2da5b6;
 $fc-orange: #ef7921;
 $fc-dark-blue: #2e3e49;
@@ -42,16 +39,17 @@ $fc-dark-blue: #2e3e49;
 /**
  * view styles
  */
-
 @import 'views/cluster_view';
 @import 'views/csprocess_view';
 @import 'views/csprocess_edit';
+@import 'views/csactivity_view';
+
 html {
     height: 100%;
 }
 
 body {
-    background: #fff;
+    background: #e4e9f0;
 }
 
 html,
@@ -67,35 +65,103 @@ label {
     background: #ed6a20;
 }
 
-#toast-container>div {
+#toast-container > div {
     box-shadow: none;
 }
 
-header.masthead {
-    margin-bottom: 5em;
+@media (min-width: 1200px) {
+    .container {
+        width: 1125px;
+    }
+}
+
+aside {
+    position: fixed;
+    top: 75px;
+
+    width: 250px;
+    height: 100%;
+
+    background: #212c34;
+    ul {
+        margin-top: 3rem;
+        margin-left: 0;
+        padding-left: 0;
+
+        list-style-type: none;
+        li {
+            width: 100%;
+            padding: 1.25rem 2rem;
+
+            border-top: rgba(255, 255, 255, .2) 1px solid;
+            background: rgba(45, 165, 182, .15);
+            a {
+                color: #fff;
+                &:hover {
+                    text-decoration: none;
+
+                    color: rgba(255, 255, 255, .5);
+                }
+            }
+            &:last-child {
+                border-bottom: rgba(255, 255, 255, .2) 1px solid;
+            }
+            &.active {
+                background: rgba(45, 165, 182, .35);
+                a:focus, a:active {
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+
+#main {
+    margin-top: 100px;
+    margin-left: 250px;
+     > .container {
+        margin-bottom: 2rem;
+        padding-right: 2em;
+        padding-left: 2em;
+
+        border-radius: 3px;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+    }
 }
 
 .category-table .tag {
     margin-right: 5px;
     padding: 5px;
+
     color: #fff;
     border-radius: 2px;
     background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 }
 
 .nav-tabs {
-    margin-bottom: 5rem;
+    margin-top: 4rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
 }
 
-.navbar {
+header {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+
+    width: 100%;
     height: 75px;
     margin-bottom: 0;
+
     border-radius: 0;
     background-color: $fc-dark-blue;
     box-shadow: 0 7px 12px 0 rgba(0, 0, 0, .13), 1px 0 0 0 #cfd6d9;
     .container,
     .navbar-brand {
         position: relative;
+
         height: 75px;
         padding: 0;
         img {
@@ -105,9 +171,10 @@ header.masthead {
     }
 }
 
-#tree-diagram>.node>p {
+#tree-diagram > .node > p {
     margin: 0 0 10px;
     padding: 5px;
+
     color: #fff;
     border-radius: 2px;
     background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
@@ -115,30 +182,31 @@ header.masthead {
 
 .plaform-edit {
     h1 {
-        margin-top: 0;
-        padding-bottom: 1em;
+        margin-top: 4rem;
+        padding-left: 2rem;
     }
     .edit-form {
-        margin-bottom: 4em;
-        padding: 4em;
-        border: 1px solid #eee;
-        border-radius: 5px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, .15);
+        padding: 2em;
+
         fieldset {
             margin-bottom: 2em;
             legend {
                 font-weight: bold;
+
                 color: $fc-orange;
             }
         }
         h2 {
             font-size: 1.5em;
+
             padding-bottom: 10px;
             padding-left: 15px;
+
             color: $fc-blue;
         }
         .platform-img {
             margin-top: 2em;
+
             border: 1px solid #efefef;
             img {
                 width: 100%;
@@ -147,15 +215,18 @@ header.masthead {
         .scrapping-container {
             margin-bottom: 2em;
             padding: 2em;
+
             border: 1px solid #ddd;
             border-radius: 3px;
             background: #efefef;
             .scrapped-data {
-                >dl {
+                 > dl {
                     overflow-y: scroll;
+
                     height: 400px;
                     margin: 4em 3em 1em 3em;
                     padding: 2em;
+
                     color: #fff;
                     border-radius: 3px;
                     background: #2da5b6;
@@ -175,8 +246,10 @@ header.masthead {
 
 footer {
     position: absolute;
+
     width: 100%;
     height: 4em;
     padding-top: 2rem;
+
     background: #e7eaef;
 }

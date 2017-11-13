@@ -38,7 +38,7 @@ module.exports = {
     },
 
     /**
-     * Update a CS Process
+     * Update a CS Process based on its id
      * @param  {[type]} req [description]
      * @param  {[type]} res [description]
      * @return {[type]}     [description]
@@ -51,7 +51,7 @@ module.exports = {
     },
 
     /**
-     * Get CS Processes array for wizard
+     * Get CS Processes wizard array
      * @param  {[type]} req [description]
      * @param  {[type]} res [description]
      * @return {[type]}     [description]

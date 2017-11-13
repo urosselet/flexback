@@ -10,12 +10,20 @@
     
     <!-- Navigation Tabs -->
     <ul class="nav nav-tabs">
+        <!--
         <li role="presentation" ng-class="{'active': platforms.length > 0 }"><a ui-sref="index.list({ item: 'platform' })">Platforms</a></li>
         <li role="presentation" ng-class="{'active': categories.length > 0 }"><a ui-sref="index.list({ item: 'category' })">Categories</a></li>
         <li role="presentation" ng-class="{'active': clusters.length > 0 }"><a ui-sref="index.list({ item: 'clusters' })">Clusters</a></li>
         <li role="presentation" ng-class="{'active': treeDiagram === true }"><a ui-sref="index.list({ item: 'tree-diagram' })">Question Tree</a></li>
-        
-        <!-- Actions buttons -->
+        -->
+
+        <li class="pull-right" ng-if="platforms.length > 0">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success" ng-click="addPlatform()">Add Platform</button>
+            </div>
+        </li>
+
+        <!-- Actions buttons 
         <li class="pull-right">
             <div class="btn-group">
                 <button type="button" class="btn btn-warning" ng-click="export()">Dump Data</button>
@@ -26,10 +34,15 @@
             </div>
 
             <div class="btn-group">
-                <button type="button" class="btn btn-success" ng-click="csProcess()">Manage CS Process</button>
+                <button type="button" class="btn btn-success" ng-click="csProcess()">Manage CS Processes</button>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-success" ng-click="csActivity()">Manage CS Activities</button>
             </div>
         </li>
     </ul>
+    -->
 
     <!-- Platform listings -->
     <table st-safe-src="platforms" st-table="displayCollection" class="table table-striped table-bordered" st-set-filter="strictFilter" ng-if="platforms.length > 0" st-filtered-collection>
@@ -162,9 +175,6 @@
     <!-- Cluster section -->
     <table st-table="clusters" class="table table-striped table-bordered category-table" ng-if="clusters.length > 0">
         <h4 class="pull-left" ng-if="clusters.length > 0">{{ clusters.length }} Clusters</h4>
-        <div class="pull-right">
-            <a ui-sref="index.cluster">Charts</a>
-        </div>
         <thead>
             <tr>
                 <th st-sort="cluster.cluster">Cluster</th>

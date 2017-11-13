@@ -1,10 +1,4 @@
 #cluster-chart {
-    .cluster-wrapper {
-        margin-bottom: 2rem;
-
-        border-radius: 3px;
-        background: #f9f5e8;
-    }
     h1 {
         font-size: 2.5rem;
         font-weight: bold;
@@ -14,6 +8,10 @@
         text-align: center;
 
         border-bottom: 2px solid #fff;
+    }
+
+    .accordion-body {
+        background: #f9f5e8;
     }
 
     .taxonomy-wrapper {

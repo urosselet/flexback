@@ -1,0 +1,45 @@
+{
+    "properties": {
+        "name": { "type": "text" },
+        "labels": {
+            "type": "nested",
+            "properties": {
+                "label": { "type": "text" },
+                "description": { "type": "text" }
+            }
+        },
+        "dimensions": {
+            "type": "nested",
+            "properties": {
+                "name": { "type": "text" },
+                "labels": {
+                    "type": "nested",
+                    "properties": {
+                        "label": { "type": "text" },
+                        "description": { "type": "text" }
+                    }
+                },
+                "subdimensions": {
+                    "type": "nested",
+                    "properties": {
+                        "name": { "type": "text" },
+                        "labels": {
+                            "type": "nested",
+                            "properties": {
+                                "label": { "type": "text" },
+                                "description": { "type": "text" },
+                                "charactetistics": {
+                                    "type": "nested",
+                                    "properties": {
+                                        "label": { "type": "text" },
+                                        "description": { "type": "text" }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+{
+    "properties": {
+        "name": { "type": "text" },
+        "icon": { "type": "text" },
+        "label": {
+            "type": "nested",
+            "properties": {
+                "title": { "type": "text" },
+                "description": { "type": "text" }
+            }
+        },
+        "activities": {
+            "type": "nested",
+            "properties": {
+                "name": { "type": "text" },
+                "label": {
+                    "type": "nested",
+                    "properties": {
+                        "title": { "type": "text" },
+                        "description": { "type": "text" }
+                    }
+                },
+                "activity": {
+                    "type": "nested",
+                    "properties": {
+                        "name": { "type": "text" },
+                        "label": {
+                            "type": "nested",
+                            "properties": {
+                                "title": { "type": "text" },
+                                "description": { "type": "text" },
+                                "cards": {
+                                    "type": "nested",
+                                    "properties": {
+                                        "title": { "type": "text" },
+                                        "description": { "type": "text" },
+                                        "icon": { "type": "text" },
+                                        "cs_initiatives": {
+                                            "type": "nested",
+                                            "properties": {
+                                                "process": { "type": "object" },
+                                                "goal": { "type": "object" },
+                                                "task": { "type": "object" },
+                                                "crowd": { "type": "object" }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

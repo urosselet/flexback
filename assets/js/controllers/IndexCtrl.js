@@ -97,6 +97,13 @@ angular.module('flexcrowd.controllers', [])
             $state.go('index.csprocess');
         };
 
+        /**
+         * Go to CS Activity management view
+         */
+        $scope.csActivity = function() {
+            $state.go('index.csactivity');
+        };
+
     }
 
 ]);

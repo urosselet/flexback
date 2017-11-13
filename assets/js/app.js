@@ -11,6 +11,7 @@ angular.module('flexcrowd',
         'toaster',
         'angular-loading-bar',
         'chart.js',
+        'ui.bootstrap',
         'flexcrowd.directives',
         'flexcrowd.filters',
         'flexcrowd.controllers',
@@ -92,6 +93,17 @@ angular.module('flexcrowd',
                 resolve: {
                     csprocess: function(ESService, $stateParams) {
                         return ESService.getCSProcess($stateParams);
+                    }
+                }
+            })
+
+            .state('index.csactivity', {
+                url: '/cs_activity',
+                templateUrl: '/templates/_lists/cs_activity_list.html',
+                controller: 'CSActivityCtrl',
+                resolve: {
+                    csactivity: function(ESService) {
+                        return ESService.getCSActivity();
                     }
                 }
             })

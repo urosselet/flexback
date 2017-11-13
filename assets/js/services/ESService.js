@@ -72,7 +72,7 @@ angular.module('flexcrowd.services', [])
                  * @param  {[type]} id [description]
                  * @return {[type]}    [description]
                  */
-                getAttributes: function(id, updatedObj) {
+                getAttributes: function() {
                     let dfd = $q.defer();
                     Restangular.one('/csplatform/getAttributes').get()
                         .then(function(res) {
@@ -82,7 +82,7 @@ angular.module('flexcrowd.services', [])
                 },
 
                 /**
-                 * Get array formatted for chart's display
+                 * Get formatted array for chart's display
                  * @return {[type]} [description]
                  */
                 getChartsArray: function() {
@@ -124,6 +124,38 @@ angular.module('flexcrowd.services', [])
                 updateCSProcess: function(id, updatedObj) {
                     return Restangular.one('/csprocess', id)
                         .customPUT(updatedObj);
+                },
+
+                /**
+                 * CS Activity update
+                 * @param  {[type]} id [description]
+                 * @return {[type]}    [description]
+                 */
+                updateCSActivity: function(id, updatedObj) {
+                    return Restangular.one('/csactivity', id)
+                        .customPUT(updatedObj);
+                },
+
+                /**
+                 * Get CS Activity based on it's ID
+                 * @param  {[type]} stateParams [description]
+                 * @return {[type]}             [description]
+                 */
+                getCSActivity: function(stateParams) {
+                    let dfd = $q.defer();
+
+                    if (typeof stateParams === 'undefined') {
+                        Restangular.all('/csactivity').getList()
+                            .then(function(res) {
+                                dfd.resolve(res);
+                            });
+                    } else {
+                        Restangular.one('/csactivity', stateParams.id).get()
+                            .then(function(res) {
+                                dfd.resolve(res);
+                            });
+                    }
+                    return dfd.promise;
                 },
 
                 /**

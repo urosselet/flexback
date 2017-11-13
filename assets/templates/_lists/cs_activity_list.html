@@ -1,0 +1,45 @@
+<div id="csactivity-view">
+	
+	<div class="row">
+		<h1>CS Activity management</h1>
+
+		<div class="col col-md-4 process-column" ng-repeat="csactivity in csactivities">
+			<!-- Process type section -->
+			<section class="process-detail">
+				<h2><a ui-sref="index.csprocess-edit({ id: csactivity._id })">{{ csactivity._source.activity_name }}</a></h2>
+				<div class="label-wrapper" ng-repeat="(label, obj) in csactivity._source.data.label">
+					<h3>{{ label }}</h3>
+					<div ng-repeat="(attr, value) in obj">{{ value }}</div>
+				</div>
+			</section>
+			<!-- END::Process type section -->
+
+			<section class="process-tree">
+				<h2>Activities</h2>
+				<div class="add-activity-btn" ng-click="editActivity(csactivity._source.data.activities, csactivity)"><i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i></div>
+				<div class="activity-seperator" ng-repeat="activity in csactivity._source.data.activities">
+					<div class="activity-wrapper" ng-repeat="(key, value) in activity.label">
+						<div class="label-wrapper">
+							<h3>{{ value.title }} <span>{{ key }}</span></h3>
+							<div>{{ value.description }}</div>
+							<div class="cards-wrapper">
+								<h4>Cards</h4>
+								<div class="add-card-btn" ng-click="editCard(value.cards, csactivity)"><i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i></div>
+								<div ng-repeat="(attr2, value2) in value.cards">
+									<h6>{{ attr2 }}</h6>
+									<div class="card-question" ng-repeat="(attr3, value3) in value2" ng-click="editAttributes(value3, csactivity)">
+										<div>{{ value3.title }}</div>
+										<div>{{ value3.description }}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+	</div>
+
+</div>
