@@ -36,7 +36,7 @@ angular.module('flexcrowd.controllers')
 
         };
 
-        $scope.editActivity = function(card, activity) {
+        $scope.editActivity = function(activitiesArray, activity) {
 
             $scope.activitiesArray = activitiesArray;
             $scope.activity = activity;

@@ -1,0 +1,131 @@
+{
+	"index": 2,
+	"activity_name": "realisation",
+	"icon": "fa fa-crosshairs",
+	"data": {
+		"label": {
+			"default": {
+				"title": "Realisation (Default label)",
+				"description": "Realisation description (Default)"
+			},
+			"cluster_1": {
+				"title": "Realisation (Cluster 1 label)",
+				"description": "Realisation description (Cluster_1)"
+			}
+		},
+		"activities": [
+			{
+				"id": "design_call",
+				"label": {
+					"default": {
+						"title": "Design call label",
+						"description": "Design call description",
+						"cards": {
+							"default": [
+								{
+									"title": "Question 1",
+									"description": "Question 1 descriptioon",
+									"icon": "fa fa-crosshairs",
+									"cs_initiatives": {
+										"process": { 
+											"preselection_of_contributors": "qualification_based"
+										},
+                                        "goal": { "main_beneficiary": "initiator" },
+                                        "task": { "dependencies": "decoupled" },
+                                        "crowd": { "main_motivational_driver": "tangible_reward" }
+									}
+								},
+								{
+									"title": "Question 2",
+									"description": "Question 2 descriptioon",
+									"icon": "fa fa-crosshairs",
+									"cs_initiatives": {
+										"process": { 
+											"preselection_of_contributors": "qualification_based"
+										},
+                                        "goal": { "main_beneficiary": "initiator" },
+                                        "task": { "dependencies": "decoupled" },
+                                        "crowd": { "main_motivational_driver": "tangible_reward" }
+									}
+								}
+							]
+						}
+					},
+					"cluster_1": {
+						"title": "Design call label (cluster_1)",
+						"description": "Design call description (cluster_1)",
+						"cards": {
+							"default": [
+								{
+									"title": "Question 1",
+									"description": "Question 1 descriptioon",
+									"icon": "fa fa-crosshairs",
+									"cs_initiatives": {
+										"process": { 
+											"preselection_of_contributors": "qualification_based"
+										},
+                                        "goal": { "main_beneficiary": "initiator" },
+                                        "task": { "dependencies": "decoupled" },
+                                        "crowd": { "main_motivational_driver": "tangible_reward" }
+									}
+								},
+								{
+									"title": "Question 2",
+									"description": "Question 2 descriptioon",
+									"icon": "fa fa-crosshairs",
+									"cs_initiatives": {
+										"process": { 
+											"preselection_of_contributors": "qualification_based"
+										},
+                                        "goal": { "main_beneficiary": "initiator" },
+                                        "task": { "dependencies": "decoupled" },
+                                        "crowd": { "main_motivational_driver": "tangible_reward" }
+									}
+								}
+							]
+						}
+					}
+				}
+			},
+			{
+				"id": "recruit_users",
+				"label": {
+					"default": {
+						"title": "Recruit users label",
+						"description": "Recruit users description",
+						"cards": {
+							"default": [
+								{
+									"title": "Question 1",
+									"description": "Question 1 descriptioon",
+									"icon": "fa fa-crosshairs",
+									"cs_initiatives": {
+										"process": { 
+											"preselection_of_contributors": "qualification_based"
+										},
+                                        "goal": { "main_beneficiary": "initiator" },
+                                        "task": { "dependencies": "decoupled" },
+                                        "crowd": { "main_motivational_driver": "tangible_reward" }
+									}
+								},
+								{
+									"title": "Question 2",
+									"description": "Question 2 descriptioon",
+									"icon": "fa fa-crosshairs",
+									"cs_initiatives": {
+										"process": { 
+											"preselection_of_contributors": "qualification_based"
+										},
+                                        "goal": { "main_beneficiary": "initiator" },
+                                        "task": { "dependencies": "decoupled" },
+                                        "crowd": { "main_motivational_driver": "tangible_reward" }
+									}
+								}
+							]
+						}
+					}
+				}
+			}
+		]
+	}
+}
