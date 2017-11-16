@@ -2,13 +2,28 @@
 
 angular.module('flexcrowd.controllers')
 
-.controller('CSActivityCtrl', ['$scope', '$state', 'csactivity', 'ESService', '$uibModal',
-    function($scope, $state, csactivity, ESService, $uibModal) {
+.controller('CSActivityCtrl', ['$scope', '$state', 'csactivity', 'ESService', '$uibModal', 'toaster',
+    function($scope, $state, csactivity, ESService, $uibModal, toaster) {
 
         $scope.csactivities = csactivity;
 
         $scope.cardsArray = [];
         $scope.activitiesArray = [];
+
+        $scope.isSaveHidden = true;
+
+        $scope.save = function(item) {
+            $scope.isSaveHidden = true;
+            ESService.updateCSActivity(item._id, item._source)
+                .then(function() {
+                    toaster.pop('success', 'Activity', 'Activity updated successfully');
+                    $state.go('index.csactivity');
+                });
+        };
+
+        $scope.setActivity = function() {
+            $scope.isSaveHidden = false;
+        }
 
         $scope.editCard = function(cardsArray, activity) {
 

@@ -92,7 +92,6 @@
                         <option value="">All</option>
                         <option ng-repeat="row in platforms | unique:'cluster'" value="{{ row._source.cluster }}">{{ row._source.cluster | clusterText }}</option>
                     </select>
-                    <!--<input st-search="_source.cluster" placeholder="search for Id" class="input-sm form-control" type="search" />-->
                 </th>
                 <th></th>
             </tr>
@@ -105,11 +104,6 @@
                 <td style="width:30%">
                     <span><a href="{{ platform._source.platform_website }}" target="_blank">{{ platform._source.name }}</a></span>
                 </td>
-                <!--
-                <td>
-                    <span>{{ platform._source.description }}</span>
-                </td>
-                -->
                 <td>
                     <span>{{ platform._source.inactif | booleanTransform }}</span>
                 </td>
@@ -234,9 +228,4 @@
             </tr>
         </tbody>
     </table>
-
-    <!-- Tree diagram section -->
-    <div class="row" ng-if="treeDiagram === true">
-        <div id="tree-diagram" tree-diagram></div>
-    </div>
 </div>

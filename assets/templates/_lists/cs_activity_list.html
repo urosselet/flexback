@@ -1,35 +1,74 @@
 <div id="csactivity-view">
 	
-	<div class="row">
+	<div class="row" view-expand>
+
 		<h1>CS Activity management</h1>
 
-		<div class="col col-md-4 process-column" ng-repeat="csactivity in csactivities">
+		<div class="col col-md-3 process-column" ng-repeat="csactivity in csactivities">
+
+			<div class="btn-group pull-right">
+				<button type="button" class="btn btn-success" ng-click="save(csactivity)" ng-hide="isSaveHidden">Save</button>
+			</div>
+
 			<!-- Process type section -->
 			<section class="process-detail">
-				<h2><a ui-sref="index.csprocess-edit({ id: csactivity._id })">{{ csactivity._source.activity_name }}</a></h2>
-				<div class="label-wrapper" ng-repeat="(label, obj) in csactivity._source.data.label">
-					<h3>{{ label }}</h3>
-					<div ng-repeat="(attr, value) in obj">{{ value }}</div>
+
+				<h2>
+					{{ csactivity._source.data.label.default.title }}
+					<span class="expand"><i class="glyphicon glyphicon-resize-full"></i></span>
+				</h2>
+				
+				<div class="icon-wrapper">
+					<span editable-text="csactivity._source.icon" onaftersave="setActivity()"><i class="icon flx-{{ csactivity._source.icon }}"></i> {{ csactivity._source.icon }}</span>
 				</div>
+
+				<div class="label-wrapper" ng-repeat="(label, obj) in csactivity._source.data.label">
+
+					<h3>{{ label }}</h3>
+					<div editable-text="obj.title" onaftersave="setActivity()">{{ obj.title }}</div>
+					<div editable-textarea="obj.description" onaftersave="setActivity()">{{ obj.description }}</div>
+
+				</div>
+
 			</section>
 			<!-- END::Process type section -->
 
 			<section class="process-tree">
+
 				<h2>Activities</h2>
-				<div class="add-activity-btn" ng-click="editActivity(csactivity._source.data.activities, csactivity)"><i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i></div>
+
+				<div class="add-activity-btn" ng-click="editActivity(csactivity._source.data.activities, csactivity)">
+					<i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i>
+				</div>
+
 				<div class="activity-seperator" ng-repeat="activity in csactivity._source.data.activities">
 					<div class="activity-wrapper" ng-repeat="(key, value) in activity.label">
 						<div class="label-wrapper">
-							<h3>{{ value.title }} <span>{{ key }}</span></h3>
-							<div>{{ value.description }}</div>
+
+							<h3 editable-text="value.title" onaftersave="setActivity()">{{ value.title }} <span>{{ key }}</span></h3>
+							<div editable-textarea="value.description" onaftersave="setActivity()">{{ value.description }}</div>
+							<div editable-textarea="value.description" onaftersave="setActivity()" ng-if="!value.description">--</div>
+
 							<div class="cards-wrapper">
 								<h4>Cards</h4>
-								<div class="add-card-btn" ng-click="editCard(value.cards, csactivity)"><i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i></div>
+								<div class="add-card-btn" ng-click="editCard(value.cards, csactivity)">
+									<i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i>
+								</div>
 								<div ng-repeat="(attr2, value2) in value.cards">
 									<h6>{{ attr2 }}</h6>
-									<div class="card-question" ng-repeat="(attr3, value3) in value2" ng-click="editAttributes(value3, csactivity)">
-										<div>{{ value3.title }}</div>
-										<div>{{ value3.description }}</div>
+									<div class="card-question" ng-repeat="(attr3, value3) in value2">
+
+										<span ng-click="editAttributes(value3, csactivity)">
+											<i class="glyphicon glyphicon-cog"></i>
+										</span>
+
+										<div editable-text="value3.title" onaftersave="setActivity()">{{ value3.title }}</div>
+
+										<div editable-text="value3.description" onaftersave="setActivity()">{{ value3.description }}</div>
+										<div editable-textarea="value3.description" onaftersave="setActivity()" ng-if="value3.description === '' || !value3.description">--</div>
+										
+										<div editable-textarea="value3.icon" onaftersave="setActivity()"><i class="icon flx-{{ value3.icon }}"></i> {{ value3.icon }}</div>
+										<div editable-textarea="value3.icon" onaftersave="setActivity()" ng-if="value3.icon === '' || !value3.icon">--</div>
 									</div>
 								</div>
 							</div>

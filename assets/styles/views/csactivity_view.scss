@@ -18,7 +18,8 @@
         border-bottom: 2px solid #888;
     }
     h2 {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        font-weight: bold;
 
         margin-top: 0;
         margin-bottom: 0;
@@ -27,12 +28,26 @@
 
         text-align: center;
         text-transform: uppercase;
+
+        color: #e8f7f9;
         a {
             color: #fff;
         }
+        .expand {
+            font-size: 1.5rem;
+
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            padding: 1rem;
+
+            cursor: pointer;
+        }
     }
     h3 {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
+        font-weight: bold;
 
         margin-top: 0;
         padding-bottom: 5px;
@@ -78,14 +93,27 @@
         padding-left: 0;
 
         border-right: 5px solid #fff;
-        background: #e0cc8a;
+         > .btn-group {
+            margin-bottom: 2rem;
+        }
+        &.visibility {
+            display: none;
+        }
 
+        &.col-md-12,
+        &.col-md-3 {
+            transition: all 200ms;
+        }
 
         .activity-wrapper {
             position: relative;
         }
 
         .process-detail {
+            position: relative;
+
+            clear: both;
+
             padding-bottom: 5px;
 
             color: #fff;
@@ -96,6 +124,22 @@
 
                 background: #53c4d4;
             }
+            .icon-wrapper {
+                margin: 1rem;
+                padding: 1rem;
+
+                border: 1px solid;
+                border-radius: 3px;
+                 > span {
+                    font-size: 1.75rem;
+
+                    display: inline-flex;
+                     > i {
+                        padding-right: 1rem;
+                    }
+                }
+            }
+
             .label-wrapper {
                 margin: 1rem;
                 padding: 1rem;
@@ -103,12 +147,28 @@
                 border: 1px solid #fff;
                 border-radius: 3px;
             }
+            .editable-click,
+            a.editable-click {
+                color: #fff;
+                border-bottom: 0;
+            }
+            .editable-input.editable-has-buttons {
+                min-width: 35em;
+            }
         }
 
         .process-tree {
             position: relative;
 
             background: #e0cc8a;
+            .editable-click,
+            a.editable-click {
+                color: #555;
+                border-bottom: 0;
+            }
+            .editable-input.editable-has-buttons {
+                min-width: 35em;
+            }
             .add-activity-btn {
                 position: absolute;
                 top: 0;
@@ -134,14 +194,24 @@
                     text-align: center;
                 }
                 .card-question {
+                    position: relative;
+
                     margin-top: 1rem;
                     padding: 5px;
-                    cursor: pointer;
+
                     color: #fff;
                     border-radius: 3px;
                     background: #25373d;
-                    &:hover {
-                        background: rgba(37, 55, 61, .5);
+                     > span {
+                        position: absolute;
+                        top: 5px;
+                        right: 5px;
+
+                        cursor: pointer;
+                    }
+                    .editable-click,
+                    a.editable-click {
+                        color: #fff;
                     }
                 }
                 .add-card-btn {

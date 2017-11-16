@@ -114,7 +114,24 @@ angular.module('flexcrowd.directives', [])
             scope.$watch(ctrl.getFilteredCollection, function(val) {
                 scope.$emit('filteredList', { 'val': val });
                 scope.filteredCollection = val;
-            })
+            });
+        }
+    }
+})
+
+.directive('viewExpand', function() {
+    return {
+        link: function(scope, element, attr) {
+
+            jQuery(element).on('click', '.expand', function(evt) {
+                
+                jQuery(this).parent().parent().parent().toggleClass('col-md-3 col-md-12', 1000)
+                    .siblings().toggleClass('visibility');
+
+                jQuery('i.glyphicon', this).toggleClass('glyphicon-resize-full glyphicon-resize-small');
+
+            });
+
         }
     }
 });

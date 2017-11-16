@@ -1,4 +1,4 @@
-<!-- Navigation -->
+<!-- Admin header -->
 <header>
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -6,17 +6,38 @@
         </a>
     </div>
 </header>
+<!-- END::Admin header -->
 
+<!-- Aside navigation -->
 <aside>
     <ul>
-        <li ui-sref-active="active"><a ui-sref="index.list({ item: 'platform' })">Platforms</a></li>
-        <li ui-sref-active="active"><a ui-sref="index.list({ item: 'category' })">Categories</a></li>
-        <li ui-sref-active="active"><a ui-sref="index.csprocess">CS Process</a></li>
-        <li ui-sref-active="active"><a ui-sref="index.csactivity">CS Activities</a></li>
-        <li ui-sref-active="active"><a ui-sref="index.list({ item: 'clusters' })">Clusters</a></li>
-        <li ui-sref-active="active"><a ui-sref="index.cluster">Charts</a></li>
+        <li ui-sref-active="active">
+            <i class="icon flx-file-table"></i>
+            <a ui-sref="index.list({ item: 'platform' })">Platforms</a>
+        </li>
+        <li ui-sref-active="active">
+            <i class="icon flx-folder-binders"></i>
+            <a ui-sref="index.list({ item: 'category' })">Categories</a>
+        </li>
+        <li ui-sref-active="active">
+            <i class="icon flx-flow-chart-1"></i>
+            <a ui-sref="index.csprocess">CS Process</a>
+        </li>
+        <li ui-sref-active="active">
+            <i class="icon flx-flow-chart-3"></i>
+            <a ui-sref="index.csactivity">CS Activities</a>
+        </li>
+        <li ui-sref-active="active">
+            <i class="icon flx-abacus"></i>
+            <a ui-sref="index.list({ item: 'clusters' })">Clusters</a>
+        </li>
+        <li ui-sref-active="active">
+            <i class="icon flx-circle-pie-graph"></i>
+            <a ui-sref="index.cluster">Charts</a>
+        </li>
     </ul>
 </aside>
+<!-- END::Aside navigation -->
 
 <!-- Main content -->
 <section id="main">
@@ -27,11 +48,3 @@
         </div>
     </div>
 </section>
-
-<!-- Footer 
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Flexcrowd 2017</p>
-    </div>
-</footer>
--->
