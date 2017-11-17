@@ -2,8 +2,10 @@
 
 angular.module('flexcrowd.controllers')
 
-.controller('CSActivityCtrl', ['$scope', '$state', 'csactivity', 'ESService', '$uibModal', 'toaster',
-    function($scope, $state, csactivity, ESService, $uibModal, toaster) {
+.controller('CSActivityCtrl', ['$scope', '$state', 'csactivity', 'ESService', '$uibModal', 'toaster', '_',
+    function($scope, $state, csactivity, ESService, $uibModal, toaster, _) {
+
+        let underscore = _;
 
         $scope.csactivities = csactivity;
 
@@ -118,15 +120,36 @@ angular.module('flexcrowd.controllers')
 
         };
 
-        $scope.saveAttributes = function(card) {
+        $scope.saveAttributes = function(card) {};
 
-            console.log($scope.cardAttributes)
-            console.log(card.cs_initiatives)
+        $scope.deleteCard = function(value3, activities, csactivity) {
 
-            $scope.cardAttributes = card;
+            activities.forEach(function(item, index) {
+                if (item.$$hashKey = value3.$$hashKey) {
+                    activities.splice(index, 1)
+                }
+            });
 
-            console.log($scope.activity._source)
-            
+            ESService.updateCSActivity(csactivity._id, csactivity._source)
+                .then(function() {
+                    toaster.pop('success', 'Card', 'Card deleted successfully');
+                });
+
+        };
+
+        $scope.deleteActivity = function(activitiesArray, activity, csactivity) {
+
+            activitiesArray.forEach(function(item, index) {
+                if (item.$$hashKey = activity.$$hashKey) {
+                    activitiesArray.splice(index, 1)
+                }
+            });
+
+            ESService.updateCSActivity(csactivity._id, csactivity._source)
+                .then(function() {
+                    toaster.pop('success', 'Activity', 'Activity deleted successfully');
+                });
+                
         };
 
         $scope.closeModal = function() {

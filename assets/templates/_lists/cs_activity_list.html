@@ -2,7 +2,7 @@
 	
 	<div class="row" view-expand>
 
-		<h1>CS Activity management</h1>
+		<h1>CS Activities</h1>
 
 		<div class="col col-md-3 process-column" ng-repeat="csactivity in csactivities">
 
@@ -41,34 +41,67 @@
 					<i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i>
 				</div>
 
+				<div class="activities-alert" ng-if="!csactivity._source.data.activities.length">No activites</div>
+
 				<div class="activity-seperator" ng-repeat="activity in csactivity._source.data.activities">
 					<div class="activity-wrapper" ng-repeat="(key, value) in activity.label">
 						<div class="label-wrapper">
+							
+							<div class="form-group">
+								<div>Title <span>( {{ key }} )</span></div>
+								<h3 editable-text="value.title" onaftersave="setActivity(value3, value2, csactivity)">{{ value.title }}</h3>
 
-							<h3 editable-text="value.title" onaftersave="setActivity()">{{ value.title }} <span>{{ key }}</span></h3>
-							<div editable-textarea="value.description" onaftersave="setActivity()">{{ value.description }}</div>
-							<div editable-textarea="value.description" onaftersave="setActivity()" ng-if="!value.description">--</div>
+								<div class="del-act-btn" ng-click="deleteActivity(csactivity._source.data.activities, activity, csactivity)">
+									<i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+								</div>
+
+							</div>
+							
+							<div class="form-group">
+								<div>Description</div>
+								<div editable-textarea="value.description" onaftersave="setActivity()">{{ value.description }}</div>
+								<div editable-textarea="value.description" onaftersave="setActivity()" ng-if="!value.description">--</div>
+							</div>
+
+							<div class="form-group">
+								<div>Icon</div>
+								<div editable-text="value.icon" onaftersave="setActivity()"><i class="icon flx-{{ value.icon }}"></i> {{ value.icon }}</div>
+								<div editable-text="value.icon" onaftersave="setActivity()" ng-if="!value.icon">--</div>
+							</div>
 
 							<div class="cards-wrapper">
 								<h4>Cards</h4>
 								<div class="add-card-btn" ng-click="editCard(value.cards, csactivity)">
 									<i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i>
 								</div>
+
+								<div class="cards-alert" ng-if="!value.cards.default.length">No cards</div>
+
 								<div ng-repeat="(attr2, value2) in value.cards">
-									<h6>{{ attr2 }}</h6>
+									<h6 ng-if="value2.cards">{{ attr2 }}</h6>
 									<div class="card-question" ng-repeat="(attr3, value3) in value2">
-
-										<span ng-click="editAttributes(value3, csactivity)">
-											<i class="glyphicon glyphicon-cog"></i>
-										</span>
-
-										<div editable-text="value3.title" onaftersave="setActivity()">{{ value3.title }}</div>
-
-										<div editable-text="value3.description" onaftersave="setActivity()">{{ value3.description }}</div>
-										<div editable-textarea="value3.description" onaftersave="setActivity()" ng-if="value3.description === '' || !value3.description">--</div>
 										
-										<div editable-textarea="value3.icon" onaftersave="setActivity()"><i class="icon flx-{{ value3.icon }}"></i> {{ value3.icon }}</div>
-										<div editable-textarea="value3.icon" onaftersave="setActivity()" ng-if="value3.icon === '' || !value3.icon">--</div>
+										<div class="action-group">
+											<span ng-click="editAttributes(value3, csactivity)"><i class="glyphicon glyphicon-cog"></i></span>
+											<span ng-click="deleteCard(value3, value2, csactivity)"><i class="glyphicon glyphicon-trash"></i></span>
+										</div>
+										
+										<div class="form-group">
+											<div>Title</div>
+											<div editable-text="value3.title" onaftersave="setActivity()">{{ value3.title }}</div>
+										</div>
+										
+										<div class="form-group">
+											<div>Description</div>
+											<div editable-text="value3.description" onaftersave="setActivity()">{{ value3.description }}</div>
+											<div editable-textarea="value3.description" onaftersave="setActivity()" ng-if="value3.description === '' || !value3.description">--</div>
+										</div>
+										
+										<div class="form-group">
+											<div>Icon</div>
+											<div editable-text="value3.icon" onaftersave="setActivity()"><i class="icon flx-{{ value3.icon }}"></i> {{ value3.icon }}</div>
+											<div editable-text="value3.icon" onaftersave="setActivity()" ng-if="value3.icon === '' || !value3.icon">--</div>
+										</div>
 									</div>
 								</div>
 							</div>

@@ -29,7 +29,6 @@
         text-align: center;
         text-transform: uppercase;
 
-        color: #e8f7f9;
         a {
             color: #fff;
         }
@@ -45,30 +44,22 @@
             cursor: pointer;
         }
     }
+    h3,
+    h4,
+    h6 {
+        margin-top: 0;
+        padding-bottom: 5px;
+    }
     h3 {
         font-size: 1.5rem;
         font-weight: bold;
 
-        margin-top: 0;
-        padding-bottom: 5px;
-
         text-transform: capitalize;
 
         border-bottom: 1px dashed;
-        span {
-            font-size: 1.5rem;
-            font-style: italic;
-
-            display: block;
-
-            padding-top: 5px;
-        }
     }
     h4 {
         font-size: 1.75rem;
-
-        margin-top: 0;
-        padding-bottom: 5px;
 
         text-align: center;
         text-transform: uppercase;
@@ -79,9 +70,6 @@
     }
     h6 {
         font-size: 1.45rem;
-
-        margin-top: 0;
-        padding-bottom: 5px;
 
         text-transform: capitalize;
 
@@ -107,6 +95,11 @@
 
         .activity-wrapper {
             position: relative;
+            .label-wrapper > .form-group > div:first-child {
+                font-weight: bold;
+
+                color: rgba(0, 0, 0, .35);
+            }
         }
 
         .process-detail {
@@ -161,6 +154,17 @@
             position: relative;
 
             background: #e0cc8a;
+            .activities-alert {
+                font-size: 2rem;
+                font-weight: bold;
+
+                padding: 2rem;
+
+                text-align: center;
+                text-transform: uppercase;
+
+                color: rgba(0,0,0,.45);
+            }
             .editable-click,
             a.editable-click {
                 color: #555;
@@ -193,21 +197,34 @@
 
                     text-align: center;
                 }
+                .cards-alert {
+                    font-size: 1.75rem;
+                    font-weight: bold;
+
+                    padding: 2rem;
+
+                    text-align: center;
+                    text-transform: uppercase;
+
+                    color: rgba(0,0,0,.45);
+                }
                 .card-question {
                     position: relative;
 
                     margin-top: 1rem;
-                    padding: 5px;
+                    padding: 15px;
 
-                    color: #fff;
+                    color: rgba(255, 255, 255, .5);
                     border-radius: 3px;
                     background: #25373d;
-                     > span {
-                        position: absolute;
-                        top: 5px;
-                        right: 5px;
 
-                        cursor: pointer;
+                    .action-group {
+                        float: right;
+                         > span {
+                            margin-left: 10px;
+
+                            cursor: pointer;
+                        }
                     }
                     .editable-click,
                     a.editable-click {
@@ -237,6 +254,16 @@
                 border: 1px solid #d6bb61;
                 border-radius: 3px;
                 background: #ebdeb2;
+
+                .del-act-btn {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+
+                    padding: 10px;
+
+                    cursor: pointer;
+                }
             }
         }
     }
