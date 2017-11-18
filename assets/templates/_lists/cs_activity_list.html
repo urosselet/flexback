@@ -102,6 +102,10 @@
 											<div editable-text="value3.icon" onaftersave="setActivity()"><i class="icon flx-{{ value3.icon }}"></i> {{ value3.icon }}</div>
 											<div editable-text="value3.icon" onaftersave="setActivity()" ng-if="value3.icon === '' || !value3.icon">--</div>
 										</div>
+										
+										<span data-toggle="tooltip" data-placement="top" title="Attributes not configured yet" ng-if="!value3.cs_initiatives">
+											<i class="glyphicon glyphicon-warning-sign"></i>
+										</span>
 									</div>
 								</div>
 							</div>

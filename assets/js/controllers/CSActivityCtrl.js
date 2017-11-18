@@ -2,10 +2,8 @@
 
 angular.module('flexcrowd.controllers')
 
-.controller('CSActivityCtrl', ['$scope', '$state', 'csactivity', 'ESService', '$uibModal', 'toaster', '_',
-    function($scope, $state, csactivity, ESService, $uibModal, toaster, _) {
-
-        let underscore = _;
+.controller('CSActivityCtrl', ['$scope', '$state', 'csactivity', 'ESService', '$uibModal', 'toaster',
+    function($scope, $state, csactivity, ESService, $uibModal, toaster) {
 
         $scope.csactivities = csactivity;
 
@@ -34,7 +32,7 @@ angular.module('flexcrowd.controllers')
 
 	        $scope.modalInstance = $uibModal.open({
 	            'animation': $scope.animationsEnabled,
-	            'templateUrl': 'templates/_partials/card_form.html',
+	            'templateUrl': 'templates/_dialogs/card_form.html',
 	            'scope': $scope,
 	            'backdrop': false
 	        });
@@ -60,7 +58,7 @@ angular.module('flexcrowd.controllers')
 
             $scope.modalInstance = $uibModal.open({
                 'animation': $scope.animationsEnabled,
-                'templateUrl': 'templates/_partials/activity_form.html',
+                'templateUrl': 'templates/_dialogs/activity_form.html',
                 'scope': $scope,
                 'backdrop': false
             });
@@ -102,7 +100,7 @@ angular.module('flexcrowd.controllers')
 
         $scope.editAttributes = function(card, activity) {
 
-            $scope.cardAttributes = card.cs_initiatives;
+            $scope.cardAttributes = card;
             $scope.activity = activity;
 
             ESService.getAttributes()
@@ -112,7 +110,7 @@ angular.module('flexcrowd.controllers')
 
             $scope.modalInstance = $uibModal.open({
                 'animation': $scope.animationsEnabled,
-                'templateUrl': 'templates/_partials/attributes_form.html',
+                'templateUrl': 'templates/_dialogs/attributes_form.html',
                 'size': 'lg',
                 'scope': $scope,
                 'backdrop': false
@@ -120,7 +118,14 @@ angular.module('flexcrowd.controllers')
 
         };
 
-        $scope.saveAttributes = function(card) {};
+        $scope.saveAttributes = function() {
+            ESService.updateCSActivity($scope.activity._id, $scope.activity._source)
+                .then(function() {
+                    toaster.pop('success', 'Card attributes', 'Attributes saved successfully');
+                    $state.go('index.csactivity');
+                    $scope.closeModal();
+                });
+        };
 
         $scope.deleteCard = function(value3, activities, csactivity) {
 

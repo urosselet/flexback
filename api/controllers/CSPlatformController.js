@@ -2,14 +2,10 @@ let client = sails.config.es.client,
     fs = require('fs'),
     path = require('path'),
     util = require('util'),
-    WAE = require('web-auto-extractor').default,
     request = require('request'),
     aggQuery = require('../../data/es_dataset/flexcrowd_aggregation.json');
 
-let summarize = require('summarize');
-let superagent = require('superagent');
 let extractor = require('node-article-extractor');
-let scrappy = require('@mrharel/scrappy');
 let ineed = require('ineed');
 let G = require('generatorics');
 let glossary = require('glossary');

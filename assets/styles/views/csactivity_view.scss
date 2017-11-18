@@ -230,6 +230,11 @@
                     a.editable-click {
                         color: #fff;
                     }
+                    > span {
+                        position: absolute;
+                        right: 10px;
+                        bottom: 0;
+                    }
                 }
                 .add-card-btn {
                     position: absolute;

@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Add activity</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <form>
+    	<div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" ng-model="item.label.default.title" />
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control" ng-model="item.label.default.description"></textarea>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-warning" type="button" ng-click="closeModal()">Cancel</button>
+    <button class="btn btn-success" type="button" ng-click="saveActivity(item)">Save</button>
+</div>
