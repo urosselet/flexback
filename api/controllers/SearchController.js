@@ -7,6 +7,8 @@
 const { Flexcrowd } = require('flx-process');
 const flexClient = Flexcrowd.init({ 'file': 'flow.yml' });
 
+let client = sails.config.es.client;
+
 module.exports = {
 
     /**
@@ -56,6 +58,40 @@ module.exports = {
             .then(function(result) {
                 return res.json(result.suggest.didYouMean[0].options);
             });
+    },
+
+    /**
+     * Find platform by attributes
+     * @param  {[type]} req [description]
+     * @param  {[type]} res [description]
+     * @return {[type]}     [description]
+     */
+    platforms: function(req, res) {
+
+        console.log(req.body)
+
+        let query = {
+            "nested" : {
+                "path" : "attributes",
+                "score_mode" : "avg",
+                "query" : {
+                    "bool" : {
+                        "must" : [
+                            { "match" : req.body }
+                        ]
+                    }
+                }
+            }
+        };
+
+        client.search({
+            'index': 'operation',
+            'type': 'platform',
+            'body': { 'query': query }
+        }).then(function(results) {
+            return res.json(results);
+        });
+
     }
 
 };
