@@ -12,6 +12,11 @@ angular.module('flexcrowd.controllers')
 
         $scope.isSaveHidden = true;
 
+        /**
+         * Save activity
+         * @param  {[type]} item [description]
+         * @return {[type]}      [description]
+         */
         $scope.save = function(item) {
             $scope.isSaveHidden = true;
             ESService.updateCSActivity(item._id, item._source)
@@ -21,10 +26,19 @@ angular.module('flexcrowd.controllers')
                 });
         };
 
+        /**
+         * Diplay save button if activity object changer
+         */
         $scope.setActivity = function() {
             $scope.isSaveHidden = false;
         }
 
+        /**
+         * Open card modal for update
+         * @param  {[type]} cardsArray [description]
+         * @param  {[type]} activity   [description]
+         * @return {[type]}            [description]
+         */
         $scope.editCard = function(cardsArray, activity) {
 
             $scope.cardsArray = cardsArray.default;
@@ -39,6 +53,11 @@ angular.module('flexcrowd.controllers')
 
         };
 
+        /**
+         * Save card modification
+         * @param  {[type]} card [description]
+         * @return {[type]}      [description]
+         */
         $scope.saveCard = function(card) {
 
             $scope.cardsArray.push(card);
@@ -105,9 +124,8 @@ angular.module('flexcrowd.controllers')
 
             ESService.getAttributes()
                 .then(function(attributes) {
-                    console.log(attributes)
                     $scope.attributes = attributes;
-                }) 
+                });
 
             $scope.modalInstance = $uibModal.open({
                 'animation': $scope.animationsEnabled,
@@ -119,7 +137,24 @@ angular.module('flexcrowd.controllers')
 
         };
 
-        $scope.saveAttributes = function() {
+        /**
+         * Save card attributes
+         * @param  {[type]} cardAttributes [description]
+         * @return {[type]}                [description]
+         */
+        $scope.saveAttributes = function(cardAttributes) {
+            
+            Object.keys(cardAttributes.cs_initiatives).map(function(objectKey, index) {
+                Object.keys(cardAttributes.cs_initiatives[objectKey]).map(function(obj) {
+                    if (cardAttributes.cs_initiatives[objectKey][obj] === '') {
+                        delete cardAttributes.cs_initiatives[objectKey][obj];
+                    }
+                });
+                if (Object.keys(cardAttributes.cs_initiatives[objectKey]).length === 0 ) {
+                    delete cardAttributes.cs_initiatives[objectKey];
+                }
+            });
+
             ESService.updateCSActivity($scope.activity._id, $scope.activity._source)
                 .then(function() {
                     toaster.pop('success', 'Card attributes', 'Attributes saved successfully');
@@ -140,7 +175,6 @@ angular.module('flexcrowd.controllers')
                 .then(function() {
                     toaster.pop('success', 'Card', 'Card deleted successfully');
                 });
-
         };
 
         $scope.deleteActivity = function(activitiesArray, activity, csactivity) {

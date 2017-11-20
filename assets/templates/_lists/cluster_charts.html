@@ -1,22 +1,22 @@
 <div id="cluster-chart">
-	<div id="accordion" class="accordion">
-		<div class="row cluster-wrapper accordion-group" ng-repeat="chart in chartsArray">
-			<div class="accordion-heading">
-	            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapse_{{chart.cluster}}">
-	            	<h1>Cluster {{ chart.cluster | clusterText }} | {{ chart.platform_count }} platforms</h1>
-	           	</a>
-	        </div>
-			<div id="collapse_{{chart.cluster}}" class="accordion-body collapse in">
-				<div  class="row taxonomy-wrapper" ng-repeat="(key, data) in chart.data">
-					<h2>{{ data.dimension | idToText }}</h2>
-					<div class="col col-md-6 accordion-inner" ng-repeat="(key, data) in data.dataset">
-						<h3>{{ data.subdimension | idToText }}</h3>
-						<canvas id="pie" class="chart chart-pie"
-						    chart-data="data.dataset.values" chart-labels="data.dataset.labels" chart-options="options">
-						</canvas>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div id="accordion" class="accordion">
+        <div class="row cluster-wrapper accordion-group" ng-repeat="chart in chartsArray">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-target="#collapse_{{chart.cluster}}">
+                    <h1>Cluster {{ chart.cluster | clusterText }} | {{ chart.platform_count }} platforms</h1>
+                </a>
+            </div>
+            <div id="collapse_{{chart.cluster}}" class="accordion-body collapse in">
+                <div  class="row taxonomy-wrapper" ng-repeat="(key, data) in chart.data">
+                    <h2>{{ data.dimension | idToText }}</h2>
+                    <div class="col col-md-6 accordion-inner" ng-repeat="(key, data) in data.dataset">
+                        <h3>{{ data.subdimension | idToText }}</h3>
+                        <canvas id="pie" class="chart chart-pie"
+                            chart-data="data.dataset.values" chart-labels="data.dataset.labels" chart-options="options">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

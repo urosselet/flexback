@@ -1,121 +1,99 @@
 <div id="csactivity-view">
-	
-	<div class="row" view-expand>
+    
+    <div class="row" view-expand>
 
-		<h1>CS Activities</h1>
+        <h1>CS Activities</h1>
 
-		<div class="col col-md-3 process-column" ng-repeat="csactivity in csactivities">
+        <div class="col col-md-3 process-column" ng-repeat="csactivity in csactivities">
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-success" ng-click="save(csactivity)" ng-hide="isSaveHidden">Save</button>
+            </div>
+            <!-- Process type section -->
+            <section class="process-detail">
+                <h2>
+                    {{ csactivity._source.data.label.default.title }}
+                    <span class="expand"><i class="glyphicon glyphicon-resize-full"></i></span>
+                </h2>
+                <div class="icon-wrapper">
+                    <span editable-text="csactivity._source.icon" onaftersave="setActivity()"><i class="icon flx-{{ csactivity._source.icon }}"></i> {{ csactivity._source.icon }}</span>
+                </div>
+                <div class="label-wrapper" ng-repeat="(label, obj) in csactivity._source.data.label">
+                    <h3>{{ label }}</h3>
+                    <div editable-text="obj.title" onaftersave="setActivity()">{{ obj.title }}</div>
+                    <div editable-textarea="obj.description" onaftersave="setActivity()">{{ obj.description }}</div>
+                </div>
+            </section>
+            <!-- END::Process type section -->
 
-			<div class="btn-group pull-right">
-				<button type="button" class="btn btn-success" ng-click="save(csactivity)" ng-hide="isSaveHidden">Save</button>
-			</div>
+            <section class="process-tree">
+                <h2>Activities</h2>
+                <div class="add-activity-btn" ng-click="editActivity(csactivity._source.data.activities, csactivity)">
+                    <i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i>
+                </div>
+                <div class="activities-alert" ng-if="!csactivity._source.data.activities.length">No activites</div>
+                <div class="activity-seperator" ng-repeat="activity in csactivity._source.data.activities">
+                    <div class="activity-wrapper" ng-repeat="(key, value) in activity.label">
+                        <div class="label-wrapper">
+                            <div class="form-group">
+                                <div>Title <span>( {{ key }} )</span></div>
+                                <h3 editable-text="value.title" onaftersave="setActivity(value3, value2, csactivity)">{{ value.title }}</h3>
+                                <div class="del-act-btn" ng-click="deleteActivity(csactivity._source.data.activities, activity, csactivity)">
+                                    <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div>Description</div>
+                                <div editable-textarea="value.description" onaftersave="setActivity()">{{ value.description }}</div>
+                                <div editable-textarea="value.description" onaftersave="setActivity()" ng-if="!value.description">--</div>
+                            </div>
 
-			<!-- Process type section -->
-			<section class="process-detail">
+                            <div class="form-group">
+                                <div>Icon</div>
+                                <div editable-text="value.icon" onaftersave="setActivity()"><i class="icon flx-{{ value.icon }}"></i> {{ value.icon }}</div>
+                                <div editable-text="value.icon" onaftersave="setActivity()" ng-if="!value.icon">--</div>
+                            </div>
 
-				<h2>
-					{{ csactivity._source.data.label.default.title }}
-					<span class="expand"><i class="glyphicon glyphicon-resize-full"></i></span>
-				</h2>
-				
-				<div class="icon-wrapper">
-					<span editable-text="csactivity._source.icon" onaftersave="setActivity()"><i class="icon flx-{{ csactivity._source.icon }}"></i> {{ csactivity._source.icon }}</span>
-				</div>
+                            <div class="cards-wrapper">
+                                <h4>Cards</h4>
+                                <div class="add-card-btn" ng-click="editCard(value.cards, csactivity)">
+                                    <i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i>
+                                </div>
+                                <div class="cards-alert" ng-if="!value.cards.default.length">No cards</div>
+                                <div ng-repeat="(attr2, value2) in value.cards">
+                                    <h6 ng-if="value2.cards">{{ attr2 }}</h6>
+                                    <div class="card-question" ng-repeat="(attr3, value3) in value2">
+                                        <div class="action-group">
+                                            <span ng-click="editAttributes(value3, csactivity)"><i class="glyphicon glyphicon-cog"></i></span>
+                                            <span ng-click="deleteCard(value3, value2, csactivity)"><i class="glyphicon glyphicon-trash"></i></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>Title</div>
+                                            <div editable-text="value3.title" onaftersave="setActivity()">{{ value3.title }}</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>Description</div>
+                                            <div editable-text="value3.description" onaftersave="setActivity()">{{ value3.description }}</div>
+                                            <div editable-textarea="value3.description" onaftersave="setActivity()" ng-if="value3.description === '' || !value3.description">--</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>Icon</div>
+                                            <div editable-text="value3.icon" onaftersave="setActivity()"><i class="icon flx-{{ value3.icon }}"></i> {{ value3.icon }}</div>
+                                            <div editable-text="value3.icon" onaftersave="setActivity()" ng-if="value3.icon === '' || !value3.icon">--</div>
+                                        </div>
+                                        <span data-toggle="tooltip" data-placement="top" title="Attributes not configured yet" ng-if="!value3.cs_initiatives">
+                                            <i class="glyphicon glyphicon-warning-sign"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-				<div class="label-wrapper" ng-repeat="(label, obj) in csactivity._source.data.label">
+        </div>
 
-					<h3>{{ label }}</h3>
-					<div editable-text="obj.title" onaftersave="setActivity()">{{ obj.title }}</div>
-					<div editable-textarea="obj.description" onaftersave="setActivity()">{{ obj.description }}</div>
-
-				</div>
-
-			</section>
-			<!-- END::Process type section -->
-
-			<section class="process-tree">
-
-				<h2>Activities</h2>
-
-				<div class="add-activity-btn" ng-click="editActivity(csactivity._source.data.activities, csactivity)">
-					<i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i>
-				</div>
-
-				<div class="activities-alert" ng-if="!csactivity._source.data.activities.length">No activites</div>
-
-				<div class="activity-seperator" ng-repeat="activity in csactivity._source.data.activities">
-					<div class="activity-wrapper" ng-repeat="(key, value) in activity.label">
-						<div class="label-wrapper">
-							
-							<div class="form-group">
-								<div>Title <span>( {{ key }} )</span></div>
-								<h3 editable-text="value.title" onaftersave="setActivity(value3, value2, csactivity)">{{ value.title }}</h3>
-
-								<div class="del-act-btn" ng-click="deleteActivity(csactivity._source.data.activities, activity, csactivity)">
-									<i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
-								</div>
-
-							</div>
-							
-							<div class="form-group">
-								<div>Description</div>
-								<div editable-textarea="value.description" onaftersave="setActivity()">{{ value.description }}</div>
-								<div editable-textarea="value.description" onaftersave="setActivity()" ng-if="!value.description">--</div>
-							</div>
-
-							<div class="form-group">
-								<div>Icon</div>
-								<div editable-text="value.icon" onaftersave="setActivity()"><i class="icon flx-{{ value.icon }}"></i> {{ value.icon }}</div>
-								<div editable-text="value.icon" onaftersave="setActivity()" ng-if="!value.icon">--</div>
-							</div>
-
-							<div class="cards-wrapper">
-								<h4>Cards</h4>
-								<div class="add-card-btn" ng-click="editCard(value.cards, csactivity)">
-									<i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i>
-								</div>
-
-								<div class="cards-alert" ng-if="!value.cards.default.length">No cards</div>
-
-								<div ng-repeat="(attr2, value2) in value.cards">
-									<h6 ng-if="value2.cards">{{ attr2 }}</h6>
-									<div class="card-question" ng-repeat="(attr3, value3) in value2">
-										
-										<div class="action-group">
-											<span ng-click="editAttributes(value3, csactivity)"><i class="glyphicon glyphicon-cog"></i></span>
-											<span ng-click="deleteCard(value3, value2, csactivity)"><i class="glyphicon glyphicon-trash"></i></span>
-										</div>
-										
-										<div class="form-group">
-											<div>Title</div>
-											<div editable-text="value3.title" onaftersave="setActivity()">{{ value3.title }}</div>
-										</div>
-										
-										<div class="form-group">
-											<div>Description</div>
-											<div editable-text="value3.description" onaftersave="setActivity()">{{ value3.description }}</div>
-											<div editable-textarea="value3.description" onaftersave="setActivity()" ng-if="value3.description === '' || !value3.description">--</div>
-										</div>
-										
-										<div class="form-group">
-											<div>Icon</div>
-											<div editable-text="value3.icon" onaftersave="setActivity()"><i class="icon flx-{{ value3.icon }}"></i> {{ value3.icon }}</div>
-											<div editable-text="value3.icon" onaftersave="setActivity()" ng-if="value3.icon === '' || !value3.icon">--</div>
-										</div>
-										
-										<span data-toggle="tooltip" data-placement="top" title="Attributes not configured yet" ng-if="!value3.cs_initiatives">
-											<i class="glyphicon glyphicon-warning-sign"></i>
-										</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-		</div>
-
-	</div>
+    </div>
 
 </div>

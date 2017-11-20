@@ -104,7 +104,7 @@ module.exports = {
             }
         };
 
-        console.log(query.nested.query.bool.filter);
+        console.log('Card filter:', query.nested.query.bool.filter);
 
         client.search({
             'index': 'operation',

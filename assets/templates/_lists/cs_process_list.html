@@ -1,59 +1,59 @@
 <div id="csprocess-view">
-	
-	<div class="row">
-		
-		<h1>CS Process management</h1>
+    
+    <div class="row">
+        
+        <h1>CS Process management</h1>
 
-		<div class="col col-md-3 process-column" ng-repeat="csprocess in csprocesses">
+        <div class="col col-md-3 process-column" ng-repeat="csprocess in csprocesses">
 
-			<!-- Process type section -->
-			<section class="process-detail">
-				<h2><a ui-sref="index.csprocess-edit({ id: csprocess._id })">{{ csprocess._source.process_name }}</a></h2>
-				<div class="label-wrapper" ng-repeat="(label, obj) in csprocess._source.data.label">
-					<h3>{{ label }} Label</h3>
-					<div ng-repeat="(attr, value) in obj">{{ value }}</div>
-				</div>
-			</section>
-			<!-- END::Process type section -->
+            <!-- Process type section -->
+            <section class="process-detail">
+                <h2><a ui-sref="index.csprocess-edit({ id: csprocess._id })">{{ csprocess._source.process_name }}</a></h2>
+                <div class="label-wrapper" ng-repeat="(label, obj) in csprocess._source.data.label">
+                    <h3>{{ label }} Label</h3>
+                    <div ng-repeat="(attr, value) in obj">{{ value }}</div>
+                </div>
+            </section>
+            <!-- END::Process type section -->
 
-			<section class="process-tree">
-				<h2>Dimensions</h2>
-				<div class="dimension-wrapper" ng-repeat="(dimension, obj) in csprocess._source.data.dimensions">
+            <section class="process-tree">
+                <h2>Dimensions</h2>
+                <div class="dimension-wrapper" ng-repeat="(dimension, obj) in csprocess._source.data.dimensions">
 
-					<h3>{{ obj.id }}</h3>
-					<div class="label-wrapper" ng-repeat="(attr, value) in obj.label">
-						<h4>{{ attr }}</h4>
-						<div ng-repeat="(attr1, value1) in value">{{ value1 }}</div>
-					</div>
+                    <h3>{{ obj.id }}</h3>
+                    <div class="label-wrapper" ng-repeat="(attr, value) in obj.label">
+                        <h4>{{ attr }}</h4>
+                        <div ng-repeat="(attr1, value1) in value">{{ value1 }}</div>
+                    </div>
 
-					<section class="sub-dimension">
-						<h4>Sub-dimensions</h4>
-						<div class="subimension-wrapper" ng-repeat="(attr, value) in obj.subdimensions">
-							<div class="label-wrapper" ng-repeat="(attr1, value1) in value.label">
+                    <section class="sub-dimension">
+                        <h4>Sub-dimensions</h4>
+                        <div class="subimension-wrapper" ng-repeat="(attr, value) in obj.subdimensions">
+                            <div class="label-wrapper" ng-repeat="(attr1, value1) in value.label">
 
-								<h5>{{ attr1 }}</h5>
+                                <h5>{{ attr1 }}</h5>
 
-								<div>{{ value1.title }}</div>
-								<div>{{ value1.description }}</div>
-								
-								<h4>Characteristics</h4>	
-								<div class="label-wrapper" ng-repeat="(attr1, characteristic) in value1.characteristics">
-									<h5>{{ attr1 }}</h5>
-									<div ng-repeat="(attr2, value2) in characteristic">
-										<div>{{ value2.title }}</div>
-										<div>{{ value2.description }}</div>
-										<hr>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
+                                <div>{{ value1.title }}</div>
+                                <div>{{ value1.description }}</div>
+                                
+                                <h4>Characteristics</h4>    
+                                <div class="label-wrapper" ng-repeat="(attr1, characteristic) in value1.characteristics">
+                                    <h5>{{ attr1 }}</h5>
+                                    <div ng-repeat="(attr2, value2) in characteristic">
+                                        <div>{{ value2.title }}</div>
+                                        <div>{{ value2.description }}</div>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
-				</div>
-			</section>
+                </div>
+            </section>
 
-		</div>
+        </div>
 
-	</div>
+    </div>
 
 </div>
