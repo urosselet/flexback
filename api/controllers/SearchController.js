@@ -84,7 +84,7 @@ module.exports = {
 
                         filterObject[filterKey] = characteristics[index][attribute];
 
-                        queryFilter.push({ 'term': filterObject });
+                        queryFilter.push({ 'match': filterObject });
                     });
                     
                 });
@@ -98,7 +98,7 @@ module.exports = {
                 'path': 'attributes',
                 'query': {
                     'bool': {
-                        'filter': queryFilter
+                        'must': queryFilter
                     }
                 }
             }
