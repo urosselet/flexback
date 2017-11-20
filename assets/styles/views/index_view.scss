@@ -36,6 +36,8 @@ aside {
     width: 250px;
     height: 100%;
 
+    z-index: 1;
+
     background: #212c34;
     ul {
         margin-top: 3rem;
@@ -86,7 +88,7 @@ aside {
 
 #main {
     margin-top: 100px;
-    margin-left: 250px;
+    padding-left: 250px;
      > .container {
         margin-bottom: 2rem;
         padding-right: 2em;
