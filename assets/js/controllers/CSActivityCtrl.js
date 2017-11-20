@@ -105,6 +105,7 @@ angular.module('flexcrowd.controllers')
 
             ESService.getAttributes()
                 .then(function(attributes) {
+                    console.log(attributes)
                     $scope.attributes = attributes;
                 }) 
 
@@ -160,7 +161,6 @@ angular.module('flexcrowd.controllers')
         $scope.closeModal = function() {
         	$scope.modalInstance.close();
         };
-
 
     }
 
