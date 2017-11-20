@@ -61,35 +61,65 @@ module.exports = {
     },
 
     /**
-     * Find platform by attributes
+     * Filter platforms by attributes
      * @param  {[type]} req [description]
      * @param  {[type]} res [description]
      * @return {[type]}     [description]
      */
     platforms: function(req, res) {
 
-        console.log(req.body)
+        let queryFilter = [];
+        let str = 'attributes.';
+
+        req.body.forEach(function(activities) {
+
+            activities.forEach(function(characteristics) {
+
+                Object.keys(characteristics).forEach(function(index) {
+                    
+                    Object.keys(characteristics[index]).forEach(function(attribute) {
+
+                        let filterKey = str.concat(index).concat('.').concat(attribute);
+                        let filterObject = {};
+
+                        filterObject[filterKey] = characteristics[index][attribute];
+
+                        queryFilter.push({ 'term': filterObject });
+                    });
+                    
+                });
+
+            });
+
+        });
 
         let query = {
-            "nested" : {
-                "path" : "attributes",
-                "score_mode" : "avg",
-                "query" : {
-                    "bool" : {
-                        "must" : [
-                            { "match" : req.body }
-                        ]
+            'nested': {
+                'path': 'attributes',
+                'query': {
+                    'bool': {
+                        'filter': queryFilter
                     }
                 }
             }
         };
+
+        console.log(query.nested.query.bool.filter);
 
         client.search({
             'index': 'operation',
             'type': 'platform',
             'body': { 'query': query }
         }).then(function(results) {
-            return res.json(results);
+
+            let highHits = [];
+
+            results.hits.hits.forEach(function(hit) {
+                highHits.push(hit._source);
+            });
+
+            return res.json({ 'results': { 'high_hits': highHits } });
+
         });
 
     }
