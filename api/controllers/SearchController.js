@@ -21,30 +21,46 @@ module.exports = {
 
         let query = req.param('query');
 
-        ESClientService.query({ 'type': 'SEARCH', 'query': query })
-            .then(function(queryResults) {
-
-                ESClientService.query({ 'type': 'PLATFORM', 'query': query })
-                    .then(function(platformResults) {
-
-                        let maxScore = platformResults.hits.max_score;
-                        let mediumHits = [];
-                        let highHits = [];
-
-                        platformResults.hits.hits.forEach(function(ele) {
-                            ele._source['id'] = ele._id;
-                            if (ele._score > ((maxScore / 100) * 85)) {
-                                highHits.push(ele._source);
-                            } else if (ele._score < ((maxScore / 100) * 85)) {
-                                mediumHits.push(ele._source);
-                            }
-                        });
-
-                        return res.json({'results': { 'medium_hits': mediumHits, 'high_hits': highHits }, 'cat': queryResults.hits.hits[0]._source.cat_name });
-
-                    });
-
+        if (!query) { 
+            client.search({
+                'index': 'operation',
+                'type': 'platform',
+                'body': { 'query': { 'match_all': {} } }
+            }).then(function(results) {
+                let mediumHits = [];
+                results.hits.hits.forEach(function(ele) {
+                    ele._source['id'] = ele._id;
+                    mediumHits.push(ele._source);
+                });
+                return res.json({ 'results': { 'medium_hits': mediumHits } });
             });
+            
+        } else {
+
+            ESClientService.query({ 'type': 'SEARCH', 'query': query })
+                .then(function(queryResults) {
+
+                    ESClientService.query({ 'type': 'PLATFORM', 'query': query })
+                        .then(function(platformResults) {
+
+                            let maxScore = platformResults.hits.max_score;
+                            let mediumHits = [];
+                            let highHits = [];
+
+                            platformResults.hits.hits.forEach(function(ele) {
+                                ele._source['id'] = ele._id;
+                                if (ele._score > ((maxScore / 100) * 85)) {
+                                    highHits.push(ele._source);
+                                } else if (ele._score < ((maxScore / 100) * 85)) {
+                                    mediumHits.push(ele._source);
+                                }
+                            });
+
+                            return res.json({'results': { 'medium_hits': mediumHits, 'high_hits': highHits }, 'cat': queryResults.hits.hits[0]._source.cat_name });
+
+                        });
+                });
+        }
     },
 
     /**

@@ -2,8 +2,8 @@
 
 angular.module('flexcrowd.controllers')
 
-.controller('CSActivityCtrl', ['$scope', '$state', 'csactivity', 'ESService', '$uibModal', 'toaster',
-    function($scope, $state, csactivity, ESService, $uibModal, toaster) {
+.controller('CSActivityCtrl', ['$scope', '$state', 'csactivity', 'ESService', '$uibModal', 'toaster', '$ngConfirm',
+    function($scope, $state, csactivity, ESService, $uibModal, toaster, $ngConfirm) {
 
         $scope.csactivities = csactivity;
 
@@ -39,34 +39,33 @@ angular.module('flexcrowd.controllers')
          * @param  {[type]} activity   [description]
          * @return {[type]}            [description]
          */
-        $scope.editCard = function(cardsArray, activity) {
+        $scope.createCard = function(cardsArray, activity) {
 
-            $scope.cardsArray = cardsArray.default;
-            $scope.activity = activity;
+            $ngConfirm({
+                columnClass: 'large',
+                title: 'Create new card',
+                contentUrl: 'templates/_dialogs/card_form.html',
+                scope: $scope,
+                buttons: {
+                    create: {
+                        text: 'Create card',
+                        btnClass: 'btn-green',
+                        action: function(scope) {
 
-	        $scope.modalInstance = $uibModal.open({
-	            'animation': $scope.animationsEnabled,
-	            'templateUrl': 'templates/_dialogs/card_form.html',
-	            'scope': $scope,
-	            'backdrop': false
-	        });
+                            $scope.activity = activity;
+                            $scope.cardsArray = cardsArray.default;
+                            $scope.cardsArray.push(scope.card);
 
-        };
-
-        /**
-         * Save card modification
-         * @param  {[type]} card [description]
-         * @return {[type]}      [description]
-         */
-        $scope.saveCard = function(card) {
-
-            $scope.cardsArray.push(card);
-            $scope.modalInstance.close();
-
-            ESService.updateCSActivity($scope.activity._id, $scope.activity._source)
-                .then(function() {
-                    $state.go('index.csactivity');
-                });
+                            ESService.updateCSActivity($scope.activity._id, $scope.activity._source)
+                                .then(function() {
+                                    toaster.pop('success', 'Card creation', 'Card created successfully');
+                                    $state.go('index.csactivity');
+                                });
+                        }
+                    },
+                    close: function() {}
+                }
+            });
 
         };
 
@@ -86,7 +85,7 @@ angular.module('flexcrowd.controllers')
 
         $scope.saveActivity = function(activity) {
 
-            function string_to_slug(str) {
+            function stringToSlug(str) {
                 str = str.replace(/^\s+|\s+$/g, '');
                 str = str.toLowerCase();
 
@@ -104,7 +103,7 @@ angular.module('flexcrowd.controllers')
                 return str;
             }
 
-            activity.id = string_to_slug(activity.label.default.title);
+            activity.id = stringToSlug(activity.label.default.title);
             activity.label.default['cards'] = { 'default': [] };
 
             $scope.activitiesArray.push(activity);
@@ -163,32 +162,62 @@ angular.module('flexcrowd.controllers')
                 });
         };
 
-        $scope.deleteCard = function(value3, activities, csactivity) {
+        $scope.deleteCard = function(card, cardsArray, csactivity) {
 
-            activities.forEach(function(item, index) {
-                if (item.$$hashKey = value3.$$hashKey) {
-                    activities.splice(index, 1)
+            $ngConfirm({
+                title: 'Card deletion',
+                content: 'Please confirm the deletion of the card ' + card.title,
+                scope: $scope,
+                buttons: {
+                    Yes: {
+                        text: 'Yes',
+                        btnClass: 'btn-red',
+                        action: function() {
+
+                            cardsArray.forEach(function(item, index) {
+                                if (item.$$hashKey === card.$$hashKey) {
+                                    $scope.$apply(function() { cardsArray.splice(index, 1); });
+                                }
+                            });
+
+                            ESService.updateCSActivity(csactivity._id, csactivity._source)
+                                .then(function() {
+                                    toaster.pop('success', 'Card', 'Card deleted successfully');
+                                });
+                        }
+                    },
+                    close: function() {}
                 }
             });
 
-            ESService.updateCSActivity(csactivity._id, csactivity._source)
-                .then(function() {
-                    toaster.pop('success', 'Card', 'Card deleted successfully');
-                });
         };
 
         $scope.deleteActivity = function(activitiesArray, activity, csactivity) {
 
-            activitiesArray.forEach(function(item, index) {
-                if (item.$$hashKey = activity.$$hashKey) {
-                    activitiesArray.splice(index, 1)
+            $ngConfirm({
+                title: 'Activity deletion',
+                content: 'Please confirm the deletion of activity ' + activity.label.default.title + '<br><br> All cards will also be deleted !',
+                scope: $scope,
+                buttons: {
+                    Yes: {
+                        text: 'Yes',
+                        btnClass: 'btn-red',
+                        action: function(scope, button) {
+                            activitiesArray.forEach(function(item, index) {
+                                if (item.$$hashKey = activity.$$hashKey) {
+                                    activitiesArray.splice(index, 1)
+                                }
+                            });
+
+                            ESService.updateCSActivity(csactivity._id, csactivity._source)
+                                .then(function() {
+                                    toaster.pop('success', 'Activity', 'Activity deleted successfully');
+                                });
+                        }
+                    },
+                    close: function(scope, button) {}
                 }
             });
-
-            ESService.updateCSActivity(csactivity._id, csactivity._source)
-                .then(function() {
-                    toaster.pop('success', 'Activity', 'Activity deleted successfully');
-                });
                 
         };
 
