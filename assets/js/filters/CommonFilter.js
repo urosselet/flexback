@@ -130,4 +130,14 @@ angular.module('flexcrowd.filters', [])
     return function(input, predicate) {
         return $filter('filter')(input, predicate, true);
     }
+})
+
+.filter('isEmptyObject', function() {
+    return function(object) {
+        if (angular.equals(object, {}) || angular.isUndefined(object)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 });

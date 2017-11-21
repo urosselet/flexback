@@ -142,6 +142,8 @@ angular.module('flexcrowd.controllers')
          * @return {[type]}                [description]
          */
         $scope.saveAttributes = function(cardAttributes) {
+
+            if (angular.isUndefined(cardAttributes.cs_initiatives)) { cardAttributes.cs_initiatives = {} };
             
             Object.keys(cardAttributes.cs_initiatives).map(function(objectKey, index) {
                 Object.keys(cardAttributes.cs_initiatives[objectKey]).map(function(obj) {
@@ -162,12 +164,21 @@ angular.module('flexcrowd.controllers')
                 });
         };
 
+        /**
+         * Delete a card from an activity
+         * @param  {[type]} card       [description]
+         * @param  {[type]} cardsArray [description]
+         * @param  {[type]} csactivity [description]
+         * @return {[type]}            [description]
+         */
         $scope.deleteCard = function(card, cardsArray, csactivity) {
 
             $ngConfirm({
                 title: 'Card deletion',
                 content: 'Please confirm the deletion of the card ' + card.title,
                 scope: $scope,
+                type: 'red',
+                typeAnimated: true,
                 buttons: {
                     Yes: {
                         text: 'Yes',
@@ -198,6 +209,8 @@ angular.module('flexcrowd.controllers')
                 title: 'Activity deletion',
                 content: 'Please confirm the deletion of activity ' + activity.label.default.title + '<br><br> All cards will also be deleted !',
                 scope: $scope,
+                type: 'red',
+                typeAnimated: true,
                 buttons: {
                     Yes: {
                         text: 'Yes',

@@ -120,11 +120,13 @@ module.exports = {
             }
         };
 
-        console.log('Card filter:', query.nested.query.bool.filter);
+        sails.log.info('Card filters:', query.nested.query.bool.must);
 
         client.search({
             'index': 'operation',
             'type': 'platform',
+            'from': 0,
+            'size': 200,
             'body': { 'query': query }
         }).then(function(results) {
 

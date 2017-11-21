@@ -81,7 +81,7 @@
                                             <div editable-text="card.icon" onaftersave="setActivity()"><i class="icon flx-{{ card.icon }}"></i> {{ card.icon }}</div>
                                             <div editable-text="card.icon" onaftersave="setActivity()" ng-if="card.icon === '' || !card.icon">--</div>
                                         </div>
-                                        <span data-toggle="tooltip" data-placement="top" title="Attributes not configured yet" ng-if="!card.cs_initiatives">
+                                        <span data-toggle="tooltip" data-placement="top" title="Attributes not configured yet" ng-if="card.cs_initiatives | isEmptyObject">
                                             <i class="glyphicon glyphicon-warning-sign"></i>
                                         </span>
                                     </div>
