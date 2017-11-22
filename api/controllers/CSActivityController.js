@@ -25,15 +25,30 @@ module.exports = {
     },
 
     /**
-     * Update a CS Process based on its id
+     * Update a CS activity based on its id
      * @param  {[type]} req [description]
      * @param  {[type]} res [description]
      * @return {[type]}     [description]
      */
     update: function(req, res) {
         client.update({ index: 'operation', type: 'cs_activity', id: req.param('id'), body: { doc: req.body } })
-            .then(function(csactivity) {
-                return res.json(csactivity._source);
+            .then(function(result) {
+
+                client.get({ index: 'operation', type: 'cs_activity', id: req.param('id') })
+                    .then(function(csactivity) {
+
+                        csactivity = {
+                            'id': csactivity._id,
+                            'activity_name': csactivity._source.activity_name,
+                            'icon': csactivity._source.icon,
+                            'label': csactivity._source.data.label,
+                            'activities': csactivity._source.data.activities
+                        };
+
+                        // sails.io.sockets.emit('activityUpdate', { 'activity': csactivity });
+                        return res.json(csactivity._source);
+                    });
+
             });
     },
 
