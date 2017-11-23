@@ -25,6 +25,8 @@ module.exports = {
             client.search({
                 'index': 'operation',
                 'type': 'platform',
+                'from': 0,
+                'size': 200,
                 'body': { 'query': { 'match_all': {} } }
             }).then(function(results) {
                 let mediumHits = [];
