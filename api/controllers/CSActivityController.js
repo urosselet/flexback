@@ -1,4 +1,5 @@
 let client = sails.config.es.client;
+let slug = require('slug');
 
 /**
  * CSActivityController
@@ -77,6 +78,83 @@ module.exports = {
             });
             return res.json(csactivityArray);
         });
-    }
+    },
+
+    /**
+     * Replace Image URL
+     * @param  {[type]} req [description]
+     * @param  {[type]} res [description]
+     * @return {[type]}     [description]
+     */
+    replaceImgUrl: function(req, res) {
+
+        client.search({
+            'index': 'operation',
+            'type': 'platform',
+            'from': 0,
+            'size': 200,
+            'body': { 'query': { 'match_all': {} } }
+        }).then(function(plaforms) {
+            
+            plaforms.hits.hits.forEach(function(item) {
+
+                let imgURL = item._source.platform_img_url;
+
+                if (imgURL) {
+                    imgURL = imgURL.replace('http://flexcrowd.org:8082/upload/', '');
+                    imgURL = imgURL.replace('http://localhost:1338/upload/', '');
+
+                    client.update({
+                        'index': 'operation',
+                        'type': 'platform',
+                        'id': item._id,
+                        'body': {
+                            'doc': {
+                                'platform_img_url': imgURL
+                            }
+                        }
+                    }, function() {
+                        return res.ok();
+                    });
+                    
+                }
+            });
+
+        });
+    },
+
+    /**
+     * Define an id for all card based card title
+     * @param {[type]} req [description]
+     * @param {[type]} res [description]
+     */
+    setCardsId: function(req, res) {
+
+        client.search({
+            'index': 'operation',
+            'type': 'cs_activity',
+            'body': { 'query': { 'match_all': {} }, 'sort': [ { 'index': { 'order': 'asc' } } ] }
+        }).then(function(results) {
+            
+            results.hits.hits.forEach(function(item) {
+                
+                item._source.data.activities.forEach(function(activity) {
+                    activity.label.default.cards.default.forEach(function(card) {
+                        card['id'] = slug(card.title, { 'lower': true, replacement: '_' });
+                    });
+                });
+
+                client.update({ index: 'operation', type: 'cs_activity', 'id': item._id, body: { 'doc': item._source } })
+                    .then(function(response) {
+                        sails.log.info('Activity ' + item._id , response.result);
+                    });
+                    
+            });
+
+            return res.ok();
+
+        });
+
+    },
 	
 };

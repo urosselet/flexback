@@ -28,6 +28,15 @@ angular.module('flexcrowd',
             $window.scrollTo(0, 0);
         });
 
+        switch(window.location.host) {
+            case 'localhost:1338':
+                $rootScope.assetUrl = 'http://localhost:1338/upload/';
+                break;
+            case 'api.flexcrowd.org':
+                $rootScope.assetUrl = 'https://api.flexcrowd.org/upload/';
+                break;
+        }
+
     }
 
  ])

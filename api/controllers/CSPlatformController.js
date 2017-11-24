@@ -102,9 +102,8 @@ module.exports = {
 
             if (file.length !== 0) {
                 let uploadFolder = path.join(path.dirname(process.mainModule.filename), `/assets/upload/${file[0].filename}`);
-                let logoUrl = util.format(`%s/upload/${file[0].filename}`, sails.config.asset_url);
 
-                platform.body.platform_img_url = logoUrl;
+                platform.body.platform_img_url = file[0].filename;
 
                 fs.rename(file[0].fd, uploadFolder, function(err) {
                     if (err) return sails.log.error(err);
