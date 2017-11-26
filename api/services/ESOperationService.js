@@ -7,6 +7,15 @@ let nrc = require('node-run-cmd'),
 
 module.exports = {
 
+    getSessionData: function(options, done) {
+
+        client.get({ index: 'operation', type: 'session', id: options.sessionId })
+            .then(function(session) {
+                return done(session._source.data);
+            });
+        
+    },
+
     /**
      * Dataset import to ES
      * @param  {[type]}   option [description]

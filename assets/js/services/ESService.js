@@ -117,6 +117,19 @@ angular.module('flexcrowd.services', [])
                 },
 
                 /**
+                 * Get formatted array for chart's display
+                 * @return {[type]} [description]
+                 */
+                getSessions: function() {
+                    let dfd = $q.defer();
+                    Restangular.all('/session').getList()
+                        .then(function(res) {
+                            dfd.resolve(res);
+                        });
+                    return dfd.promise;
+                },
+
+                /**
                  * CS Process update
                  * @param  {[type]} id [description]
                  * @return {[type]}    [description]

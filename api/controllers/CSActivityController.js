@@ -60,6 +60,7 @@ module.exports = {
      * @return {[type]}     [description]
      */
     wizard: function(req, res) {
+
         client.search({
             'index': 'operation',
             'type': 'cs_activity',
@@ -76,7 +77,10 @@ module.exports = {
                 };
                 csactivityArray.push(csactivityObj);
             });
-            return res.json(csactivityArray);
+
+            ESOperationService.getSessionData({ 'sessionId': req.param('id') }, function(session) {
+                return res.json({ 'activities': csactivityArray, 'sessionData': session });
+            });
         });
     },
 

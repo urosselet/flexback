@@ -89,7 +89,23 @@ module.exports = {
         let queryFilter = [];
         let str = 'attributes.';
 
-        req.body.forEach(function(activities) {
+        console.log(req.body['sessionData'])
+        console.log(req.body['sessionId'])
+        console.log(req.body['data'])
+
+        client.update({
+            'index': 'operation',
+            'type': 'session',
+            'id': req.body['sessionId'],
+            'body': {
+                'doc': {
+                    'data': req.body['data']
+                },
+                "doc_as_upsert" : true
+            }
+        }, function() {});
+
+        req.body['attributes'].forEach(function(activities) {
 
             activities.forEach(function(characteristics) {
 
@@ -101,7 +117,6 @@ module.exports = {
                         let filterObject = {};
 
                         filterObject[filterKey] = characteristics[index][attribute];
-
                         queryFilter.push({ 'match': filterObject });
                     });
                     

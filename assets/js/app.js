@@ -129,6 +129,17 @@ angular.module('flexcrowd',
                 }
             })
 
+            .state('index.session', {
+                url: '/sessions',
+                templateUrl: '/templates/_lists/session_list.html',
+                controller: 'SessionCtrl',
+                resolve: {
+                    sessions: function(ESService) {
+                        return ESService.getSessions();
+                    }
+                }
+            })
+
             .state('index.platform', {
                 url: '/platform/add',
                 templateUrl: '/templates/_forms/platform_edit.html',

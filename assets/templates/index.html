@@ -37,6 +37,10 @@
             <i class="icon flx-circle-pie-graph"></i>
             <a ui-sref="index.cluster">Charts</a>
         </li>
+        <li ui-sref-active="active">
+            <i class="icon flx-window-list-user"></i>
+            <a ui-sref="index.session">Sessions</a>
+        </li>
     </ul>
 </aside>
 <!-- END::Aside navigation -->
@@ -44,9 +48,5 @@
 <!-- Main content -->
 <section id="main">
     <toaster-container></toaster-container>
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-12 order-1" ui-view></div>
-        </div>
-    </div>
+    <div class="container" ui-view></div>
 </section>
