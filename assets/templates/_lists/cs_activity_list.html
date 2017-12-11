@@ -54,6 +54,11 @@
                                 <div editable-text="value.icon" onaftersave="setActivity()" ng-if="!value.icon">--</div>
                             </div>
 
+                            <div class="form-group">
+                                <div>Multiple choice</div>
+                                <a href="#" editable-select="value.is_multiple_choice" e-ng-options="s.value as s.text for s in statuses" onaftersave="setActivity()">{{ showStatus(value) }}</a>
+                            </div>
+
                             <div class="cards-wrapper">
                                 <h4>Cards</h4>
                                 <div class="add-card-btn" ng-click="createCard(value.cards, csactivity)">

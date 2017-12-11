@@ -29,8 +29,8 @@ angular.module('flexcrowd',
         });
 
         switch(window.location.host) {
-            case 'localhost:1338':
-                $rootScope.assetUrl = 'http://localhost:1338/upload/';
+            case 'localhost:1401':
+                $rootScope.assetUrl = 'http://localhost:1401/upload/';
                 break;
             case 'api.flexcrowd.org':
                 $rootScope.assetUrl = 'https://api.flexcrowd.org/upload/';
@@ -44,9 +44,11 @@ angular.module('flexcrowd',
 .config(['$stateProvider', '$urlRouterProvider', '$logProvider', 'RestangularProvider', 'cfpLoadingBarProvider',
     function($stateProvider, $urlRouterProvider, $logProvider, RestangularProvider, cfpLoadingBarProvider) {
 
+        console.log('1')
+
         switch(window.location.host) {
-            case 'localhost:1338':
-                RestangularProvider.setBaseUrl('http://localhost:1338');
+            case 'localhost:1401':
+                RestangularProvider.setBaseUrl('http://localhost:1401');
                 break;
             case 'api.flexcrowd.org':
                 RestangularProvider.setBaseUrl('https://api.flexcrowd.org');

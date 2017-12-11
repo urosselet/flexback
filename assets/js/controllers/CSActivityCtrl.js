@@ -2,13 +2,32 @@
 
 angular.module('flexcrowd.controllers')
 
-.controller('CSActivityCtrl', ['$scope', '$state', 'csactivity', 'ESService', '$uibModal', 'toaster', '$ngConfirm',
-    function($scope, $state, csactivity, ESService, $uibModal, toaster, $ngConfirm) {
+.controller('CSActivityCtrl', ['$scope', '$state', 'csactivity', 'ESService', '$uibModal', 'toaster', '$ngConfirm', '$filter',
+    function($scope, $state, csactivity, ESService, $uibModal, toaster, $ngConfirm, $filter) {
 
         $scope.csactivities = csactivity;
 
         $scope.cardsArray = [];
         $scope.activitiesArray = [];
+
+        $scope.statuses = [{
+            value: true,
+            text: 'Yes'
+        }, {
+            value: false,
+            text: 'No'
+        }];
+
+        $scope.showStatus = function(value) {
+            var selected = $filter('filter')($scope.statuses, {
+                value: value.is_multiple_choice
+            });
+            if (angular.isUndefined(value.is_multiple_choice)) {
+                value.is_multiple_choice = false;
+            }
+            console.log(value.is_multiple_choice && selected.length)
+            return (value.is_multiple_choice && selected.length) ? selected[0].text : 'Not set';
+        };
 
         $scope.isSaveHidden = true;
 
