@@ -10,26 +10,51 @@ angular.module('flexcrowd.controllers')
         $scope.cardsArray = [];
         $scope.activitiesArray = [];
 
-        $scope.statuses = [{
-            value: true,
-            text: 'Yes'
-        }, {
-            value: false,
-            text: 'No'
-        }];
+        $scope.isSaveHidden = true;
 
-        $scope.showStatus = function(value) {
-            var selected = $filter('filter')($scope.statuses, {
-                value: value.is_multiple_choice
-            });
-            if (angular.isUndefined(value.is_multiple_choice)) {
-                value.is_multiple_choice = false;
+        $scope.statuses = [
+            {
+                val: true,
+                text: 'Yes'
+            }, 
+            {
+                val: false,
+                text: 'No'
             }
-            console.log(value.is_multiple_choice && selected.length)
-            return (value.is_multiple_choice && selected.length) ? selected[0].text : 'Not set';
+        ];
+
+        /**
+         * Add ToDo to list
+         * @param {[type]} cardAttributes [description]
+         */
+        $scope.addToDo = function(cardAttributes) {
+            if (angular.isUndefined(cardAttributes['todos'])) {
+                cardAttributes['todos'] = [];
+            }
+            cardAttributes['todos'].push({ 'description': '' });
         };
 
-        $scope.isSaveHidden = true;
+        /**
+         * Remove ToDo from list
+         * @param {[type]} cardAttributes [description]
+         */
+        $scope.removeToDo = function(todo, todos) {
+            let index = todos.indexOf(todo);
+            todos.splice(index, 1);
+        };
+
+        /**
+         * Show activity status of having multiple choices
+         * @param  {[type]} selectedValue [description]
+         * @return {[type]}               [description]
+         */
+        $scope.showStatus = function(selectedValue) {
+            var selected = [];
+            if (selectedValue.is_multiple_choice) {
+                selected = $filter('filter') ($scope.statuses, { val: selectedValue.is_multiple_choice });
+            }
+            return selected.length ? selected[0].text : 'No';
+        };
 
         /**
          * Save activity
@@ -40,8 +65,8 @@ angular.module('flexcrowd.controllers')
             $scope.isSaveHidden = true;
             ESService.updateCSActivity(item._id, item._source)
                 .then(function() {
-                    toaster.pop('success', 'Activity', 'Activity updated successfully');
                     $state.go('index.csactivity');
+                    toaster.pop('success', 'Activity', 'Activity updated successfully');
                 });
         };
 
@@ -77,8 +102,8 @@ angular.module('flexcrowd.controllers')
 
                             ESService.updateCSActivity($scope.activity._id, $scope.activity._source)
                                 .then(function() {
+                                    $state.go('index.csactivity', {}, { 'reload': true });
                                     toaster.pop('success', 'Card creation', 'Card created successfully');
-                                    $state.go('index.csactivity');
                                 });
                         }
                     },
@@ -130,7 +155,8 @@ angular.module('flexcrowd.controllers')
             
             ESService.updateCSActivity($scope.activity._id, $scope.activity._source)
                 .then(function() {
-                    $state.go('index.csactivity');
+                    $state.go('index.csactivity', {}, { 'reload': true });
+                    toaster.pop('success', 'Activity creation', 'Activity created successfully');
                 });
 
         };
@@ -177,8 +203,8 @@ angular.module('flexcrowd.controllers')
 
             ESService.updateCSActivity($scope.activity._id, $scope.activity._source)
                 .then(function() {
+                    $state.go('index.csactivity', {}, { 'reload': true });
                     toaster.pop('success', 'Card attributes', 'Attributes saved successfully');
-                    $state.go('index.csactivity');
                     $scope.closeModal();
                 });
         };

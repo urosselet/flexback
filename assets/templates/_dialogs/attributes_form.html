@@ -3,6 +3,26 @@
 </div>
 <div class="modal-body row attributes-form" id="modal-body">
     <form style="padding: 2rem;">
+
+        <fieldset class="scheduler-border">
+
+            <div class="row">
+                <h3>To Do</h3>
+                <div class="form-group col-md-12 todo-wrapper">
+                    <div ng-repeat="todo in cardAttributes.todos">
+                        <input type="text" class="form-control" ng-model="todo.description" placeholder="Description">
+                        <button class="btn btn-warning" ng-click="removeToDo(todo, cardAttributes.todos)">
+                            <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <button class="btn btn-success add-todo" ng-click="addToDo(cardAttributes)">Add To DO</button>
+                </div>
+            </div>
+            
+        </fieldset>
+
+        <hr>
+
     	<fieldset class="scheduler-border">
             <div class="row">
                 <h3>Process</h3>

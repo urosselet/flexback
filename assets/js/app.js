@@ -44,8 +44,6 @@ angular.module('flexcrowd',
 .config(['$stateProvider', '$urlRouterProvider', '$logProvider', 'RestangularProvider', 'cfpLoadingBarProvider',
     function($stateProvider, $urlRouterProvider, $logProvider, RestangularProvider, cfpLoadingBarProvider) {
 
-        console.log('1')
-
         switch(window.location.host) {
             case 'localhost:1401':
                 RestangularProvider.setBaseUrl('http://localhost:1401');
