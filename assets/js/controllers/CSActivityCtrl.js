@@ -5,10 +5,13 @@ angular.module('flexcrowd.controllers')
 .controller('CSActivityCtrl', ['$scope', '$state', 'csactivity', 'ESService', '$uibModal', 'toaster', '$ngConfirm', '$filter',
     function($scope, $state, csactivity, ESService, $uibModal, toaster, $ngConfirm, $filter) {
 
+        let index = 0;
+
         $scope.csactivities = csactivity;
 
         $scope.cardsArray = [];
         $scope.activitiesArray = [];
+        $scope.activityIndexes = [];
 
         $scope.isSaveHidden = true;
 
@@ -22,6 +25,13 @@ angular.module('flexcrowd.controllers')
                 text: 'No'
             }
         ];
+
+        $scope.csactivities.forEach(function(item, csIndex) {
+            item._source.data.activities.forEach(function(activity, actIndex) {
+                index = index + 1;
+                $scope.activityIndexes.push({ 'val': index, 'text': String(index) });
+            });
+        });
 
         /**
          * Add ToDo to list
@@ -51,9 +61,17 @@ angular.module('flexcrowd.controllers')
         $scope.showStatus = function(selectedValue) {
             var selected = [];
             if (selectedValue.is_multiple_choice) {
-                selected = $filter('filter') ($scope.statuses, { val: selectedValue.is_multiple_choice });
+                selected = $filter('filter') ($scope.statuses, { 'val': selectedValue.is_multiple_choice });
             }
             return selected.length ? selected[0].text : 'No';
+        };
+
+        $scope.showIndex = function(selectedValue) {
+            var selected = [];
+            if (selectedValue.index) {
+                selected = $filter('filter') ($scope.activityIndexes, { 'val': selectedValue.index });
+            }
+            return selected.length ? selected[0].text : '-';
         };
 
         /**
@@ -71,7 +89,7 @@ angular.module('flexcrowd.controllers')
         };
 
         /**
-         * Diplay save button if activity object changer
+         * Diplay save button if activity object has changed
          */
         $scope.setActivity = function() {
             $scope.isSaveHidden = false;
@@ -133,8 +151,8 @@ angular.module('flexcrowd.controllers')
                 str = str.replace(/^\s+|\s+$/g, '');
                 str = str.toLowerCase();
 
-                let from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
-                let to = "aaaaeeeeiiiioooouuuunc------";
+                let from = 'àáäâèéëêìíïîòóöôùúüûñç·/_,:;';
+                let to = 'aaaaeeeeiiiioooouuuunc------';
 
                 for (var i = 0, l = from.length; i < l; i++) {
                     str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
@@ -161,6 +179,12 @@ angular.module('flexcrowd.controllers')
 
         };
 
+        /**
+         * Edit card attributes
+         * @param  {[type]} card     [description]
+         * @param  {[type]} activity [description]
+         * @return {[type]}          [description]
+         */
         $scope.editAttributes = function(card, activity) {
 
             $scope.cardAttributes = card;
@@ -248,6 +272,13 @@ angular.module('flexcrowd.controllers')
 
         };
 
+        /**
+         * Delete an activity and all the associated cards
+         * @param  {[type]} activitiesArray [description]
+         * @param  {[type]} activity        [description]
+         * @param  {[type]} csactivity      [description]
+         * @return {[type]}                 [description]
+         */
         $scope.deleteActivity = function(activitiesArray, activity, csactivity) {
 
             $ngConfirm({
@@ -261,9 +292,10 @@ angular.module('flexcrowd.controllers')
                         text: 'Yes',
                         btnClass: 'btn-red',
                         action: function(scope, button) {
+
                             activitiesArray.forEach(function(item, index) {
-                                if (item.$$hashKey = activity.$$hashKey) {
-                                    activitiesArray.splice(index, 1)
+                                if (item.$$hashKey === activity.$$hashKey) {
+                                    $scope.$apply(function() {  activitiesArray.splice(index, 1) });
                                 }
                             });
 
@@ -279,6 +311,10 @@ angular.module('flexcrowd.controllers')
                 
         };
 
+        /**
+         * Close BS modal instance
+         * @return {[type]} [description]
+         */
         $scope.closeModal = function() {
         	$scope.modalInstance.close();
         };

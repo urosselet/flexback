@@ -34,6 +34,12 @@
                 <div class="activity-seperator" ng-repeat="activity in csactivity._source.data.activities">
                     <div class="activity-wrapper" ng-repeat="(key, value) in activity.label">
                         <div class="label-wrapper">
+
+                            <div class="form-group">
+                                <div>Index</div>
+                                <a href="#" editable-select="activity.index" e-ng-options="s.val as s.text for s in activityIndexes" onaftersave="setActivity()">{{ showIndex(activity) }}</a>
+                            </div>
+
                             <div class="form-group">
                                 <div>Title <span>( {{ key }} )</span></div>
                                 <h3 editable-text="value.title" onaftersave="setActivity()">{{ value.title }}</h3>

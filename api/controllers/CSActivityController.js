@@ -21,6 +21,11 @@ module.exports = {
             'type': 'cs_activity',
             'body': { 'query': { 'match_all': {} }, 'sort': [ { 'index': { 'order': 'asc' } } ] }
         }).then(function(results) {
+
+            results.hits.hits.forEach(function(item, index) {
+                console.log(_.sortBy(item._source.data.activities, ['index']))
+            });
+
             return res.json(results.hits.hits);
         });
     },
