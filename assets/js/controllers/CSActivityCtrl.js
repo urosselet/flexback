@@ -12,6 +12,7 @@ angular.module('flexcrowd.controllers')
         $scope.cardsArray = [];
         $scope.activitiesArray = [];
         $scope.activityIndexes = [];
+        $scope.cardIndexes = [];
 
         $scope.isSaveHidden = true;
 
@@ -30,6 +31,7 @@ angular.module('flexcrowd.controllers')
             item._source.data.activities.forEach(function(activity, actIndex) {
                 index = index + 1;
                 $scope.activityIndexes.push({ 'val': index, 'text': String(index) });
+                $scope.cardIndexes.push({ 'val': index, 'text': String(index) });
             });
         });
 
@@ -74,6 +76,14 @@ angular.module('flexcrowd.controllers')
             return selected.length ? selected[0].text : '-';
         };
 
+        $scope.showCardIndex = function(selectedValue) {
+            var selected = [];
+            if (selectedValue.index) {
+                selected = $filter('filter') ($scope.cardIndexes, { 'val': selectedValue.index });
+            }
+            return selected.length ? selected[0].text : '-';
+        };
+
         /**
          * Save activity
          * @param  {[type]} item [description]
@@ -83,7 +93,7 @@ angular.module('flexcrowd.controllers')
             $scope.isSaveHidden = true;
             ESService.updateCSActivity(item._id, item._source)
                 .then(function() {
-                    $state.go('index.csactivity');
+                    $state.go('index.csactivity', {}, { 'reload': true });
                     toaster.pop('success', 'Activity', 'Activity updated successfully');
                 });
         };

@@ -23,7 +23,13 @@ module.exports = {
         }).then(function(results) {
 
             results.hits.hits.forEach(function(item, index) {
-                console.log(_.sortBy(item._source.data.activities, ['index']))
+
+                results.hits.hits[index]._source.data.activities = _.sortBy(item._source.data.activities, 'index');
+
+                item._source.data.activities.forEach(function(act, actIndex) {
+                    item._source.data.activities[actIndex].label.default.cards.default = _.sortBy(act.label.default.cards.default, 'index');
+                });
+                
             });
 
             return res.json(results.hits.hits);
@@ -51,7 +57,6 @@ module.exports = {
                             'activities': csactivity._source.data.activities
                         };
 
-                        // sails.io.sockets.emit('activityUpdate', { 'activity': csactivity });
                         return res.json(csactivity._source);
                     });
 
@@ -75,17 +80,27 @@ module.exports = {
             results.hits.hits.forEach(function(csactivity) {
                 let csactivityObj = {
                     'id': csactivity._id,
+                    'index': csactivity.index,
                     'activity_name': csactivity._source.activity_name,
                     'icon': csactivity._source.icon,
                     'label': csactivity._source.data.label,
                     'activities': csactivity._source.data.activities
                 };
+
+                csactivityObj.activities = _.sortBy(csactivity._source.data.activities, 'index');
+
+                csactivityObj.activities.forEach(function(act, index) {
+                    csactivityObj.activities[index].label.default.cards.default = _.sortBy(act.label.default.cards.default, 'index');
+                });
+
                 csactivityArray.push(csactivityObj);
+
             });
 
             ESOperationService.getSessionData({ 'sessionId': req.param('id') }, function(session) {
                 return res.json({ 'activities': csactivityArray, 'sessionData': session });
             });
+
         });
     },
 
@@ -148,9 +163,15 @@ module.exports = {
             results.hits.hits.forEach(function(item) {
                 
                 item._source.data.activities.forEach(function(activity) {
+
+                    let index = 0;
+
                     activity.label.default.cards.default.forEach(function(card) {
+                        index = index + 1;
                         card['id'] = slug(card.title, { 'lower': true, replacement: '_' });
+                        card['index'] = index;
                     });
+
                 });
 
                 client.update({ index: 'operation', type: 'cs_activity', 'id': item._id, body: { 'doc': item._source } })

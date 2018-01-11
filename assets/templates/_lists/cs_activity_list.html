@@ -87,6 +87,10 @@
                                             <span ng-click="deleteCard(card, cardsArray, csactivity)"><i class="glyphicon glyphicon-trash"></i></span>
                                         </div>
                                         <div class="form-group">
+                                            <div>Index</div>
+                                            <a href="#" editable-select="card.index" e-ng-options="s.val as s.text for s in cardIndexes" onaftersave="setActivity()">{{ showCardIndex(card) }}</a>
+                                        </div>
+                                        <div class="form-group">
                                             <div>Title</div>
                                             <div editable-text="card.title" onaftersave="setActivity()">{{ card.title }}</div>
                                         </div>
