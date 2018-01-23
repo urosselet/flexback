@@ -52,7 +52,7 @@ angular.module('flexcrowd',
                 RestangularProvider.setBaseUrl('https://api.flexcrowd.org');
                 break;
             default
-                RestangularProvider.setBaseUrl(window.location.host);
+                RestangularProvider.setBaseUrl(window.location.host)
         }
 
         $logProvider.debugEnabled(false);
