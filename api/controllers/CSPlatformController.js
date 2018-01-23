@@ -20,10 +20,6 @@ module.exports = {
 
     extract: function(req, res) {
 
-        /*for (var prod of G.cartesian(['Innovation', 'Authenticity', 'Cost Reduction'], ['Integrative', 'Selective'], ['Qualification-based', 'Context-specific'])) {
-           console.log(prod);
-        }*/
-
         request(req.param('url'), function (error, response, body) {
             
             let data = extractor(body);
