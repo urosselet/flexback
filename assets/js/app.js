@@ -51,7 +51,7 @@ angular.module('flexcrowd',
             case 'api.flexcrowd.org':
                 RestangularProvider.setBaseUrl('https://api.flexcrowd.org');
                 break;
-            default
+            default:
                 RestangularProvider.setBaseUrl(window.location.host)
         }
 
