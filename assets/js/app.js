@@ -51,6 +51,8 @@ angular.module('flexcrowd',
             case 'api.flexcrowd.org':
                 RestangularProvider.setBaseUrl('https://api.flexcrowd.org');
                 break;
+            default
+                RestangularProvider.setBaseUrl(window.location.host);
         }
 
         $logProvider.debugEnabled(false);
