@@ -4,9 +4,6 @@
  * @description :: Server-side logic for managing searches
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
-const { Flexcrowd } = require('flx-process');
-const flexClient = Flexcrowd.init({ 'file': 'flow.yml' });
-
 let client = sails.config.es.client;
 
 module.exports = {
