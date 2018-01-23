@@ -47,12 +47,12 @@ module.exports = {
 
                     }, function(err) {
                         sails.log.error(err);
-                        return cb(err, null);
+                        return callback(err, null);
                     });
 
             }, function(err) {
                 sails.log.error(err);
-                return cb(err, null);
+                return callback(err, null);
             });
     },
 

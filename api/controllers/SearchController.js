@@ -88,11 +88,7 @@ module.exports = {
 
         let queryFilter = [];
         let str = 'attributes.';
-
-        console.log(req.body['sessionData'])
-        console.log(req.body['sessionId'])
-        console.log(req.body['data'])
-
+        
         client.update({
             'index': 'operation',
             'type': 'session',
@@ -103,9 +99,11 @@ module.exports = {
                 },
                 "doc_as_upsert" : true
             }
-        }, function() {});
+        }, function() {
+            return res.json([]);
+        });
 
-        req.body['attributes'].forEach(function(activities) {
+        /*req.body['attributes'].forEach(function(activities) {
 
             activities.forEach(function(characteristics) {
 
@@ -155,7 +153,7 @@ module.exports = {
 
             return res.json({ 'results': { 'high_hits': highHits } });
 
-        });
+        });*/
 
     }
 

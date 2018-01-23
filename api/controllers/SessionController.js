@@ -22,6 +22,13 @@ module.exports = {
         }).then(function(results) {
             return res.json(results.hits.hits);
         });
+    },
+
+    findOne: function(req, res) {
+        client.get({ index: 'operation', type: 'session', id: req.param('id') })
+            .then(function(session) {
+                return res.json(session._source);
+            });
     }
 
 };

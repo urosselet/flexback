@@ -45,12 +45,27 @@
         }
         .selected-card {
             margin-bottom: 1rem;
-            padding: 1rem;
 
             border: 1px solid rgba(255, 255, 255, .45);
             border-radius: 3px;
             h4 {
-                margin: 0;
+                margin: 1rem;
+                padding-bottom: 5px;
+
+                text-align: center;
+
+                border-bottom: 1px solid;
+            }
+            > div {
+                margin: 1rem;
+                padding: 1rem;
+
+                border: 1px solid;
+                border-radius: 3px;
+                background: #aaa;
+                &.selected {
+                    background: #2da5b6;
+                }
             }
         }
     }

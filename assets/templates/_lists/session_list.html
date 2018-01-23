@@ -4,13 +4,15 @@
 		<div class="sessions-wrapper" ng-repeat="session in sessions">
 			<h2>{{ session._id }}</h2>
 			<div class="quadrant-wrapper">
-				<div ng-repeat="item in session._source.data">
-					<h3>{{ item.activity }}</h3>
+				<div ng-repeat="activity in session._source.data">
+					<h3>{{ activity.label.default.title }}</h3>
 					<div class="activities-wrapper">
-						<div ng-repeat="data in item.data">
+						<div ng-repeat="data in activity.activities">
 							<div class="selected-card">
-								<h4>{{ data.label }}</h4>
-								<span><i class="icon flx-{{ data.icon }}"></i> {{ data.title }}</span>
+								<h4>{{ data.label.default.title }}</h4>
+								<div ng-repeat="card in data.label.default.cards.default" ng-class="{'selected': card.is_selected}">
+									<div>{{ card.title }}</div>
+								</div>
 							</div>
 						</div>
 					</div>
