@@ -8,15 +8,12 @@ let nrc = require('node-run-cmd'),
 module.exports = {
 
     getSessionData: function(options, done) {
-
         client.get({ index: 'operation', type: 'session', id: options.sessionId })
             .then(function(session) {
-                console.log(session)
                 return done(session._source.data);
             }, function(err) {
                 return done({});
             });
-        
     },
 
     /**

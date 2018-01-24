@@ -84,6 +84,7 @@ module.exports = {
     platforms: function(req, res) {
 
         let queryFilter = [];
+        let data = req.body['data'];
         let str = 'attributes.';
         
         client.update({
@@ -94,31 +95,33 @@ module.exports = {
                 'doc': {
                     'data': req.body['data']
                 },
-                "doc_as_upsert" : true
+                'doc_as_upsert' : true
             }
-        }, function() {
-            return res.json([]);
         });
 
-        /*req.body['attributes'].forEach(function(activities) {
+        data.forEach(function(csactivity) {
+            csactivity.activities.forEach(function(activity) {
+                activity.label.default.cards.default.forEach(function(card) {
 
-            activities.forEach(function(characteristics) {
+                    if (card.is_selected && card.cs_initiatives !== undefined) {
 
-                Object.keys(characteristics).forEach(function(index) {
-                    
-                    Object.keys(characteristics[index]).forEach(function(attribute) {
+                        if (Object.keys(card.cs_initiatives).length > 0) {
+                            Object.keys(card.cs_initiatives).forEach(function(index) {
+                        
+                                Object.keys(card.cs_initiatives[index]).forEach(function(attribute) {
 
-                        let filterKey = str.concat(index).concat('.').concat(attribute);
-                        let filterObject = {};
+                                    let filterKey = str.concat(index).concat('.').concat(attribute);
+                                    let filterObject = {};
 
-                        filterObject[filterKey] = characteristics[index][attribute];
-                        queryFilter.push({ 'match': filterObject });
-                    });
-                    
-                });
-
+                                    filterObject[filterKey] = card.cs_initiatives[index][attribute];
+                                    queryFilter.push({ 'match': filterObject });
+                                });
+                                
+                            });
+                        }
+                    }
+                })
             });
-
         });
 
         let query = {
@@ -126,13 +129,13 @@ module.exports = {
                 'path': 'attributes',
                 'query': {
                     'bool': {
-                        'must': queryFilter
+                        'should': queryFilter
                     }
                 }
             }
         };
 
-        sails.log.info('Card filters:', query.nested.query.bool.must);
+        sails.log.info('Card filters:', query.nested.query.bool.should);
 
         client.search({
             'index': 'operation',
@@ -150,7 +153,7 @@ module.exports = {
 
             return res.json({ 'results': { 'high_hits': highHits } });
 
-        });*/
+        });
 
     }
 

@@ -44,7 +44,7 @@
         "node-sumuparticles": "^0.1.4",
         "node-wit": "^4.3.0",
         "promise-defer": "^1.0.0",
-        "rc": "1.2.3",
+        "rc": "1.2.4",
         "sails": "~0.12.14"
     },
     "devDependencies": {

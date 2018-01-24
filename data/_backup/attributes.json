@@ -1,97 +1,42 @@
-
-[
-    /* CS Process */
-    { "index": { "_index": "operation", "_type": "process", "_id": 1 } },
-    { "preselection_of_contributors": [ { "id": "qualification_based", "description": "Qualification-based" }, { "id": "context_specific", "description": "Context specific" }, { "id": "both", "description": "Both" }, { "id": "none", "description": "None" } ] }
-
-    { "index": { "_index": "operation", "_type": "process", "_id": 2 } },
-    { "peer_contributions_accessibility": [ { "id": "modify", "description": "Modify" }, { "id": "assess", "description": "Assess" }, { "id": "view", "description": "View" }, { "id": "none", "description": "None" } ] }
-
-    { "index": { "_index": "operation", "_type": "process", "_id": 3 } },
-    { "aggregation_of_contributions": [ { "id": "integrative", "description": "Integrative" }, { "id": "selective", "description": "selective" } ] }
-
-    { "index": { "_index": "operation", "_type": "process", "_id": 4 } },
-    { "remuneration_for_contributions": [ { "id": "fixed", "description": "Fixed" }, { "id": "success_based", "description": "Success-based" }, { "id": "none", "description": "None" } ] }
-
-    { "index": { "_index": "operation", "_type": "process", "_id": 5 } },
-    { "form_of_remuneration": [ { "id": "token", "description": "Token" }, { "id": "visibility", "description": "Visibility" }, { "id": "market", "description": "Market" }, { "id": "none", "description": "None" } ] }
-
-    /* Goals */
-    { "index": { "_index": "operation", "_type": "goal", "_id": 1 } },
-    { "main_beneficiary": [ { "id": "initiator", "description": "Initiator" }, { "id": "crowd_community", "description": "Crowd / Community" } ] }
-
-    { "index": { "_index": "operation", "_type": "goal", "_id": 2 } },
-    { "value_type": [ { "id": "innovation", "description": "Innovation" }, { "id": "authenticity", "description": "Authenticity" }, { "id": "cost_reduction", "description": "Cost reduction" }, { "id": "risk_reduction", "description": "Risk reduction" } ] }
-
-    { "index": { "_index": "operation", "_type": "goal", "_id": 3 } },
-    { "input_tolerance": [ { "id": "low", "description": "Low" }, { "id": "high", "description": "High" } ] }
-
-    /* Tasks */
-    { "index": { "_index": "operation", "_type": "task", "_id": 1 } },
-    { "type": [ { "id": "creation", "description": "Creation" }, { "id": "evaluation", "description": "Evaluation" }, { "id": "organization", "description": "Organization" } ] }
-
-    { "index": { "_index": "operation", "_type": "task", "_id": 2 } },
-    { "dependencies": [ { "id": "decoupled", "description": "Decoupled" }, { "id": "coupled", "description": "Coupled" } ] }
-
-    { "index": { "_index": "operation", "_type": "task", "_id": 3 } },
-    { "novelty": [ { "id": "novelty", "description": "Novelty" }, { "id": "no", "description": "No" } ] }
-
-    { "index": { "_index": "operation", "_type": "task", "_id": 4 } },
-    { "effectiveness": [ { "id": "effectiveness_criteria", "description": "Effectiveness criteria" }, { "id": "none", "description": "None" } ] }
-
-    /* Crowd */
-    { "index": { "_index": "operation", "_type": "crowd", "_id": 1 } },
-    { "contribution_type": [ { "id": "opinion_perspective", "description": "Opinion / Perspective" }, { "id": "content", "description": "Content" } ] }
-
-    { "index": { "_index": "operation", "_type": "crowd", "_id": 2 } },
-    { "main_motivational_driver": [ { "id": "tangible_reward", "description": "Tangible reward" }, { "id": "personal_achievement_and_learning", "description": "Personal achievement and learning" }, { "id": "social_status_and_reputation", "description": "Social status and reputation" }, { "id": "entertainment", "description": "Entertainment" }  ] }
-
-]
-
-/* Postman Body */
-
 /* Process */
 { "index": { "_index": "operation", "_type": "process", "_id": 1 } }
-{ "preselection_of_contributors": [ { "id": "qualification_based", "description": "Qualification-based" }, { "id": "context_specific", "description": "Context specific" }, { "id": "both", "description": "Both" }, { "id": "none", "description": "None" } ] }
+{ "pos": 1, "preselection_of_contributors": [ { "index": 1, "id": "qualification_based", "description": "Qualification-based" }, { "index": 2, "id": "context_specific", "description": "Context specific" }, { "index": 3, "id": "both", "description": "Both" }, { "index": 4, "id": "none", "description": "None" } ] }
 
 { "index": { "_index": "operation", "_type": "process", "_id": 2 } }
-{ "peer_contributions_accessibility": [ { "id": "modify", "description": "Modify" }, { "id": "assess", "description": "Assess" }, { "id": "view", "description": "View" }, { "id": "none", "description": "None" } ] }
+{ "pos": 2, "peer_contributions_accessibility": [ { "index": 1, "id": "modify", "description": "Modify" }, { "index": 2, "id": "assess", "description": "Assess" }, { "index": 3, "id": "view", "description": "View" }, { "index": 4, "id": "none", "description": "None" } ] }
 
 { "index": { "_index": "operation", "_type": "process", "_id": 3 } }
-{ "aggregation_of_contributions": [ { "id": "integrative", "description": "Integrative" }, { "id": "selective", "description": "Selective" } ] }
+{ "pos": 3, "aggregation_of_contributions": [ { "index": 1, "id": "integrative", "description": "Integrative" }, { "index": 2, "id": "selective", "description": "Selective" } ] }
 
 { "index": { "_index": "operation", "_type": "process", "_id": 4 } }
-{ "remuneration_for_contributions": [ { "id": "fixed", "description": "Fixed" }, { "id": "success_based", "description": "Success-based" }, { "id": "none", "description": "None" } ] }
+{ "pos": 4, "remuneration_for_contributions": [ { "index": 1, "id": "fixed", "description": "Fixed" }, { "index": 2, "id": "success_based", "description": "Success-based" }, { "index": 3, "id": "none", "description": "None" } ] }
 
 { "index": { "_index": "operation", "_type": "process", "_id": 5 } }
-{ "form_of_remuneration": [ { "id": "token", "description": "Token" }, { "id": "visibility", "description": "Visibility" }, { "id": "market", "description": "Market" }, { "id": "none", "description": "None" } ] }
+{ "pos": 5, "form_of_remuneration": [ { "index": 1, "id": "token", "description": "Token" }, { "index": 2, "id": "visibility", "description": "Visibility" }, { "index": 3, "id": "market", "description": "Market" }, { "index": 4, "id": "none", "description": "None" } ] }
 
 { "index": { "_index": "operation", "_type": "goal", "_id": 1 } }
-{ "main_beneficiary": [ { "id": "initiatior", "description": "Initiatior" }, { "id": "crowd_community", "description": "Crowd / Community" } ] }
+{ "pos": 1, "main_beneficiary": [ { "index": 1, "id": "initiator", "description": "Initiator" }, { "index": 2, "id": "crowd_community", "description": "Crowd / Community" } ] }
 
 { "index": { "_index": "operation", "_type": "goal", "_id": 2 } }
-{ "value_type": [ { "id": "innovation", "description": "Innovation" }, { "id": "authenticity", "description": "Authenticity" }, { "id": "cost_reduction", "description": "Cost reduction" }, { "id": "risk_reduction", "description": "Risk reduction" } ] }
+{ "pos": 2, "value_type": [ { "index": 1, "id": "innovation", "description": "Innovation" }, { "index": 2, "id": "authenticity", "description": "Authenticity" }, { "index": 3, "id": "cost_reduction", "description": "Cost reduction" }, { "index": 4, "id": "risk_reduction", "description": "Risk reduction" } ] }
 
 { "index": { "_index": "operation", "_type": "goal", "_id": 3 } }
-{ "input_tolerance": [ { "id": "low", "description": "Low" }, { "id": "high", "description": "High" } ] }
+{ "pos": 3, "input_tolerance": [ { "index": 1, "id": "low", "description": "Low" }, { "index": 2, "id": "high", "description": "High" } ] }
 
 { "index": { "_index": "operation", "_type": "task", "_id": 1 } }
-{ "type": [ { "id": "creation", "description": "Creation" }, { "id": "evaluation", "description": "Evaluation" }, { "id": "organization", "description": "Organization" } ] }
+{ "pos": 1, "type": [ { "index": 1, "id": "creation", "description": "Creation" }, { "index": 2, "id": "evaluation", "description": "Evaluation" }, { "index": 3, "id": "organization", "description": "Organization" } ] }
 
 { "index": { "_index": "operation", "_type": "task", "_id": 2 } }
-{ "dependencies": [ { "id": "decoupled", "description": "Decoupled" }, { "id": "coupled", "description": "Coupled" } ] }
+{ "pos": 2, "dependencies": [ { "index": 1, "id": "decoupled", "description": "Decoupled" }, { "index": 2, "id": "coupled", "description": "Coupled" } ] }
 
 { "index": { "_index": "operation", "_type": "task", "_id": 3 } }
-{ "novelty": [ { "id": "novelty", "description": "Novelty" }, { "id": "no", "description": "No" } ] }
+{ "pos": 3, "novelty": [ { "index": 1, "id": "novelty", "description": "Novelty" }, { "index": 2, "id": "no", "description": "No" } ] }
 
 { "index": { "_index": "operation", "_type": "task", "_id": 4 } }
-{ "effectiveness": [ { "id": "effectiveness_criteria", "description": "Effectiveness criteria" }, { "id": "none", "description": "None" } ] }
+{ "pos": 4, "effectiveness": [ { "index": 1, "id": "effectiveness_criteria", "description": "Effectiveness criteria" }, { "index": 2, "id": "none", "description": "None" } ] }
 
 { "index": { "_index": "operation", "_type": "crowd", "_id": 1 } }
-{ "contribution_type": [ { "id": "opinion_perspective", "description": "Opinion / Perspective" }, { "id": "content", "description": "Content" } ] }
+{ "pos": 1, "contribution_type": [ { "index": 1, "id": "opinion_perspective", "description": "Opinion / Perspective" }, { "index": 2, "id": "content", "description": "Content" } ] }
 
 { "index": { "_index": "operation", "_type": "crowd", "_id": 2 } }
-{ "main_motivational_driver": [ { "id": "tangible_reward", "description": "Tangible reward" }, { "id": "personal_achievement_and_learning", "description": "Personal achievement and learning" }, { "id": "social_status_and_reputation", "description": "Social status and reputation" }, { "id": "entertainment", "description": "Entertainment" } ] }
-
-
-
+{ "pos": 2, "main_motivational_driver": [ { "index": 1, "id": "tangible_reward", "description": "Tangible reward" }, { "index": 2, "id": "personal_achievement_and_learning", "description": "Personal achievement and learning" }, { "index": 3, "id": "social_status_and_reputation", "description": "Social status and reputation" }, { "index": 4, "id": "entertainment", "description": "Entertainment" } ] }

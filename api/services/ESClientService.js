@@ -56,7 +56,7 @@ module.exports = {
                 client.search({ 
                     'index': 'operation', 
                     'type': 'process', 
-                    'body': { 'query': { 'match_all': {} } }
+                    'body': { 'query': { 'match_all': {} }, 'sort': [ { 'pos': { 'order': 'asc' } } ] }
                 }).then(function(response) {
                     callback(null, response);
                 });
@@ -66,7 +66,7 @@ module.exports = {
                 client.search({ 
                     'index': 'operation', 
                     'type': 'goal', 
-                    'body': { 'query': { 'match_all': {} } }
+                    'body': { 'query': { 'match_all': {} }, 'sort': [ { 'pos': { 'order': 'asc' } } ] }
                 }).then(function(response) {
                     callback(null, response);
                 });
@@ -76,7 +76,7 @@ module.exports = {
                 client.search({ 
                     'index': 'operation', 
                     'type': 'task', 
-                    'body': { 'query': { 'match_all': {} } }
+                    'body': { 'query': { 'match_all': {} }, 'sort': [ { 'pos': { 'order': 'asc' } } ] }
                 }).then(function(response) {
                     callback(null, response);
                 });
@@ -86,7 +86,7 @@ module.exports = {
                 client.search({ 
                     'index': 'operation', 
                     'type': 'crowd', 
-                    'body': { 'query': { 'match_all': {} } }
+                    'body': { 'query': { 'match_all': {} }, 'sort': [ { 'pos': { 'order': 'asc' } } ] }
                 }).then(function(response) {
                     callback(null, response);
                 });
