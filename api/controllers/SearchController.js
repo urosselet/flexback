@@ -93,11 +93,11 @@ module.exports = {
             'id': req.body['sessionId'],
             'body': {
                 'doc': {
-                    'data': req.body['data']
+                    'data': data
                 },
                 'doc_as_upsert' : true
             }
-        }, function() {});
+        }, function(res) { console.log(res) });
 
         data.forEach(function(csactivity) {
             csactivity.activities.forEach(function(activity) {
