@@ -97,7 +97,7 @@ module.exports = {
                 },
                 'doc_as_upsert' : true
             }
-        }, function(res) { console.log(res) });
+        }, function(res) {});
 
         data.forEach(function(csactivity) {
             csactivity.activities.forEach(function(activity) {

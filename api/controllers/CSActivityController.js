@@ -186,5 +186,33 @@ module.exports = {
         });
 
     },
+
+    /**
+     * Return all icons used in ES
+     * @param  {[type]} req [description]
+     * @param  {[type]} res [description]
+     * @return {[type]}     [description]
+     */
+    icons: function(req, res) {
+
+        let icons = [];
+
+        client.search({
+            'index': 'operation',
+            'type': 'cs_activity',
+            'body': { 'query': { 'match_all': {} }, '_source': ['icon', 'data.activities.label.default.icon', 'data.activities.label.default.cards.default.icon'] }
+        }).then(function(results) {
+            results.hits.hits.forEach(function(hit) {
+                icons.push(hit._source.icon);
+                hit._source.data.activities.forEach(function(activitiy) {
+                    icons.push(activitiy.label.default.icon);
+                    activitiy.label.default.cards.default.forEach(function(card) {
+                        icons.push(card.icon);
+                    });
+                });
+            })
+            return res.json({ 'count': icons.length, 'icons': icons });
+        });
+    }
 	
 };
