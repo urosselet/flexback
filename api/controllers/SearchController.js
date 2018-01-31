@@ -129,7 +129,8 @@ module.exports = {
                 'path': 'attributes',
                 'query': {
                     'bool': {
-                        'should': queryFilter
+                        'should': queryFilter,
+                        'minimum_should_match': 2
                     }
                 }
             }

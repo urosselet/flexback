@@ -13,23 +13,34 @@
 module.exports = {
 
     /***************************************************************************
-     * Set the default database connection for models in the production        *
-     * environment (see config/connections.js and config/models.js )           *
+     * Set the development port                                                *
      ***************************************************************************/
-    // models: {
-    //   connection: 'someMysqlServer'
-    // },
+    port: 8080,
 
     /***************************************************************************
-     * Set the port in the production environment to 80                        *
+     * The order of precedence for log levels from lowest to highest is:       *
+     * silly, verbose, info, debug, warn, error                                *
+     *                                                                         *
+     * You may also set the level to "silent" to suppress all logs.            *
      ***************************************************************************/
-    // port: 80,
+    log: {
+        level: 'silent'
+    },
 
     /***************************************************************************
-     * Set the log level in production environment to "silent"                 *
+     *                                                                          *
+     * Which domains which are allowed CORS access? This can be a               *
+     * comma-delimited list of hosts (beginning with http:// or https://) or    *
+     * "*" to allow all domains CORS access.                                    *
+     *                                                                          *
      ***************************************************************************/
-    // log: {
-    //   level: "silent"
-    // }
+    cors: {
+        origin: '*'
+    },
+
+    /***************************************************************************
+     * Asset url path                                                           *
+     ***************************************************************************/
+    asset_url: 'https://api.flexcrowd.org'
 
 };
