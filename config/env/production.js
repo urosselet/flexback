@@ -24,7 +24,7 @@ module.exports = {
      * You may also set the level to "silent" to suppress all logs.            *
      ***************************************************************************/
     log: {
-        level: 'silent'
+        level: 'info'
     },
 
     /***************************************************************************
